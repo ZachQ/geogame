@@ -1,36 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text=" About" 
-        android:textSize="20dp"
-        android:layout_gravity="left"
-        android:gravity="left" />
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/about_descrip"
-        android:layout_gravity="left"
-        android:gravity="left" />
-
-	<TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text=" Rules" 
-        android:textSize="20dp"
-        android:layout_gravity="left"
-        android:gravity="left" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dip">
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:orientation="vertical" >
 	
-	<TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/rules_descrip"
-        android:layout_gravity="left"
-        android:gravity="left" />
-</LinearLayout>
+	    <TextView
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text=" About" 
+	        android:textSize="20dp"
+	        android:layout_gravity="left"
+	        android:gravity="left" />
+	
+	    <TextView
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/about_descrip"
+	        android:layout_gravity="left"
+	        android:gravity="left" />
+	
+		<TextView
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text=" Rules" 
+	        android:textSize="20dp"
+	        android:layout_gravity="left"
+	        android:gravity="left" />
+		
+		<TextView
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/rules_descrip"
+	        android:layout_gravity="left"
+	        android:gravity="left" />
+	</LinearLayout>
+</ScrollView>

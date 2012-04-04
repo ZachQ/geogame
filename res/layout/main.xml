@@ -11,15 +11,15 @@
         android:textSize="45dp"
         android:layout_gravity="center"
         android:gravity="center" 
-        android:paddingTop="10dp"/>
+        android:paddingTop="10dp"
+        android:paddingBottom="345dp" />
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Geography Department at"
         android:layout_gravity="center"
-        android:gravity="center" 
-        android:paddingTop="345dp"/>
+        android:gravity="center" />
 
     <TextView
         android:layout_width="fill_parent"

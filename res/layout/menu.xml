@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="0dip"
+    android:paddingLeft="20dip"
+    android:paddingRight="20dip"
+    android:paddingBottom="20dip">
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:orientation="vertical" >
+
+	    <TextView
+	        android:text="Logged in as: [username]"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="right"
+	        android:gravity="right"
+	        android:layout_marginBottom="15dp"
+	        android:layout_marginTop="0dp"
+	        android:textSize="20dp" />
+	    
+		<Button
+			android:id="@+id/PlayGame_Button"
+			android:text="Play Game"
+			android:textSize="30dp"
+			android:layout_marginTop="30dp"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" 
+			android:layout_gravity="center"
+	        android:gravity="center" />
+		
+		<Button
+			android:id="@+id/EditAccout_Button"
+			android:text="Edit Account"
+			android:textSize="30dp"
+			android:layout_marginTop="30dp"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" 
+			android:layout_gravity="center"
+	        android:gravity="center" />
+		
+		<Button
+			android:id="@+id/About_Button"
+			android:text="About / Rules"
+			android:textSize="30dp"
+			android:layout_marginTop="30dp"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" 
+			android:layout_gravity="center"
+	        android:gravity="center" />
+		
+		<Button
+			android:id="@+id/LogOut_Button"
+			android:text="Log Out"
+			android:textSize="30dp"
+			android:layout_marginTop="30dp"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" 
+			android:layout_gravity="center"
+	        android:gravity="center" />
+
+
+		
+	</LinearLayout>
+</ScrollView>
