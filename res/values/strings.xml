@@ -6,4 +6,5 @@
 	<string name="about_descrip">GeoGame is a virtual workbench for teaching and learning
 	     through real-world geography. Created by the Geography Department with help from
 	     the computer science department.</string>
+	<string name="rules_descrip">GeoGame Rules Inserted Here</string>
 </resources>
