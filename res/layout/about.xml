@@ -7,23 +7,24 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_name" 
-        android:textSize="45dp"
-        android:layout_gravity="center"
-        android:gravity="center" />
+        android:text=" About" 
+        android:textSize="20dp"
+        android:layout_gravity="left"
+        android:gravity="left" />
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Geography Department at"
-        android:layout_gravity="center"
-        android:gravity="center" />
+        android:text="@string/about_descrip"
+        android:layout_gravity="left"
+        android:gravity="left" />
 
-    <TextView
+	<TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="The Ohio State University" 
-        android:layout_gravity="center"
-        android:gravity="center" />
+        android:text=" Rules" 
+        android:textSize="20dp"
+        android:layout_gravity="left"
+        android:gravity="left" />
 
 </LinearLayout>

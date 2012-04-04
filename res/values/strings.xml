@@ -3,5 +3,7 @@
 
     <string name="hello">Hello World, GeoGameActivity!</string>
     <string name="app_name">GeoGame</string>
-
+	<string name="about_descrip">GeoGame is a virtual workbench for teaching and learning
+	     through real-world geography. Created by the Geography Department with help from
+	     the computer science department.</string>
 </resources>
