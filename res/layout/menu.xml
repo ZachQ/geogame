@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:paddingTop="0dip"
     android:paddingLeft="20dip"
     android:paddingRight="20dip"
@@ -62,7 +62,5 @@
 			android:layout_gravity="center"
 	        android:gravity="center" />
 
-
-		
 	</LinearLayout>
 </ScrollView>
