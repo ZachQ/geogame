@@ -41,7 +41,9 @@ public class Splash extends Activity {
 	
 	@Override
 	protected void onPause() {
-		// this will "pause" the activity
+		// This will "pause" the activity aka kill itself so
+		// the user can't press the "back" button and go back
+		// to the splash screen.
 		super.onPause();
 		finish();
 	}

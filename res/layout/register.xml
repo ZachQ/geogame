@@ -31,7 +31,8 @@
 		<EditText 
 			android:id="@+id/NewUserName" 
 			android:layout_width="fill_parent"
-			android:layout_height="wrap_content" />
+			android:layout_height="wrap_content" 
+			android:hint="Enter text here" />
 	
 		<TextView
 			android:text="Desired Password:" 
@@ -46,6 +47,7 @@
 			android:id="@+id/NewPassword" 
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content" 
+			android:hint="Enter text here"
 			android:password="true" />	
 		<TextView
 			android:text="Reenter Password:" 
@@ -60,9 +62,10 @@
 			android:id="@+id/NewPassword2" 
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content" 
+			android:hint="Enter text here"
 			android:password="true" />
 		
-	<TextView
+		<TextView
 			android:text="Enter Email Address:" 
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
@@ -75,7 +78,7 @@
 			android:id="@+id/EmailAddress" 
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content" 
-			android:password="true" />
+			android:hint="Enter text here" />
 		
 		<Button
 			android:id="@+id/Register_Button"

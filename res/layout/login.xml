@@ -32,7 +32,8 @@
 		<EditText 
 			android:id="@+id/UserName" 
 			android:layout_width="fill_parent"
-			android:layout_height="wrap_content" />
+			android:layout_height="wrap_content" 
+			android:hint="Enter text here" />
 	
 		<TextView
 			android:text="Password:" 
@@ -48,6 +49,7 @@
 			android:id="@+id/Password" 
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content" 
+			android:hint="Enter text here"
 			android:password="true" />
 		
 		<Button
