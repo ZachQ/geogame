@@ -3,7 +3,8 @@
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:padding="20dip">
+    android:padding="20dip"
+    android:background="@drawable/background">
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
@@ -17,7 +18,8 @@
 	        android:layout_marginBottom="15dip"
 	        android:textSize="30dp"
 	        android:layout_gravity="center"
-	        android:gravity="center" />
+	        android:gravity="center" 
+	        android:textColor="#000000" />
 	    
 	    <TextView
 			android:text="Username:" 
@@ -27,13 +29,15 @@
 	        android:layout_marginBottom="15dip"
 	        android:textSize="29dp"
 	        android:layout_gravity="left"
-	        android:gravity="left" />
+	        android:gravity="left" 
+	        android:textColor="#000000" />
 	
 		<EditText 
 			android:id="@+id/UserName" 
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content" 
-			android:hint="Enter text here" />
+			android:hint="Enter text here"
+			android:textColor="#000000" />
 	
 		<TextView
 			android:text="Password:" 
@@ -43,14 +47,16 @@
 	        android:layout_marginBottom="15dip"
 	        android:textSize="29dp"
 	        android:layout_gravity="left"
-	        android:gravity="left" />
+	        android:gravity="left"
+	        android:textColor="#000000" />
 	    
 		<EditText 
 			android:id="@+id/Password" 
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content" 
 			android:hint="Enter text here"
-			android:password="true" />
+			android:password="true"
+			android:textColor="#000000" />
 		
 		<Button
 			android:id="@+id/Login_Button"
@@ -60,7 +66,8 @@
 			android:layout_width="250dp"
 			android:layout_height="wrap_content" 
 			android:layout_gravity="center"
-	        android:gravity="center" />
+	        android:gravity="center"
+	        android:textColor="#000000" />
 
 	</LinearLayout>
 </ScrollView>

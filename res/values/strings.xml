@@ -3,30 +3,30 @@
 
     <string name="hello">Hello World, GeoGameActivity!</string>
     <string name="app_name">GeoGame</string>
-	<string name="about_descrip">GeoGame is a virtual workbench for teaching and learning
+	<string name="about_descrip">\u0020 GeoGame is a virtual workbench for teaching and learning
 	     through real-world geography. Created by the Geography Department with help from
 	     the computer science department.</string>
 	<string name="land_descrip">
-			You may buy and sell land. Initial land costs
+		\u0020	You may buy and sell land. Initial land costs
 		from the bank are $300 per acre. Land
 		purchased between families is negotiable.
 		Obtain a Land Card for each acre your
 		household owns.</string>
 	<string name="wheat_descrip">
-			There are two types of wheat varieties to
+		\u0020	There are two types of wheat varieties to
 		choose from, land races (LR) and the new
 		high yield cultivars (HYC) of the Green
 		Revolution. HYCs have a high yield potential,
 		whereas LRs have strong yield stability.
-		
-		If you use LRs, you hold back some of your
+		\n
+		\u0020If you use LRs, you hold back some of your
 		previously harvested seed and do not need to
 		purchase seed each year.
-		
-		If you choose to plant HYCs, then you must
+		\n
+		\u0020If you choose to plant HYCs, then you must
 		purchase the seed for $20 per bushel.
-		
-		The recommended seeding rate of HYCs is 2
+		\n
+		\u0020The recommended seeding rate of HYCs is 2
 		bushels per acre. You need to purchase new
 		HYC seed every third year. As a result, the
 		Banker will give 2 HYC Cards per acre (one
@@ -35,7 +35,7 @@
 		when collecting money at the end of the
 		growing season. </string>
 	<string name="fert_descrip">
-			You must decide if you will apply fertilizer.
+		\u0020	You must decide if you will apply fertilizer.
 		You can apply fertilizer at three levels, coded
 		by the index F ranging from 1 to 3. When F = 1
 		you apply 80 lb. fertilizer per acre. For F = 2
@@ -46,7 +46,7 @@
 		purchased and place it on top of your Land
 		Card.</string>
 	<string name="irrigation_descrip">
-			You must decide whether you will irrigate. To
+		\u0020	You must decide whether you will irrigate. To
 		be able to irrigate, you must install a tubewell.
 		Each tubewell will cost $1,000 to install and
 		will pump enough water to irrigate 25 acres.
@@ -60,18 +60,18 @@
 		5 means very poor and dry conditions,
 		whereas the top index of 1 means excellent
 		conditions.
-		
-		If you have the capability and have decided
+		\n
+		\u0020 If you have the capability and have decided
 		to irrigate, you will figure your frequency
 		and cost for irrigation as follows:
-		
-		Number of irrigations (Ni) = W – 1
+		\n
+		\u0020 Number of irrigations (Ni) = W – 1
 		Cost of irrigation (Ci) = Ni × $3/acre
-		
-		After irrigation, figure your yield for the
+		\n
+		\u0020 After irrigation, figure your yield for the
 		given season using a weather index of W = 1. </string>
 	<string name="yield_descrip">
-			Yield will depend on the type of seeds you
+		\u0020 Yield will depend on the type of seeds you
 		use, the weather conditions, and the level of
 		fertilizer inputs you apply to the crop. The
 		yield potential is 80 bushels/acre for HYCs
@@ -86,97 +86,89 @@
 		wheat types as affected by weather and
 		fertilizer input level.</string>
 	<string name="labour_descrip">
-			You can buy labour or you can generate extra
+		\u0020	You can buy labour or you can generate extra
 		income by selling your labour. Wages are
 		$240 per growing season (negotiable between
 		families). </string>
-	<string name="rules_descrip">
-Labour Requirements:
-
-• 1 adult (male or female) per 2 acres of
-unirrigated land
-
-• 1 adult per 1 acre of irrigated land
-
-An ox can be bought or sold for $1,000. An ox
-will reduce time for field labour by 50%, but
-must be driven by an adult male. This will
-effectively double the output of 1 adult male
-from the owner(s) of the ox:
-
-• 1 adult per 4 acres of unirrigated land
-
-• 1 adult per 2 acre of irrigated land
-
-Children
-
-• At least 3 children are required to collect
-firewood, look after goats and fetch water.
-
-• If a family loses children and has less than 3,
-1 adult must stay at home.
-
-• No more than 4 children under 10 years of
-age are allowed in each family.
-
-Consumption
-
-• Each child requires 5 bushels of wheat/year.
-
-• Each adult needs 9 bushels of wheat/year.
-
-• If a family is in food deficit, people will die,
-starting with children.
-
-• If a child is born to a family, the new child
-needs 5 bushels. If the family has more than
-4 children, 1 existing child ‘grows up’ to
-become an adult and needs 4 bushels extra.
-
-How to Conduct Transactions
-
-In order for the results of the simulation to be
-realistic, your transactions must be "real." In
-other words, when you decide to sell land, you
-must find a buyer. When you decide to buy
-something, you must have the budget for it. If
-you want to work for wages, you must find a
-willing employer.
-
-Sequence of Play
-
-1. Check that land and labour are on hand.
-Fill in household details on the
-Household Score sheet. Calculate
-consumption requirements.
-
-2. Weather card is drawn.
-
-3. Banker declares price of wheat, and Fate
-draws a Fate Card.
-
-4. Calculate yield based on the Yield
-Performance Graph. [Note: In year 1, all
-households start with LR seed.] Subtract
-consumption amounts per household.
-
-5. Sell your remaining wheat to the Banker.
-
-6. Conduct transactions with other
-households (labour or land) or with the
-Banker (HYC seeds, irrigation, fertilizer)
-for the following year’s crops.
-
-7. Determine your balance (Total Income
-minus Total Costs) and carry this amount
-forward on the Household Score Sheet as
-Savings for the following year.
-
-Repeat steps 1-7 a total of 7 times, or as long
-as time permits.
-
-At the end of the game, calculate your
-household’s final assets to show how much
-extra wealth the new technology has
-generated in the village.</string>
+	<string name="labourReq_descrip">
+		• 1 adult (male or female) per 2 acres of
+		unirrigated land
+		\n
+		• 1 adult per 1 acre of irrigated land
+		\n
+		An ox can be bought or sold for $1,000. An ox
+		will reduce time for field labour by 50%, but
+		must be driven by an adult male. This will
+		effectively double the output of 1 adult male
+		from the owner(s) of the ox:
+		\n
+		• 1 adult per 4 acres of unirrigated land
+		\n
+		• 1 adult per 2 acre of irrigated land
+		\n
+		Children
+		\n
+		• At least 3 children are required to collect
+		firewood, look after goats and fetch water.
+		\n
+		• If a family loses children and has less than 3,
+		1 adult must stay at home.
+		\n
+		• No more than 4 children under 10 years of
+		age are allowed in each family.</string>
+	<string name="consumption_descrip">
+		• Each child requires 5 bushels of wheat/year.
+		\n
+		• Each adult needs 9 bushels of wheat/year.
+		\n
+		• If a family is in food deficit, people will die,
+		starting with children.
+		\n
+		• If a child is born to a family, the new child
+		needs 5 bushels. If the family has more than
+		4 children, 1 existing child ‘grows up’ to
+		become an adult and needs 4 bushels extra.</string>
+	<string name="trans_descrip">
+		\u0020	In order for the results of the simulation to be
+		realistic, your transactions must be "real." In
+		other words, when you decide to sell land, you
+		must find a buyer. When you decide to buy
+		something, you must have the budget for it. If
+		you want to work for wages, you must find a
+		willing employer. </string>
+	<string name="seqOfPlay_descrip">
+		1. Check that land and labour are on hand.
+		Fill in household details on the
+		Household Score sheet. Calculate
+		consumption requirements.
+		\n
+		2. Weather card is drawn.
+		\n
+		3. Banker declares price of wheat, and Fate
+		draws a Fate Card.
+		\n
+		4. Calculate yield based on the Yield
+		Performance Graph. [Note: In year 1, all
+		households start with LR seed.] Subtract
+		consumption amounts per household.
+		\n
+		5. Sell your remaining wheat to the Banker.
+		\n
+		6. Conduct transactions with other
+		households (labour or land) or with the
+		Banker (HYC seeds, irrigation, fertilizer)
+		for the following year’s crops.
+		\n
+		7. Determine your balance (Total Income
+		minus Total Costs) and carry this amount
+		forward on the Household Score Sheet as
+		Savings for the following year.
+		\n
+		Repeat steps 1-7 a total of 7 times, or as long
+		as time permits.
+		\n\n
+		At the end of the game, calculate your
+		household’s final assets to show how much
+		extra wealth the new technology has
+		generated in the village.</string>
 </resources>

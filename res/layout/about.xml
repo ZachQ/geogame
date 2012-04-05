@@ -140,5 +140,73 @@
 	        android:gravity="left"
 	        android:layout_marginLeft="7dp" 
 	        android:textColor="#000000" />
+		
+		<TextView
+		    android:text="Labour Requirements" 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:textSize="15dp"
+	        android:layout_gravity="left"
+	        android:gravity="left" 
+	        android:textColor="#000000" />
+		<TextView
+		    android:text="@string/labourReq_descrip"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="left"
+	        android:gravity="left"
+	        android:layout_marginLeft="7dp" 
+	        android:textColor="#000000" />
+		
+		<TextView
+		    android:text="Consumption" 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:textSize="15dp"
+	        android:layout_gravity="left"
+	        android:gravity="left" 
+	        android:textColor="#000000" />
+		<TextView
+		    android:text="@string/consumption_descrip"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="left"
+	        android:gravity="left"
+	        android:layout_marginLeft="7dp" 
+	        android:textColor="#000000" />
+		
+		<TextView
+		    android:text="How to Conduct Transactions" 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:textSize="15dp"
+	        android:layout_gravity="left"
+	        android:gravity="left" 
+	        android:textColor="#000000" />
+		<TextView
+		    android:text="@string/trans_descrip"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="left"
+	        android:gravity="left"
+	        android:layout_marginLeft="7dp" 
+	        android:textColor="#000000" />
+		
+		<TextView
+		    android:text="Sequence of Play" 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:textSize="15dp"
+	        android:layout_gravity="left"
+	        android:gravity="left" 
+	        android:textColor="#000000" />
+		<TextView
+		    android:text="@string/seqOfPlay_descrip"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="left"
+	        android:gravity="left"
+	        android:layout_marginLeft="7dp" 
+	        android:textColor="#000000" />
 	</LinearLayout>
 </ScrollView>
