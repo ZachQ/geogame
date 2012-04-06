@@ -3,7 +3,10 @@
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:padding="20dip"
+    android:paddingTop="5dip"
+    android:paddingBottom="15dip"
+    android:paddingLeft="15dip"
+    android:paddingRight="15dip"
     android:background="@drawable/background">
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     	android:layout_width="fill_parent"
@@ -16,19 +19,21 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="center"
 	        android:layout_marginBottom="15dip"
-	        android:layout_marginTop="20dip"
+	        android:layout_marginTop="15dip"
 	        android:gravity="center"
-	        android:textSize="50dp" />
+	        android:textSize="35dp" 
+	        android:textColor="#000000" />
 	    
 	    <TextView
 			android:text="Desired Username:" 
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginTop="30dip"
+	        android:layout_marginTop="15dip"
 	        android:layout_marginBottom="5dip"
-	        android:textSize="32dp"
+	        android:textSize="25dp"
 	        android:layout_gravity="left"
-	        android:gravity="left" />
+	        android:gravity="left"
+	        android:textColor="#000000" />
 		<EditText 
 			android:id="@+id/NewUserName" 
 			android:layout_width="fill_parent"
@@ -39,11 +44,12 @@
 			android:text="Desired Password:" 
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginTop="30dip"
+	        android:layout_marginTop="25dip"
 	        android:layout_marginBottom="5dip"
-	        android:textSize="29dp"
+	        android:textSize="25dp"
 	        android:layout_gravity="left"
-	        android:gravity="left" />   
+	        android:gravity="left"
+	        android:textColor="#000000" />   
 		<EditText 
 			android:id="@+id/NewPassword" 
 			android:layout_width="fill_parent"
@@ -54,11 +60,12 @@
 			android:text="Reenter Password:" 
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginTop="30dip"
+	        android:layout_marginTop="15dip"
 	        android:layout_marginBottom="5dip"
-	        android:textSize="29dp"
+	        android:textSize="25dp"
 	        android:layout_gravity="left"
-	        android:gravity="left" />
+	        android:gravity="left"
+	        android:textColor="#000000" />
 		<EditText 
 			android:id="@+id/NewPassword2" 
 			android:layout_width="fill_parent"
@@ -70,11 +77,12 @@
 			android:text="Enter Email Address:" 
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginTop="30dip"
+	        android:layout_marginTop="25dip"
 	        android:layout_marginBottom="5dip"
-	        android:textSize="29dp"
+	        android:textSize="25dp"
 	        android:layout_gravity="left"
-	        android:gravity="left" />
+	        android:gravity="left"
+	        android:textColor="#000000" />
 		<EditText 
 			android:id="@+id/EmailAddress" 
 			android:layout_width="fill_parent"
@@ -84,8 +92,9 @@
 		<Button
 			android:id="@+id/Register_Button"
 			android:text="Register"
-			android:textSize="50dp"
-			android:layout_marginTop="30dip"
+			android:textSize="30dp"
+			android:layout_marginTop="25dip"
+			android:layout_marginBottom="15dip"
 			android:layout_width="250dp"
 			android:layout_height="wrap_content" 
 			android:layout_gravity="center"
