@@ -1,38 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" 
-    android:background="@drawable/background">
+    android:background="@drawable/radialback"
+    android:padding="10px" >
 
     <TextView
-        android:text="Welcome to GeoGame!" 
+        android:id="@+id/textView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
-        android:textSize="25dp"
         android:layout_gravity="center"
-        android:gravity="center" 
-        android:textColor="#000000" />
+        android:layout_marginTop="10dip"
+        android:gravity="center"
+        android:text="Please Login"
+        android:textColor="@color/gold"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="74dp"
+        android:text="Username" />
+
+    <EditText
+        android:id="@+id/editLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editLogin"
+        android:layout_below="@+id/editLogin"
+        android:layout_marginTop="23dp"
+        android:text="Password" />
+
+    <EditText
+        android:id="@+id/editPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_below="@+id/textView3"
+        android:ems="10"
+        android:inputType="textPassword" />
 
     <Button
-		android:id="@+id/login_button"
-		android:text="Login"
-		android:textSize="20dp"
-		android:layout_marginTop="50dip"
-		android:layout_width="250dp"
-		android:layout_height="wrap_content" 
-		android:layout_gravity="center"
-        android:gravity="center" />
-    
-	<Button
-		android:id="@+id/About_button"
-		android:text="About / Rules"
-		android:textSize="20dp"
-		android:layout_marginTop="50dip"
-		android:layout_width="250dp"
-		android:layout_height="wrap_content" 
-		android:layout_gravity="center"
-        android:gravity="center" />
+        android:id="@+id/buttonLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/editPassword"
+        android:layout_below="@+id/editPassword"
+        android:text="Login" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/buttonRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editPassword"
+        android:layout_toLeftOf="@+id/buttonLogin"
+        android:text="Register" />
+
+</RelativeLayout>

@@ -4,39 +4,36 @@ package edu.osu.geogame;
 import edu.osu.geogame.R;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 /**
  * This is basically the "splash screen" that comes up when the app
  * is opened to display GeoGame logo, Geo dept and Ohio State University
  * @author Zachary Quinn
  */
 public class Splash extends Activity {
-    /** Called when the activity is first created. */
 	
-	int counter;
+	Button start;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
         
-		final int sleepTime = 6000;
-		// timer to sleep for 5 seconds
-		Thread timer = new Thread() {
-			// wait for 5 seconds, then proceed to the next screen to login
-			public void run() {
-				try {
-					sleep(sleepTime);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				} finally{
-					// Proceed to the next "home" screen
-					Intent openStartingPoint = new Intent("edu.osu.geogame.HOMESCREEN");
-					startActivity(openStartingPoint);
-				}
-			}
-		};
-		timer.start();
+        // Get references
+        start = (Button) findViewById(R.id.buttonStart);
+        
+        // Add ActionListeners to buttons
+        start.setOnClickListener(new View.OnClickListener() {
+ 			@Override
+ 			public void onClick(View v) {
+ 				Intent myIntent = new Intent(v.getContext(), HomeScreen.class);
+                startActivityForResult(myIntent, 0);
+ 			}
+ 		});
 	}
 	
 	@Override
@@ -48,4 +45,16 @@ public class Splash extends Activity {
 		finish();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * This will change the color format of the Activity so that
+	 * the background gradient will be very smooth.  Without this
+	 * it has noticable color-stepping.
+	 */
+	@Override
+	public void onAttachedToWindow() {
+		super.onAttachedToWindow();
+		Window window = getWindow();
+		window.setFormat(PixelFormat.RGBA_8888);
+	}
 }

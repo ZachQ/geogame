@@ -1,10 +1,15 @@
 package edu.osu.geogame;
 
-import android.app.ListActivity;
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 /**
@@ -12,32 +17,49 @@ import android.widget.ListView;
  * @author Zachary Quinn
  */
 
-public class HomeScreen extends ListActivity {
+public class HomeScreen extends Activity {
 
-	String classes[] = {"Login", "Register", "About", "text1", "text2", "text3"};
+	Button login, register;
+	EditText editLogin, editPassword;
 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setListAdapter(new ArrayAdapter<String>(HomeScreen.this, android.R.layout.simple_list_item_1, classes));
-	}
-
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		super.onListItemClick(l, v, position, id);
+		setContentView(R.layout.home);
 		
-		String choice = classes[position];
+		// Get references
+		login = (Button) findViewById(R.id.buttonLogin);
+		register = (Button) findViewById(R.id.buttonRegister);
+		editLogin = (EditText) findViewById(R.id.editLogin);
+		editPassword = (EditText) findViewById(R.id.editPassword);
 		
-		// reference the Login.java class
-		Class tempClass = null;
-		try {
-			tempClass = Class.forName("edu.osu.geogame." + choice);
-			Intent HomeScreenIntent = new Intent(HomeScreen.this, tempClass);
-			startActivity(HomeScreenIntent);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		// Add ActionListeners to buttons
+		login.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO:: Try to login
+			}
+		});
+		register.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent myIntent = new Intent(v.getContext(), Register.class);
+                startActivityForResult(myIntent, 0);
+			}
+		});
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * This will change the color format of the Activity so that
+	 * the background gradient will be very smooth.  Without this
+	 * it has noticable color-stepping.
+	 */
+	@Override
+	public void onAttachedToWindow() {
+		super.onAttachedToWindow();
+		Window window = getWindow();
+		window.setFormat(PixelFormat.RGBA_8888);
+	}
 }
