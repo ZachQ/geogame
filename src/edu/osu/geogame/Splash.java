@@ -30,7 +30,7 @@ public class Splash extends Activity {
         start.setOnClickListener(new View.OnClickListener() {
  			@Override
  			public void onClick(View v) {
- 				Intent myIntent = new Intent(v.getContext(), HomeScreen.class);
+ 				Intent myIntent = new Intent(v.getContext(), Login.class);
                 startActivityForResult(myIntent, 0);
  			}
  		});
@@ -49,7 +49,7 @@ public class Splash extends Activity {
 	 * (non-Javadoc)
 	 * This will change the color format of the Activity so that
 	 * the background gradient will be very smooth.  Without this
-	 * it has noticable color-stepping.
+	 * it has noticeable color-stepping.
 	 */
 	@Override
 	public void onAttachedToWindow() {
