@@ -87,7 +87,7 @@
         android:ems="10" />
 
     <Button
-        android:id="@+id/Register_Button2"
+        android:id="@+id/buttonRegister2"
         android:layout_width="220dp"
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
