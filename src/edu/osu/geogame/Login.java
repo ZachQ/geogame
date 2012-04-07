@@ -14,7 +14,7 @@ import android.widget.ListView;
 
 /**
  * The Home Screen will hold the "Login", "Register" and "About/Rules" buttons.
- * @author Zachary Quinn
+ * @author Zachary Quinn, Ben Elliott
  */
 
 public class Login extends Activity {
@@ -40,7 +40,7 @@ public class Login extends Activity {
 			public void onClick(View v) {
 				// TODO:: Try to login
 				
-				Intent myIntent = new Intent(v.getContext(), Home.class);
+				Intent myIntent = new Intent(v.getContext(), edu.osu.geogame.Menu.class);
                 startActivityForResult(myIntent, 0);
 			}
 		});

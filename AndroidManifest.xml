@@ -62,6 +62,7 @@
 		<activity android:label="@string/app_name" android:name=".Family"></activity>
 		<activity android:label="@string/app_name" android:name=".Market"></activity>
 		<activity android:label="@string/app_name" android:name=".MyProperty"></activity>
+		<activity android:name="Menu" android:label="@string/app_name"></activity>
         
     </application>
 </manifest>
