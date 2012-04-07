@@ -18,7 +18,7 @@ public class Register extends Activity {
 		setContentView(R.layout.register);
 		
 		// Get register reference
-		register = (Button) findViewById(R.id.buttonRegister2);
+		register = (Button) findViewById(R.id.buttonRegister);
 		
 		// Add ActionListeners to buttons
 		register.setOnClickListener(new View.OnClickListener() {

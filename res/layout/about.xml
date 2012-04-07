@@ -20,7 +20,7 @@
 	        android:textSize="25dp"
 	        android:layout_gravity="center"
 	        android:gravity="center" 
-	        android:textColor="@color/gold" />
+	        android:textColor="@color/title" />
 	
 	    <TextView
 	        android:layout_width="fill_parent"
@@ -37,7 +37,7 @@
 	        android:layout_gravity="center"
 	        android:gravity="center" 
 	        android:paddingTop="10dip"
-	        android:textColor="@color/gold" />
+	        android:textColor="@color/title" />
 		
 		<TextView
 		    android:text="Land" 
