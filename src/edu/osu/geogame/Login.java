@@ -39,6 +39,9 @@ public class Login extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO:: Try to login
+				
+				Intent myIntent = new Intent(v.getContext(), Home.class);
+                startActivityForResult(myIntent, 0);
 			}
 		});
 		register.setOnClickListener(new View.OnClickListener() {
