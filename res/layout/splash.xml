@@ -16,7 +16,7 @@
         android:shadowDy="2"
         android:shadowRadius="4.0"
         android:text="GeoGame"
-        android:textColor="@color/gold"
+        android:textColor="@color/title"
         android:textSize="50dp" />
 
 	<Button

@@ -13,6 +13,19 @@
         android:layout_marginTop="10dip"
         android:gravity="center"
         android:text="My Property"
-        android:textColor="@color/gold"
+        android:textColor="@color/title"
         android:textSize="25dp" />
+
+    <LinearLayout
+        android:id="@+id/propertyList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView1"
+        android:orientation="vertical" >
+
+    </LinearLayout>
+
 </RelativeLayout>

@@ -15,6 +15,9 @@ public class Home extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		// TODO:: Here we should check if the player needs to select their family
+		
 		setContentView(R.layout.home);
 		
 		// Get references

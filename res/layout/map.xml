@@ -13,6 +13,6 @@
         android:layout_marginTop="10dip"
         android:gravity="center"
         android:text="MAP GOES HERE"
-        android:textColor="@color/gold"
+        android:textColor="@color/title"
         android:textSize="25dp" />
 </RelativeLayout>
