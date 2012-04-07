@@ -90,12 +90,23 @@
 			android:hint="Enter text here" />
 		
 		<Button
-			android:id="@+id/Register_Button"
+			android:id="@+id/Register_Button2"
 			android:text="Register"
 			android:textSize="30dp"
 			android:layout_marginTop="25dip"
+			android:layout_marginBottom="10dip"
+			android:layout_width="275dp"
+			android:layout_height="wrap_content" 
+			android:layout_gravity="center"
+	        android:gravity="center" />
+		
+		<Button
+			android:id="@+id/Back_Button2"
+			android:text="Back"
+			android:textSize="30dp"
+			android:layout_marginTop="15dip"
 			android:layout_marginBottom="15dip"
-			android:layout_width="250dp"
+			android:layout_width="275dp"
 			android:layout_height="wrap_content" 
 			android:layout_gravity="center"
 	        android:gravity="center" />
