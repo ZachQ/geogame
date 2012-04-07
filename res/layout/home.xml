@@ -14,7 +14,7 @@
         android:gravity="center"
         android:text="Welcome Home"
         android:textColor="@color/title"
-        android:textSize="25dp" />
+        android:textSize="@dimen/title" />
 
     <TextView
         android:id="@+id/textView2"
@@ -31,11 +31,12 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView2"
         android:layout_marginTop="30dp"
+        android:textSize="25dp"
         android:text="Status"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TableLayout
-        android:layout_width="150dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView3"
         android:layout_below="@+id/textView3"
@@ -50,12 +51,14 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/tableTextSize"
                 android:text="Money" />
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/tableTextSize"
                 android:text="$0" />
         </TableRow>
 
@@ -68,12 +71,14 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/tableTextSize"
                 android:text="Adults" />
 
             <TextView
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/tableTextSize"
                 android:text="0" />
 
         </TableRow>
@@ -87,12 +92,14 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/tableTextSize"
                 android:text="Labor" />
 
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/tableTextSize"
                 android:text="0" />
         </TableRow>
 
@@ -109,12 +116,14 @@
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/tableTextSize"
                 android:text="SeedLR" />
 
             <TextView
                 android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/tableTextSize"
                 android:text="0" />
         </TableRow>
 
@@ -127,12 +136,14 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/tableTextSize"
                 android:text="SeedHYC" />
 
             <TextView
                 android:id="@+id/textView18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/tableTextSize"
                 android:text="0" />
         </TableRow>
 
@@ -145,12 +156,14 @@
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/tableTextSize"
                 android:text="Fertilizer" />
 
             <TextView
                 android:id="@+id/textView19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/tableTextSize"
                 android:text="0" />
         </TableRow>
 
@@ -163,12 +176,14 @@
                 android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/tableTextSize"
                 android:text="Water" />
 
             <TextView
                 android:id="@+id/textView20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/tableTextSize"
                 android:text="0" />
         </TableRow>
 
@@ -181,12 +196,14 @@
                 android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/tableTextSize"
                 android:text="GrainLR" />
 
             <TextView
                 android:id="@+id/textView21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/tableTextSize"
                 android:text="0" />
         </TableRow>
 
@@ -199,12 +216,14 @@
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/tableTextSize"
                 android:text="GrainHYC" />
 
             <TextView
                 android:id="@+id/textView22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/tableTextSize"
                 android:text="0" />
         </TableRow>
 
@@ -217,12 +236,14 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/tableTextSize"
                 android:text="Oxen" />
 
             <TextView
                 android:id="@+id/textView23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/tableTextSize"
                 android:text="0" />
         </TableRow>
     </TableLayout>
