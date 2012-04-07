@@ -15,23 +15,14 @@
         android:text="Please Login"
         android:textColor="@color/title"
         android:textSize="25dp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginLeft="45dp"
-        android:layout_marginTop="74dp"
-        android:text="Username" />
-
+    
     <EditText
         android:id="@+id/editLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="74dp"
         android:ems="10" >
 
         <requestFocus />
@@ -70,5 +61,14 @@
         android:layout_below="@+id/editPassword"
         android:layout_toLeftOf="@+id/buttonLogin"
         android:text="Register" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/editLogin"
+        android:layout_alignLeft="@+id/editLogin"
+        android:layout_marginBottom="48dp"
+        android:text="Username" />
 
 </RelativeLayout>
