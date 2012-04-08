@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="tableTextSize">20dp</dimen>
+    <dimen name="tableTextSize">30dp</dimen>
     <dimen name="titleTextSize">30dp</dimen>
     <dimen name="header">30dp</dimen>
     <dimen name="text">20dp</dimen>

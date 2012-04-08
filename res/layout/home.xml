@@ -31,12 +31,12 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView2"
         android:layout_marginTop="30dp"
-        android:textSize="25dp"
+        android:textSize="40dp"
         android:text="Status"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+
     <TableLayout
-        android:layout_width="250dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView3"
         android:layout_below="@+id/textView3"
