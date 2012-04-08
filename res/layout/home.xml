@@ -31,7 +31,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView2"
         android:layout_marginTop="30dp"
-        android:textSize="40dp"
+        android:textSize="30dp"
         android:text="Status"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -257,16 +257,16 @@
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="15dp"
         android:text="Map" />
-
+
     <Button
         android:id="@+id/buttonMyProperty"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/buttonHeight"
-        android:textSize="@dimen/buttonTextSize"
         android:layout_alignBaseline="@+id/buttonMap"
         android:layout_alignBottom="@+id/buttonMap"
         android:layout_toRightOf="@+id/buttonMap"
-        android:text="My Property" />
+        android:text="Property"
+        android:textSize="@dimen/buttonTextSize" />
 
     <Button
         android:id="@+id/buttonMarket"
