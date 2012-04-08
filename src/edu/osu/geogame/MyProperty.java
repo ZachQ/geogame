@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Vector;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.view.View;
@@ -47,9 +48,9 @@ public class MyProperty extends ListActivity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 			    // When clicked, open a property activity with the property ID
-				Toast.makeText(getApplicationContext(),
-						"ID selected: " + id, Toast.LENGTH_SHORT).show();
-				
+				Intent i= new Intent(getApplicationContext(), SelectedProperty.class);
+				i.putExtra("name",data.elementAt(position).get("name"));
+				startActivity(i);
 			}
 		});
 	}
