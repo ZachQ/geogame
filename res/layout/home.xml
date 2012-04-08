@@ -10,11 +10,11 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dip"
+        android:layout_marginTop="@dimen/titleMargin"
         android:gravity="center"
         android:text="Welcome Home"
         android:textColor="@color/title"
-        android:textSize="@dimen/title" />
+        android:textSize="@dimen/titleTextSize" />
 
     <TextView
         android:id="@+id/textView2"
@@ -251,7 +251,8 @@
     <Button
         android:id="@+id/buttonMap"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/buttonHeight"
+        android:textSize="@dimen/buttonTextSize"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="15dp"
@@ -260,7 +261,8 @@
     <Button
         android:id="@+id/buttonMyProperty"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/buttonHeight"
+        android:textSize="@dimen/buttonTextSize"
         android:layout_alignBaseline="@+id/buttonMap"
         android:layout_alignBottom="@+id/buttonMap"
         android:layout_toRightOf="@+id/buttonMap"
@@ -269,7 +271,8 @@
     <Button
         android:id="@+id/buttonMarket"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/buttonHeight"
+        android:textSize="@dimen/buttonTextSize"
         android:layout_alignBaseline="@+id/buttonMyProperty"
         android:layout_alignBottom="@+id/buttonMyProperty"
         android:layout_toRightOf="@+id/buttonMyProperty"
@@ -278,7 +281,8 @@
     <Button
         android:id="@+id/buttonFamily"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/buttonHeight"
+        android:textSize="@dimen/buttonTextSize"
         android:layout_alignBaseline="@+id/buttonMarket"
         android:layout_alignBottom="@+id/buttonMarket"
         android:layout_toRightOf="@+id/buttonMarket"

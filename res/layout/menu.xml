@@ -5,7 +5,7 @@
    	android:orientation="vertical"
    	android:background="@drawable/radialback"
    	android:padding="10dp" >
-
+    
     <TextView
         android:text="Logged in as: [username]"
         android:layout_width="fill_parent"
@@ -19,40 +19,44 @@
 	<Button
 	    android:id="@+id/buttonPlayGame"
 	    android:layout_width="wrap_content"
-	    android:layout_height="40dp"
+	    android:layout_height="@dimen/buttonHeight"
+        android:textSize="@dimen/buttonTextSize"
 	    android:layout_gravity="center"
-	    android:layout_marginTop="20dp"
-	    android:ems="10"
+	    android:layout_marginTop="80dp"
+	    android:ems="12"
 	    android:gravity="center"
 	    android:text="Play Game" />
 	
 	<Button
 	    android:id="@+id/buttonEditAccout"
 	    android:layout_width="wrap_content"
-	    android:layout_height="40dp"
+	    android:layout_height="@dimen/buttonHeight"
+        android:textSize="@dimen/buttonTextSize"
 	    android:layout_gravity="center"
-	    android:layout_marginTop="20dp"
-	    android:ems="10"
+	    android:layout_marginTop="40dp"
+	    android:ems="12"
 	    android:gravity="center"
 	    android:text="Edit Account" />
 	
 	<Button
 	    android:id="@+id/buttonAbout"
 	    android:layout_width="wrap_content"
-	    android:layout_height="40dp"
+	    android:layout_height="@dimen/buttonHeight"
+        android:textSize="@dimen/buttonTextSize"
 	    android:layout_gravity="center"
-	    android:layout_marginTop="20dp"
-	    android:ems="10"
+	    android:layout_marginTop="40dp"
+	    android:ems="12"
 	    android:gravity="center"
 	    android:text="About / Rules" />
 	
 	<Button
 	    android:id="@+id/buttonLogOut"
 	    android:layout_width="wrap_content"
-	    android:layout_height="40dp"
+	    android:layout_height="@dimen/buttonHeight"
+        android:textSize="@dimen/buttonTextSize"
 	    android:layout_gravity="center"
-	    android:layout_marginTop="20dp"
-	    android:ems="10"
+	    android:layout_marginTop="40dp"
+	    android:ems="12"
 	    android:gravity="center"
 	    android:text="Log Out" />
 

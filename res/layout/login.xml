@@ -10,20 +10,20 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dip"
+        android:layout_marginTop="@dimen/titleMargin"
         android:gravity="center"
         android:text="Please Login"
         android:textColor="@color/title"
-        android:textSize="@dimen/title" />
-    
+        android:textSize="@dimen/titleTextSize" />
+    
     <EditText
         android:id="@+id/editLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="74dp"
-        android:ems="10" >
+        android:layout_marginTop="150dp"
+        android:ems="12"
+        android:singleLine="true" >
 
         <requestFocus />
     </EditText>
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editLogin"
         android:layout_below="@+id/editLogin"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="16dp"
         android:text="Password" />
 
     <EditText
@@ -43,13 +43,14 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView3"
         android:layout_below="@+id/textView3"
-        android:ems="10"
+        android:ems="12"
         android:inputType="textPassword" />
-
+
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/buttonHeight"
+        android:textSize="@dimen/buttonTextSize"
         android:layout_alignRight="@+id/editPassword"
         android:layout_below="@+id/editPassword"
         android:text="Login" />
@@ -57,7 +58,8 @@
     <Button
         android:id="@+id/buttonRegister"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/buttonHeight"
+        android:textSize="@dimen/buttonTextSize"
         android:layout_below="@+id/editPassword"
         android:layout_toLeftOf="@+id/buttonLogin"
         android:text="Register" />

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="tableTextSize">20dp</dimen>
-    <dimen name="title">30dp</dimen>
+    <dimen name="titleTextSize">30dp</dimen>
     <dimen name="header">30dp</dimen>
     <dimen name="text">20dp</dimen>
+    <dimen name="buttonHeight">60dp</dimen>
+    <dimen name="buttonTextSize">20dp</dimen>
+    <dimen name="titleMargin">20dp</dimen>
 </resources>
