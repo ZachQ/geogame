@@ -15,11 +15,13 @@ import android.widget.TextView;
 public class Menu extends Activity {
 	Button playGame, edit, about, logOut;
 	TextView loggedIn;
+	GeoGame game;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu);
+		game = (GeoGame)getApplicationContext();
 		
 		// Get references
 		playGame = (Button) findViewById(R.id.buttonPlayGame);
@@ -27,6 +29,9 @@ public class Menu extends Activity {
 		about = (Button) findViewById(R.id.buttonAbout);
 		logOut = (Button) findViewById(R.id.buttonLogOut);
 		loggedIn = (TextView) findViewById(R.id.textViewloggedIn);
+		
+		// Set screen text
+		loggedIn.setText(game.username);
 		
 		// Add ActionListeners to buttons
 		playGame.setOnClickListener(new View.OnClickListener() {
