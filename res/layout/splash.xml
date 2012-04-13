@@ -17,7 +17,7 @@
         android:shadowRadius="4.0"
         android:text="GeoGame"
         android:textColor="@color/title"
-        android:textSize="80dp" />
+        android:textSize="55dp" />
 
 	<Button
 	    android:id="@+id/buttonStart"

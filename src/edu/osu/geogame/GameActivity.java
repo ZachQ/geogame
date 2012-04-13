@@ -20,17 +20,20 @@ public class GameActivity extends TabActivity {
 		
 		//Add Market Tab
 		tabSpec = 	tabs.newTabSpec("Market")
+					.setIndicator("Market")
 					.setContent( new Intent( this, MarketTabActivity.class) );
 		tabs.addTab(tabSpec);
 		
 		//Add Map Tab
 		tabSpec = 	tabs.newTabSpec("Map")
+					.setIndicator("Map")
 					.setContent( new Intent( this, MapTabActivity.class ) );
 		tabs.addTab(tabSpec);
 		
 		//Add Scoreboard Tab
 		tabSpec = 	tabs.newTabSpec("Scoreboard")
-				.setContent( new Intent( this, ScoreboardTabActivity.class ) );
+					.setIndicator("Scoreboard")
+					.setContent( new Intent( this, ScoreboardTabActivity.class ) );
 		tabs.addTab(tabSpec);
 		
 		

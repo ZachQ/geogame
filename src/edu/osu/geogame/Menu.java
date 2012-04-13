@@ -29,7 +29,7 @@ public class Menu extends Activity {
 		playGame.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent myIntent = new Intent(v.getContext(), Home.class);
+				Intent myIntent = new Intent(v.getContext(), GameActivity.class);
                 startActivityForResult(myIntent, 0);
 			}
 		});
