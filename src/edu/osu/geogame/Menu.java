@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * @author Ben Elliott
  */
 public class Menu extends Activity {
 	Button playGame, edit, about, logOut;
+	TextView loggedIn;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,7 @@ public class Menu extends Activity {
 		edit = (Button) findViewById(R.id.buttonEditAccout);
 		about = (Button) findViewById(R.id.buttonAbout);
 		logOut = (Button) findViewById(R.id.buttonLogOut);
+		loggedIn = (TextView) findViewById(R.id.textViewloggedIn);
 		
 		// Add ActionListeners to buttons
 		playGame.setOnClickListener(new View.OnClickListener() {
