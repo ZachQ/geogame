@@ -13,7 +13,7 @@ import android.widget.TextView;
  * @author Ben Elliott
  */
 public class Menu extends Activity {
-	Button playGame, edit, about, logOut;
+	Button joinGame, edit, about, logOut;
 	TextView loggedIn;
 	GeoGame game;
 	
@@ -24,20 +24,20 @@ public class Menu extends Activity {
 		game = (GeoGame)getApplicationContext();
 		
 		// Get references
-		playGame = (Button) findViewById(R.id.buttonPlayGame);
+		joinGame = (Button) findViewById(R.id.buttonJoinGame);
 		edit = (Button) findViewById(R.id.buttonEditAccout);
 		about = (Button) findViewById(R.id.buttonAbout);
 		logOut = (Button) findViewById(R.id.buttonLogOut);
 		loggedIn = (TextView) findViewById(R.id.textViewloggedIn);
 		
 		// Set screen text
-		loggedIn.setText(game.username);
+		loggedIn.setText("Logged in as: " + game.username);
 		
 		// Add ActionListeners to buttons
-		playGame.setOnClickListener(new View.OnClickListener() {
+		joinGame.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent myIntent = new Intent(v.getContext(), GameActivity.class);
+				Intent myIntent = new Intent(v.getContext(), JoinGame.class);
                 startActivityForResult(myIntent, 0);
 			}
 		});

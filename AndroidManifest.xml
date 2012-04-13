@@ -70,6 +70,7 @@
 		<activity android:name=".MapTabActivity" android:label="Map"></activity>
 		<activity android:name=".MarketTabActivity" android:label="Market"></activity>
 		<activity android:name=".ScoreboardTabActivity" android:label="Scoreboard"></activity>
+		<activity android:name="JoinGame"></activity>
 		
         
     </application>

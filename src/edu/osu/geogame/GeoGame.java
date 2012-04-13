@@ -9,6 +9,7 @@ import android.app.Application;
 public class GeoGame extends Application {
 	/* Constant URLs */
 	public String URL_LOGON = "http://geogame.osu.edu/Account/LogOn";
+	public String URL_GAME = "http://geogame.osu.edu/Game/";
 	
 	/* Login Cookie */
 	public Cookie sessionCookie;

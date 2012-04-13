@@ -14,7 +14,7 @@ public class SelectedProperty extends Activity {
 	    
 	    Bundle extras = getIntent().getExtras();
 	    if(extras !=null) {
-	    	String value = extras.getString("name");
+	    	String value = extras.getString("gameID");
 	    	
 	    	Toast.makeText(getApplicationContext(),
 					value, Toast.LENGTH_SHORT).show();
