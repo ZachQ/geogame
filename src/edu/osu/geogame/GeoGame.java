@@ -16,5 +16,6 @@ public class GeoGame extends Application {
 	
 	/* Game Variables */
 	public String username;
+	public String currentGameId; 
 	
 }

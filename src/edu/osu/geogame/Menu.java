@@ -8,12 +8,13 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * @author Ben Elliott
  */
 public class Menu extends Activity {
-	Button joinGame, edit, about, logOut;
+	Button joinGame, playGame, edit, about, logOut;
 	TextView loggedIn;
 	GeoGame game;
 	
@@ -23,8 +24,18 @@ public class Menu extends Activity {
 		setContentView(R.layout.menu);
 		game = (GeoGame)getApplicationContext();
 		
+		// Show status
+		Bundle extras = getIntent().getExtras();
+		if(extras !=null) {
+	    	String value = extras.getString("gameID");
+	    	
+	    	Toast.makeText(getApplicationContext(),
+					"Joined Game ID:" + value, Toast.LENGTH_SHORT).show();
+	    }
+		
 		// Get references
 		joinGame = (Button) findViewById(R.id.buttonJoinGame);
+		playGame = (Button) findViewById(R.id.buttonPlayGame);
 		edit = (Button) findViewById(R.id.buttonEditAccout);
 		about = (Button) findViewById(R.id.buttonAbout);
 		logOut = (Button) findViewById(R.id.buttonLogOut);
@@ -38,6 +49,13 @@ public class Menu extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent myIntent = new Intent(v.getContext(), JoinGame.class);
+                startActivityForResult(myIntent, 0);
+			}
+		});
+		playGame.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent myIntent = new Intent(v.getContext(), PlayGame.class);
                 startActivityForResult(myIntent, 0);
 			}
 		});

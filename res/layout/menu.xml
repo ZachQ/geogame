@@ -27,7 +27,17 @@
 	    android:gravity="center"
 	    android:text="Join Game"
 	    android:textSize="@dimen/buttonTextSize" />
-	
+	
+	<Button
+	    android:id="@+id/buttonPlayGame"
+	    android:layout_width="wrap_content"
+	    android:layout_height="@dimen/buttonHeight"
+	    android:layout_gravity="center"
+	    android:layout_marginTop="40dp"
+	    android:ems="12"
+	    android:gravity="center"
+	    android:text="Play Game"
+	    android:textSize="@dimen/buttonTextSize" />
 	<Button
 	    android:id="@+id/buttonEditAccout"
 	    android:layout_width="wrap_content"

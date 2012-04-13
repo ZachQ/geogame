@@ -17,7 +17,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class JoinGame extends ListActivity {
+public class PlayGame extends ListActivity {
 	GeoGame game;
 	private Vector<HashMap<String, String>> data;
 	
@@ -47,19 +47,18 @@ public class JoinGame extends ListActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-			    // Join the game
-				RestClient client = new RestClient(game.URL_GAME + "Join");
 				
-				// Back to Menu
-				Intent i= new Intent(getApplicationContext(), Menu.class);
-				i.putExtra("gameID", data.elementAt(position).get("gameID"));
+				// Set current game
+				game.currentGameId = data.elementAt(position).get("gameID");
+				
+				Intent i= new Intent(getApplicationContext(), Market.class);
 				startActivity(i);
 			}
 		});
 	}
 
 	private void populateList() {
-		RestClient client = new RestClient(game.URL_GAME + "OpenGames");
+		RestClient client = new RestClient(game.URL_GAME + "YourGames");
 		client.addCookie(game.sessionCookie);
 		JSONObject j;
 		JSONArray a;
@@ -78,8 +77,8 @@ public class JoinGame extends ListActivity {
 					temp.put("gameID", a.getJSONObject(i).getString("gameID"));
 					temp.put("title", a.getJSONObject(i).getString("location"));
 					temp.put("one", "Seats: " + a.getJSONObject(i).getString("seats"));
-					temp.put("two", "Duration: " + a.getJSONObject(i).getString("turnDuration"));
-					temp.put("three", "Turns: " + a.getJSONObject(i).getString("numberOfTurns"));
+					temp.put("two", "Started: " + a.getJSONObject(i).getString("started"));
+					temp.put("three", "Turn: " + a.getJSONObject(i).getString("turn") + "/" + a.getJSONObject(i).getString("numberOfTurns"));
 					data.add(temp);
 				}
 			} catch (Exception e) {}
