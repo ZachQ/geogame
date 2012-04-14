@@ -51,7 +51,7 @@ public class PlayGame extends ListActivity {
 				// Set current game
 				game.currentGameId = data.elementAt(position).get("gameID");
 				
-				Intent i= new Intent(getApplicationContext(), Market.class);
+				Intent i= new Intent(getApplicationContext(), GameActivity.class);
 				startActivity(i);
 			}
 		});

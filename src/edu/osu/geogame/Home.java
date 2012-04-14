@@ -1,71 +1,54 @@
 package edu.osu.geogame;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
+import android.widget.TextView;
 
 public class Home extends Activity {
-
-	Button map, myProperty, market, family;
+	TextView name, money, adults, labor, seedLR, seedHYC, fertilizer, water, grainLR, grainHYC, oxen;
+	GeoGame game;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		// TODO:: Here we should check if the player needs to select their family
-		
-		setContentView(R.layout.home);
+		setContentView(R.layout.home_tab);
+		game = (GeoGame)getApplicationContext();
 		
 		// Get references
-		map = (Button) findViewById(R.id.buttonMap);
-		myProperty = (Button) findViewById(R.id.buttonMyProperty);
-		market = (Button) findViewById(R.id.buttonMarket);
-		family = (Button) findViewById(R.id.buttonFamily);
+		name = (TextView) findViewById(R.id.textViewName);
+		money = (TextView) findViewById(R.id.textViewMoney);
+		adults = (TextView) findViewById(R.id.textViewAdults);
+		labor = (TextView) findViewById(R.id.textViewLabor);
+		seedLR = (TextView) findViewById(R.id.textViewSeedLR);
+		seedHYC = (TextView) findViewById(R.id.textViewSeedHYC);
+		fertilizer = (TextView) findViewById(R.id.textViewFertilizer);
+		water = (TextView) findViewById(R.id.textViewWater);
+		grainLR = (TextView) findViewById(R.id.textViewGrainLR);
+		grainHYC = (TextView) findViewById(R.id.textViewGrainHYC);
+		oxen = (TextView) findViewById(R.id.textViewOxen);
 		
-		// Add ActionListeners to buttons
-		map.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent myIntent = new Intent(v.getContext(), Map.class);
-                startActivityForResult(myIntent, 0);
-			}
-		});
-		// Add ActionListeners to buttons
-		myProperty.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent myIntent = new Intent(v.getContext(), MyProperty.class);
-                startActivityForResult(myIntent, 0);
-			}
-		});
-		// Add ActionListeners to buttons
-		market.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent myIntent = new Intent(v.getContext(), Market.class);
-                startActivityForResult(myIntent, 0);
-			}
-		});
-		// Add ActionListeners to buttons
-		family.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent myIntent = new Intent(v.getContext(), Family.class);
-                startActivityForResult(myIntent, 0);
-			}
-		});
+		update();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * This will change the color format of the Activity so that
-	 * the background gradient will be very smooth.  Without this
-	 * it has noticeable color-stepping.
-	 */
+	private void update() {
+		RestClient client = new RestClient(game.URL_GAME + "/Dash/" + game.currentGameId);
+		client.addCookie(game.sessionCookie);
+		try {
+			client.Execute(RequestMethod.POST);
+		} catch (Exception e) {} finally {
+			JSONObject j;
+			JSONArray a;
+			String test = client.getResponse();
+		}
+	}
+
 	@Override
 	public void onAttachedToWindow() {
 		super.onAttachedToWindow();
