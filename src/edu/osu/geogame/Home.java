@@ -40,31 +40,36 @@ public class Home extends Activity {
 	}
 
 	private void update() {
-		RestClient client = new RestClient(game.URL_GAME + "/Dash/" + game.currentGameId);
-		client.addCookie(game.sessionCookie);
+		RestClient g_client = new RestClient(game.URL_GAME + "Dash/" + game.currentGameId);
+		RestClient m_client = new RestClient(game.URL_MARKET + "myBank/" + game.currentGameId);
+		g_client.addCookie(game.sessionCookie);
+		m_client.addCookie(game.sessionCookie);
 		try {
-			client.Execute(RequestMethod.POST);
+			g_client.Execute(RequestMethod.POST);
+			m_client.Execute(RequestMethod.POST);
 		} catch (Exception e) {} finally {
 			JSONObject j;
-			JSONObject data;
+			JSONObject data, market, family;
 			
 			try {
-				j = new JSONObject(client.getResponse());
+				j = new JSONObject(g_client.getResponse());
 				data = (JSONObject) j.get("data");
+				j = new JSONObject(m_client.getResponse());
+				market = (JSONObject) j.get("data");
+				family = (JSONObject) j.get("family");
 				
-				// Update Fields
-				name.setText(game.username);
+				// Update
+				name.setText(family.getString("name") + " Family");
 				money.setText("$" + data.getString("money"));
-				//adults
+				adults.setText(family.getString("adults"));
 				//labor
-				seedLR.setText(data.getString("seedLR"));
-				seedHYC.setText(data.getString("seedHYC"));
-				fertilizer.setText(data.getString("fertilizer"));
-				water.setText(data.getString("water"));
-				//grainLR
-				//grainHYC
-				//oxen
-
+				seedLR.setText(market.getString("SeedLR"));
+				seedHYC.setText(market.getString("SeedHYC"));
+				fertilizer.setText(market.getString("Fertilizer"));
+				water.setText(market.getString("Water"));
+				grainLR.setText(market.getString("GrainLR"));
+				grainHYC.setText(market.getString("GrainHYC"));
+				oxen.setText(market.getString("Oxen"));
 			} catch (Exception e) {}
 		}
 	}
