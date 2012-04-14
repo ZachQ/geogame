@@ -65,10 +65,8 @@ public class PlayGame extends ListActivity {
 		try {
 			client.Execute(RequestMethod.POST);
 		} catch (Exception e) {} finally {
-			String response = client.getResponse();
-			
 			try {
-				j = new JSONObject(response);
+				j = new JSONObject(client.getResponse());
 				a = (JSONArray) j.get("data");
 				
 				// Import Games

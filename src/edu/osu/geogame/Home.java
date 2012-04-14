@@ -1,5 +1,7 @@
 package edu.osu.geogame;
 
+import java.util.HashMap;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -44,8 +46,26 @@ public class Home extends Activity {
 			client.Execute(RequestMethod.POST);
 		} catch (Exception e) {} finally {
 			JSONObject j;
-			JSONArray a;
-			String test = client.getResponse();
+			JSONObject data;
+			
+			try {
+				j = new JSONObject(client.getResponse());
+				data = (JSONObject) j.get("data");
+				
+				// Update Fields
+				name.setText(game.username);
+				money.setText("$" + data.getString("money"));
+				//adults
+				//labor
+				seedLR.setText(data.getString("seedLR"));
+				seedHYC.setText(data.getString("seedHYC"));
+				fertilizer.setText(data.getString("fertilizer"));
+				water.setText(data.getString("water"));
+				//grainLR
+				//grainHYC
+				//oxen
+
+			} catch (Exception e) {}
 		}
 	}
 
