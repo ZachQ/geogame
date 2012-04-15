@@ -21,7 +21,7 @@ public class GameActivity extends TabActivity {
 		//Add Overview Tab
 		tabSpec = 	tabs.newTabSpec("Home")
 					.setIndicator("Home")
-					.setContent( new Intent( this, Home.class) );
+					.setContent( new Intent( this, HomeTabActivity.class) );
 		tabs.addTab(tabSpec);
 		
 		//Add Market Tab

@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.widget.TextView;
 
-public class Home extends Activity {
+public class HomeTabActivity extends Activity {
 	TextView name, money, adults, labor, seedLR, seedHYC, fertilizer, water, grainLR, grainHYC, oxen;
 	GeoGame game;
 	

@@ -1,7 +1,9 @@
 package edu.osu.geogame;
 
 import android.app.Activity;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
+import android.view.Window;
 
 public class ScoreboardTabActivity extends Activity {
 
@@ -34,6 +36,19 @@ public class ScoreboardTabActivity extends Activity {
 	@Override
     protected void onDestroy() {
 		super.onDestroy();
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * This will change the color format of the Activity so that
+	 * the background gradient will be very smooth.  Without this
+	 * it has noticeable color-stepping.
+	 */
+	@Override
+	public void onAttachedToWindow() {
+		super.onAttachedToWindow();
+		Window window = getWindow();
+		window.setFormat(PixelFormat.RGBA_8888);
 	}
 	
 }
