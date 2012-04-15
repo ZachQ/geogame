@@ -26,7 +26,9 @@ public class MapTabActivity extends Activity {
 				
 				//Add dynamic layer to MapView
 		mMapView.addLayer(new ArcGISTiledMapServiceLayer("" +
-						"http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer"));
+					"http://128.146.194.14/ArcGIS/rest/services/India/MapServer"));
+		//mMapView.addLayer(new ArcGISTiledMapServiceLayer("" +
+			//			"http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer"));
 	}
 	
 	@Override
