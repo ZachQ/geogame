@@ -1,26 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/radialback"
-    android:padding="10dp" >
+   <com.esri.android.map.MapView xmlns:android="http://schemas.android.com/apk/res/android"
+       android:id="@+id/map"
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
+       initExtent="-1.3296373526814876E7 3930962.41823043 -1.2807176545789773E7 4201243.7502468005" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dip"
-        android:gravity="center"
-        android:text="Map"
-        android:textColor="@color/title"
-        android:textSize="25dp" />
-        
-   <com.esri.android.map.MapView
-	android:id="@+id/map"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
-	initExtent = "-1.3296373526814876E7 3930962.41823043 -1.2807176545789773E7 4201243.7502468005">
 	</com.esri.android.map.MapView>
-   
-</RelativeLayout>
+  
