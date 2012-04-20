@@ -2,6 +2,7 @@ package edu.osu.geogame;
 
 
 import com.esri.android.map.MapView;
+import com.esri.android.map.ags.ArcGISDynamicMapServiceLayer;
 import com.esri.android.map.ags.ArcGISTiledMapServiceLayer;
 
 import android.app.Activity;
@@ -18,9 +19,10 @@ public class MapTabActivity extends Activity {
 	@Override
 	public void onCreate( Bundle savedInstanceState ) {
 		super.onCreate(savedInstanceState);
-		LayoutInflater inflater = LayoutInflater.from(this);
-		View mapTabView = inflater.inflate(R.layout.map_tab, null);
-		setContentView(mapTabView);
+		//LayoutInflater inflater = LayoutInflater.from(this);
+		//View mapTabView = inflater.inflate(R.layout.map_tab, null);
+		//setContentView(mapTabView);
+		setContentView(R.layout.map_tab);
 		
 		
 		
@@ -43,8 +45,9 @@ public class MapTabActivity extends Activity {
 				//Add dynamic layer to MapView
 		//mMapView.addLayer(new ArcGISTiledMapServiceLayer(
 			//	temp));
-		mMapView.addLayer(new ArcGISTiledMapServiceLayer("" +
-						"http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer"));
+		ArcGISDynamicMapServiceLayer dMap = new ArcGISDynamicMapServiceLayer("http://128.146.194.14/ArcGIS/rest/services/India/MapServer");
+		ArcGISTiledMapServiceLayer tMap = new ArcGISTiledMapServiceLayer("http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer");
+		mMapView.addLayer(dMap);
 	}
 	
 	@Override
