@@ -19,4 +19,7 @@ public class GeoGame extends Application {
 	public String username;
 	public String currentGameId; 
 	
+	// for testing
+	public String test;
+	
 }
