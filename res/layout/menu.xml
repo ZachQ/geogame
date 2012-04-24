@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-   	android:layout_width="fill_parent"
-   	android:layout_height="fill_parent"
-   	android:orientation="vertical"
-   	android:background="@drawable/radialback"
-   	android:padding="10dp" >
-    
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/radialback"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
     <TextView
         android:id="@+id/textViewloggedIn"
         android:layout_width="fill_parent"
@@ -16,59 +16,60 @@
         android:gravity="right"
         android:text="Logged in as: [username]"
         android:textSize="20dp" />
-    
-	<Button
-	    android:id="@+id/buttonJoinGame"
-	    android:layout_width="wrap_content"
-	    android:layout_height="@dimen/buttonHeight"
-	    android:layout_gravity="center"
-	    android:layout_marginTop="50dp"
-	    android:ems="12"
-	    android:gravity="center"
-	    android:text="Join Game"
-	    android:textSize="@dimen/buttonTextSize" />
-	
-	<Button
-	    android:id="@+id/buttonPlayGame"
-	    android:layout_width="wrap_content"
-	    android:layout_height="@dimen/buttonHeight"
-	    android:layout_gravity="center"
-	    android:layout_marginTop="30dp"
-	    android:ems="12"
-	    android:gravity="center"
-	    android:text="Play Game"
-	    android:textSize="@dimen/buttonTextSize" />
-	<Button
-	    android:id="@+id/buttonEditAccout"
-	    android:layout_width="wrap_content"
-	    android:layout_height="@dimen/buttonHeight"
-        android:textSize="@dimen/buttonTextSize"
-	    android:layout_gravity="center"
-	    android:layout_marginTop="30dp"
-	    android:ems="12"
-	    android:gravity="center"
-	    android:text="Edit Account" />
-	
-	<Button
-	    android:id="@+id/buttonAbout"
-	    android:layout_width="wrap_content"
-	    android:layout_height="@dimen/buttonHeight"
-        android:textSize="@dimen/buttonTextSize"
-	    android:layout_gravity="center"
-	    android:layout_marginTop="30dp"
-	    android:ems="12"
-	    android:gravity="center"
-	    android:text="About / Rules" />
-	
-	<Button
-	    android:id="@+id/buttonLogOut"
-	    android:layout_width="wrap_content"
-	    android:layout_height="@dimen/buttonHeight"
-        android:textSize="@dimen/buttonTextSize"
-	    android:layout_gravity="center"
-	    android:layout_marginTop="30dp"
-	    android:ems="12"
-	    android:gravity="center"
-	    android:text="Log Out" />
+
+    <Button
+        android:id="@+id/buttonJoinGame"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/buttonHeight"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:ems="12"
+        android:gravity="center"
+        android:text="Join Game"
+        android:textSize="@dimen/buttonTextSize" />
+
+    <Button
+        android:id="@+id/buttonPlayGame"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/buttonHeight"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:ems="12"
+        android:gravity="center"
+        android:text="Play Game"
+        android:textSize="@dimen/buttonTextSize" />
+
+    <Button
+        android:id="@+id/buttonEditAccout"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/buttonHeight"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:ems="12"
+        android:gravity="center"
+        android:text="Edit Account"
+        android:textSize="@dimen/buttonTextSize" />
+
+    <Button
+        android:id="@+id/buttonAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/buttonHeight"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:ems="12"
+        android:gravity="center"
+        android:text="About / Rules"
+        android:textSize="@dimen/buttonTextSize" />
+
+    <Button
+        android:id="@+id/buttonLogOut"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/buttonHeight"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:ems="12"
+        android:gravity="center"
+        android:text="Log Out"
+        android:textSize="@dimen/buttonTextSize" />
 
 </LinearLayout>

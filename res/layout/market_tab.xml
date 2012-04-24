@@ -15,39 +15,230 @@
         android:text="Market"
         android:textColor="@color/title"
         android:textSize="25dp" />
-        
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    	android:layout_width="fill_parent"
-    	android:layout_height="fill_parent"
-    	android:background="@drawable/radialback"
-    	android:padding="2dp" >
-    	
-    	<TableRow
-            android:id="@+id/tableRow1"
+
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_below="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/radialback" >
+
+            <TableRow
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" >
             
-    		<TextView
-    			android:id="@+id/SeedLR"
-    			android:layout_width="fill_parent"
-    			android:layout_height="wrap_content"
-    			android:layout_gravity="center"
-    			android:layout_marginTop="12dip"
-    			android:gravity="left"
-    			android:text="SeedLR"
-    			android:textSize="20dp" />
-    		
-    		<EditText
-    			android:id="@+id/SeedLRQuantity"
-    			android:layout_width="fill_parent"
-    			android:layout_height="wrap_content"
-    			android:background="@android:drawable/editbox_background" />
-    			
-    	
-    	
-    	</TableRow>
-    	
-    	
-    	
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginRight="20dp"
+                    android:text="SeedLR"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/SeedLRPrice"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|right"
+                    android:text="$1/Bushel"
+                    android:textSize="14dp"
+                     />
+
+                <EditText
+                    android:id="@+id/SeedLRQuantity"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/editbox_background"
+                    android:numeric="integer"
+                    android:layout_toRightOf="@+id/SeedLRPrice" />
+
+                <Button
+                    android:layout_width="80dp"
+                    android:layout_height="38dp"
+                    android:layout_gravity="left"
+                    android:gravity="center"
+                    android:text="Buy"
+                    android:textSize="15dp"
+                    android:layout_toRightOf="@+id/SeedHYCQuantity" />
+       
+       </TableRow>
+       
+       
+       <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" >
+            
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginRight="20dp"
+                    android:text="SeedLR"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/SeedHYCPrice"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|right"
+                    android:text="$20/Bushel"
+                    android:textSize="14dp"
+                     />
+
+                <EditText
+                    android:id="@+id/SeedHYCQuantity"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/editbox_background"
+                    android:numeric="integer"
+                    android:layout_toRightOf="@+id/SeedHYCPrice" />
+
+                <Button
+                    android:layout_width="80dp"
+                    android:layout_height="38dp"
+                    android:layout_gravity="left"
+                    android:gravity="center"
+                    android:text="Buy"
+                    android:textSize="15dp"
+                    android:layout_toRightOf="@+id/SeedHYCQuantity" />
+       
+       </TableRow>
+       
+       
+       <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" >
+            
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginRight="20dp"
+                    android:text="Fertilizer"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/SeedHYCPrice"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|right"
+                    android:text="$1/lb"
+                    android:textSize="14dp"
+                     />
+
+                <EditText
+                    android:id="@+id/SeedHYCQuantity"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/editbox_background"
+                    android:numeric="integer"
+                    android:layout_toRightOf="@+id/SeedHYCPrice" />
+
+                <Button
+                   android:layout_width="80dp"
+                    android:layout_height="38dp"
+                    android:layout_gravity="left"
+                    android:gravity="center"
+                    android:text="Buy"
+                    android:textSize="15dp"
+                    android:layout_toRightOf="@+id/SeedHYCQuantity" />
+       
+       </TableRow>
+       
+       
+       
+       <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" >
+            
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginRight="20dp"
+                    android:text="Water"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/SeedHYCPrice"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|right"
+                    android:text="$3/gallon"
+                    android:textSize="14dp"
+                     />
+
+                <EditText
+                    android:id="@+id/SeedHYCQuantity"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/editbox_background"
+                    android:numeric="integer"
+                    android:layout_toRightOf="@+id/SeedHYCPrice" />
+
+                <Button
+                   android:layout_width="80dp"
+                   android:layout_height="38dp"
+                    android:layout_gravity="left"
+                    android:gravity="center"
+                    android:text="Buy"
+                    android:textSize="15dp"
+                    android:layout_toRightOf="@+id/SeedHYCQuantity" />
+       
+       </TableRow>
+       
+       
+       
+       <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" >
+            
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginRight="20dp"
+                    android:text="Oxen"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/SeedHYCPrice"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|right"
+                    android:text="$1000/each"
+                    android:textSize="14dp"
+                     />
+
+                <EditText
+                    android:id="@+id/SeedHYCQuantity"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/editbox_background"
+                    android:numeric="integer"
+                    android:layout_toRightOf="@+id/SeedHYCPrice" />
+
+                <Button
+                    android:layout_width="80dp"
+                    android:layout_height="38dp"
+                    android:layout_gravity="left"
+                    android:gravity="center"
+                    android:text="Buy"
+                    android:textSize="15dp"
+                    android:layout_toRightOf="@+id/SeedHYCQuantity" />
+       
+       </TableRow>
     </TableLayout>
+
 </RelativeLayout>
