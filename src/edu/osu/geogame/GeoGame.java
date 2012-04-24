@@ -8,18 +8,18 @@ import android.app.Application;
  */
 public class GeoGame extends Application {
 	/* Constant URLs */
-	public String URL_LOGON = "http://geogame.osu.edu/Account/LogOn";
-	public String URL_GAME = "http://geogame.osu.edu/Game/";
-	public String URL_MARKET = "http://geogame.osu.edu/Market/";
+	public static String URL_LOGON = "http://geogame.osu.edu/Account/LogOn";
+	public static String URL_GAME = "http://geogame.osu.edu/Game/";
+	public static String URL_MARKET = "http://geogame.osu.edu/Market/";
 	
 	/* Login Cookie */
-	public Cookie sessionCookie;
+	public static Cookie sessionCookie;
 	
 	/* Game Variables */
-	public String username;
-	public String currentGameId; 
+	public static String username;
+	public static String currentGameId; 
 	
 	// for testing
-	public String test;
+	public static String test;
 	
 }

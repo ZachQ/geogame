@@ -3,6 +3,7 @@ package edu.osu.geogame;
 import android.app.Activity;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -18,11 +19,26 @@ public class MarketTabActivity extends Activity implements OnClickListener {
 	private TextView price_SeedLR, price_SeedHYC, price_quantity_Fertilizer,
 						price_Water, price_Oxen = null;
 	
+	private RestClient restRetriever;
+	
 	@Override
 	public void onCreate( Bundle savedInstanceState ) {
 		super.onCreate(savedInstanceState);
+		Log.d("WTF","WTF");
 		setContentView(R.layout.market_tab);
 		
+		restRetriever = new RestClient( GeoGame.URL_MARKET + "Get/" 
+						+ GeoGame.currentGameId + "/bank" );
+		
+		Log.d("WTsadaF","WTF");
+
+		try {
+			restRetriever.Execute(RequestMethod.GET);
+			Log.d(restRetriever.getResponse(),"repojdfkl;j");
+		} catch (Exception e) {
+			Log.d("jkhds","repojdfkl;j");
+			e.printStackTrace();
+		}
 		/*
 		 * Produce the TextViews that holds the prices of the items, so that
 		 * they can be set to the prices retrieved from the server
