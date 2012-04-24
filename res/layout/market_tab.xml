@@ -18,9 +18,10 @@
 
     <TableLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/table"
         android:layout_below="@+id/textView1"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="300dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/radialback" >
 
@@ -245,5 +246,17 @@
        
        </TableRow>
     </TableLayout>
+    
+    <TextView
+    	android:id="@+id/CurrentCash"
+    	android:layout_height="fill_parent"
+    	android:layout_width="fill_parent"
+    	android:layout_gravity="top"
+    	android:gravity="right"
+    	android:layout_below="@+id/table"
+    	android:text="Available funds: $200" />
+    	
+    
+    
 
 </RelativeLayout>
