@@ -56,6 +56,7 @@
                     android:layout_toRightOf="@+id/SeedLRPrice" />
 
                 <Button
+                	android:id="@+id/SeedLRBuy"
                     android:layout_width="80dp"
                     android:layout_height="38dp"
                     android:layout_gravity="left"
@@ -99,6 +100,7 @@
                     android:layout_toRightOf="@+id/SeedHYCPrice" />
 
                 <Button
+                	android:id="@+id/SeedHYCBuy"
                     android:layout_width="80dp"
                     android:layout_height="38dp"
                     android:layout_gravity="left"
@@ -125,7 +127,7 @@
                     android:textSize="20dp" />
 
                 <TextView
-                    android:id="@+id/SeedHYCPrice"
+                    android:id="@+id/FertilizerPrice"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|right"
@@ -134,21 +136,22 @@
                      />
 
                 <EditText
-                    android:id="@+id/SeedHYCQuantity"
+                    android:id="@+id/FertilizerQuantity"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:drawable/editbox_background"
                     android:numeric="integer"
-                    android:layout_toRightOf="@+id/SeedHYCPrice" />
+                    android:layout_toRightOf="@+id/FertilizerPrice" />
 
                 <Button
+               		 android:id="@+id/FertilizerBuy"
                    android:layout_width="80dp"
                     android:layout_height="38dp"
                     android:layout_gravity="left"
                     android:gravity="center"
                     android:text="Buy"
                     android:textSize="15dp"
-                    android:layout_toRightOf="@+id/SeedHYCQuantity" />
+                    android:layout_toRightOf="@+id/FertilizerQuantity" />
        
        </TableRow>
        
@@ -169,7 +172,7 @@
                     android:textSize="20dp" />
 
                 <TextView
-                    android:id="@+id/SeedHYCPrice"
+                    android:id="@+id/WaterPrice"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|right"
@@ -178,21 +181,22 @@
                      />
 
                 <EditText
-                    android:id="@+id/SeedHYCQuantity"
+                    android:id="@+id/WaterQuantity"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:drawable/editbox_background"
                     android:numeric="integer"
-                    android:layout_toRightOf="@+id/SeedHYCPrice" />
+                    android:layout_toRightOf="@+id/WaterPrice" />
 
                 <Button
+                   android:id="@+id/WaterBuy"
                    android:layout_width="80dp"
                    android:layout_height="38dp"
                     android:layout_gravity="left"
                     android:gravity="center"
                     android:text="Buy"
                     android:textSize="15dp"
-                    android:layout_toRightOf="@+id/SeedHYCQuantity" />
+                    android:layout_toRightOf="@+id/WaterQuantity" />
        
        </TableRow>
        
@@ -213,7 +217,7 @@
                     android:textSize="20dp" />
 
                 <TextView
-                    android:id="@+id/SeedHYCPrice"
+                    android:id="@+id/OxenPrice"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|right"
@@ -222,21 +226,22 @@
                      />
 
                 <EditText
-                    android:id="@+id/SeedHYCQuantity"
+                    android:id="@+id/OxenQuantity"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:drawable/editbox_background"
                     android:numeric="integer"
-                    android:layout_toRightOf="@+id/SeedHYCPrice" />
+                    android:layout_toRightOf="@+id/OxenPrice" />
 
                 <Button
+                	android:id="@+id/OxenBuy"
                     android:layout_width="80dp"
                     android:layout_height="38dp"
                     android:layout_gravity="left"
                     android:gravity="center"
                     android:text="Buy"
                     android:textSize="15dp"
-                    android:layout_toRightOf="@+id/SeedHYCQuantity" />
+                    android:layout_toRightOf="@+id/OxenQuantity" />
        
        </TableRow>
     </TableLayout>
