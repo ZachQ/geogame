@@ -20,12 +20,15 @@ import android.widget.TextView;
 public class MarketTabActivity extends Activity {
 	
 	private ViewPager vPager; 
+	
+	
 		
 	@Override
 	public void onCreate( Bundle savedInstanceState ) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.market_scroller);
+	
 		vPager = (ViewPager) findViewById(R.id.pager);
 
 		
