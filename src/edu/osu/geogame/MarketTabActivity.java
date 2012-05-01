@@ -9,6 +9,7 @@ import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -31,17 +32,18 @@ public class MarketTabActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.market_scroller_mech);
+	
+		vPager = (ViewPager) findViewById(R.id.viewpager);
+		
+		sAdapter = new ScrollerAdapter();
+		
+		
+		vPager.setAdapter(sAdapter);		
+		vPager.setCurrentItem(1);
 		
 		marketView = marketView();
 		playerMarketView = playerMarketView();
 		sellItemsView = sellItemsView();
-	
-		vPager = (ViewPager) findViewById(R.id.why_wont_you_look_at_me);
-
-		sAdapter = new ScrollerAdapter();
-		
-		vPager.setAdapter(sAdapter);		
-		vPager.setCurrentItem(1);
 
 		
 	}
@@ -85,15 +87,94 @@ public class MarketTabActivity extends Activity {
 	}
 	
 	private View marketView() {
-		return new MarketView(this);
+		
+		LayoutInflater inflater = (LayoutInflater)this.getSystemService
+			      (Context.LAYOUT_INFLATER_SERVICE);
+		View marketView = inflater.inflate(R.layout.market_tab,null);
+		
+		
+		/*
+		 * Produce the TextViews that holds the prices of the items, so that
+		 * they can be set to the prices retrieved from the server
+		 */
+		TextView price_SeedLR = (TextView) findViewById(R.id.SeedLRPrice);
+		TextView price_SeedHYC = (TextView) findViewById(R.id.SeedLRPrice);
+		TextView price_Fertilizer = (TextView) findViewById(R.id.SeedLRPrice);
+		TextView price_Water = (TextView) findViewById(R.id.SeedLRPrice);
+		TextView price_Oxen = (TextView) findViewById(R.id.SeedLRPrice);
+		
+		/*
+		 * Produce the EditTexts that the user enters purchase quantities into,
+		 * so that the app can react appropriately
+		 */
+		EditText quantity_SeedLR = (EditText) findViewById(R.id.SeedLRQuantity);
+		EditText uantity_SeedHYC = (EditText) findViewById(R.id.SeedHYCQuantity);
+		EditText quantity_Fertilizer = (EditText) findViewById(R.id.FertilizerQuantity);
+		EditText quantity_Water = (EditText) findViewById(R.id.WaterQuantity);
+		EditText quantity_Oxen = (EditText) findViewById(R.id.OxenQuantity);
+
+		marketView.setOnClickListener( new MarketListener() );
+		return marketView;
+	}
+	
+	private class MarketListener implements OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			switch( v.getId() ) {
+			case R.id.SeedLRBuy:
+				//do something
+			case R.id.SeedHYCBuy:
+				//do something
+			case R.id.FertilizerBuy:
+				//do something
+			case R.id.WaterBuy:
+				//do something
+			case R.id.OxenBuy:
+				//do something
+			}
+		}
+		
 	}
 	
 	private View playerMarketView() {
-		return new PlayerMarketView(this);
+		LayoutInflater inflater = (LayoutInflater)this.getSystemService
+			      (Context.LAYOUT_INFLATER_SERVICE);
+		View playerMarketView = inflater.inflate(R.layout.player_market,null);
+		
+		
+		playerMarketView.setOnClickListener( new PlayerMarketListener() );
+		return playerMarketView;
+	}
+	
+	private class PlayerMarketListener implements OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 	
 	private View sellItemsView() {
-		return new SellItemsView(this);
+		LayoutInflater inflater = (LayoutInflater)this.getSystemService
+			      (Context.LAYOUT_INFLATER_SERVICE);
+		View sellItemsView = inflater.inflate(R.layout.sell_items,null);
+		
+		sellItemsView.setOnClickListener( new SellItemsListener() );
+		return sellItemsView;
+	}
+	
+	private class SellItemsListener implements OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		
 	}
 	
 	
@@ -135,6 +216,7 @@ public class MarketTabActivity extends Activity {
 		
 		@Override
 		public void destroyItem( ViewGroup container, int position, Object object ) {
+			container.removeView((View)object);
 			Log.d("destroyItem","destroyItem");
 		}
 		
@@ -161,37 +243,6 @@ public class MarketTabActivity extends Activity {
 	}
 	
 	
-	
-	private class PlayerMarketView extends View implements OnClickListener {
-	
-		public PlayerMarketView( Context context ) {
-			super(context);
-			setContentView(R.layout.register);
-		}
-
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			
-		}
-	}
-	
-	
-	private class SellItemsView extends View implements OnClickListener {
-		 
-		public SellItemsView( Context context ) {
-			super(context);
-			setContentView(R.layout.home_tab);
-		}
-
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			
-		}
-	}
-	
-	
 	private class MarketView extends View implements OnClickListener {
 		
 		private EditText quantity_SeedLR, quantity_SeedHYC, 
@@ -202,7 +253,7 @@ public class MarketTabActivity extends Activity {
 		
 		public MarketView( Context context ) {
 			super(context);
-			setContentView(R.layout.market_tab);
+			this.setId(R.layout.market_tab);
 			
 			/*
 			 * Produce the TextViews that holds the prices of the items, so that
