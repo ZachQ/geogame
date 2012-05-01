@@ -86,6 +86,9 @@ public class MarketTabActivity extends Activity {
 		super.onDestroy();
 	}
 	
+	/*
+	 * The view where users buy stuff from the computerized market
+	 */
 	private View marketView() {
 		
 		LayoutInflater inflater = (LayoutInflater)this.getSystemService
@@ -117,6 +120,9 @@ public class MarketTabActivity extends Activity {
 		return marketView;
 	}
 	
+	/**
+	 * The listener of the buttons in the marketView
+	 */
 	private class MarketListener implements OnClickListener {
 
 		@Override
@@ -137,6 +143,13 @@ public class MarketTabActivity extends Activity {
 		
 	}
 	
+	
+	
+	
+	/**
+	 * The View of the market where users buy items that other users have put up for sale 
+	 * @return
+	 */
 	private View playerMarketView() {
 		LayoutInflater inflater = (LayoutInflater)this.getSystemService
 			      (Context.LAYOUT_INFLATER_SERVICE);
@@ -147,6 +160,11 @@ public class MarketTabActivity extends Activity {
 		return playerMarketView;
 	}
 	
+	/**
+	 * The listener of the buttons in the playerMarket View
+	 * @author danielfischer
+	 *
+	 */
 	private class PlayerMarketListener implements OnClickListener {
 
 		@Override
@@ -157,6 +175,10 @@ public class MarketTabActivity extends Activity {
 		
 	}
 	
+	/**
+	 * The View where users put items up on the playerMarket
+	 * @return
+	 */
 	private View sellItemsView() {
 		LayoutInflater inflater = (LayoutInflater)this.getSystemService
 			      (Context.LAYOUT_INFLATER_SERVICE);
@@ -166,6 +188,11 @@ public class MarketTabActivity extends Activity {
 		return sellItemsView;
 	}
 	
+	/**
+	 * The listener of the buttons in the sellItems View
+	 * @author danielfischer
+	 *
+	 */
 	private class SellItemsListener implements OnClickListener {
 
 		@Override
@@ -178,6 +205,18 @@ public class MarketTabActivity extends Activity {
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * Changes views upon swiping
+	 * @author danielfischer
+	 *
+	 */
 	private class ScrollerAdapter extends PagerAdapter {
 
 		private final int NUMBER_OF_SCREENS = 3;
@@ -242,61 +281,6 @@ public class MarketTabActivity extends Activity {
 		}
 	}
 	
-	
-	private class MarketView extends View implements OnClickListener {
-		
-		private EditText quantity_SeedLR, quantity_SeedHYC, 
-					quantity_Fertilizer, quantity_Water, quantity_Oxen = null;
-		
-		private TextView price_SeedLR, price_SeedHYC, price_quantity_Fertilizer,
-					price_Water, price_Oxen = null;
-		
-		public MarketView( Context context ) {
-			super(context);
-			this.setId(R.layout.market_tab);
-			
-			/*
-			 * Produce the TextViews that holds the prices of the items, so that
-			 * they can be set to the prices retrieved from the server
-			 */
-			price_SeedLR = (TextView) findViewById(R.id.SeedLRPrice);
-			price_SeedLR = (TextView) findViewById(R.id.SeedLRPrice);
-			price_SeedLR = (TextView) findViewById(R.id.SeedLRPrice);
-			price_SeedLR = (TextView) findViewById(R.id.SeedLRPrice);
-			price_SeedLR = (TextView) findViewById(R.id.SeedLRPrice);
-			
-			/*
-			 * Produce the EditTexts that the user enters purchase quantities into,
-			 * so that the app can react appropriately
-			 */
-			quantity_SeedLR = (EditText) findViewById(R.id.SeedLRQuantity);
-			quantity_SeedHYC = (EditText) findViewById(R.id.SeedHYCQuantity);
-			quantity_Fertilizer = (EditText) findViewById(R.id.FertilizerQuantity);
-			quantity_Water = (EditText) findViewById(R.id.WaterQuantity);
-			quantity_Oxen = (EditText) findViewById(R.id.OxenQuantity);
-		}
 
-		@Override
-		public void onClick(View v) {
-			switch( v.getId() ) {
-			case R.id.SeedLRBuy:
-				//do something
-			case R.id.SeedHYCBuy:
-				//do something
-			case R.id.FertilizerBuy:
-				//do something
-			case R.id.WaterBuy:
-				//do something
-			case R.id.OxenBuy:
-				//do something
-			}
-		}
 		
-		
-		
-	}
-	
-	
-	
-	
 }
