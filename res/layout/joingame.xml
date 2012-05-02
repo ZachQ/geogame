@@ -4,7 +4,8 @@
     android:orientation="vertical" 
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/radialback">
+    android:background="@drawable/back"
+    android:gravity="center">
     
 	<ListView android:id="@android:id/list"
 	        android:layout_width="fill_parent"
@@ -14,10 +15,25 @@
 	        android:divider="#222222"
 	        android:dividerHeight="1dp"
 	        android:cacheColorHint="#00000000" />
-	<TextView android:id="@id/android:empty"
-			android:layout_width="fill_parent" 
-			android:layout_height="fill_parent" 
-			android:background="#FFff00"
-			android:text="No data" />
 	
+	<LinearLayout 
+    android:id="@id/android:empty"
+    android:orientation="vertical" 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/back"
+    android:gravity="center">
+		<TextView
+		    android:id="@+id/joingame_errorText"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Loading..."
+		    android:textAppearance="?android:attr/textAppearanceLarge" />
+		<ProgressBar
+	        android:id="@+id/joingame_progress"
+	        style="?android:attr/progressBarStyleLarge"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="40dp" />
+	</LinearLayout>
 </LinearLayout>

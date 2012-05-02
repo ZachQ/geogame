@@ -26,8 +26,7 @@ public class Register extends Activity {
 			public void onClick(View v) {
 				// TODO:: Try to register
 				
-				Intent myIntent = new Intent(v.getContext(), Login.class);
-                startActivityForResult(myIntent, 0);
+				finish();
 			}
 		});
 	}

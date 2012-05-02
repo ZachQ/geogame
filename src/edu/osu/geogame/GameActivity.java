@@ -3,7 +3,9 @@ package edu.osu.geogame;
 
 import android.app.TabActivity;
 import android.content.Intent;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.TabHost;
 
 
@@ -45,6 +47,11 @@ public class GameActivity extends TabActivity {
 		
 	}
 	
-	
+	@Override
+	public void onAttachedToWindow() {
+		super.onAttachedToWindow();
+		Window window = getWindow();
+		window.setFormat(PixelFormat.RGBA_8888);
+	}
 	
 }

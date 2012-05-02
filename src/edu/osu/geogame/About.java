@@ -24,8 +24,9 @@ public class About extends Activity{
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent myIntent = new Intent(v.getContext(), Menu.class);
-                startActivityForResult(myIntent, 0);
+				//Intent myIntent = new Intent(v.getContext(), Menu.class);
+                //startActivityForResult(myIntent, 0);
+                finish();
 			}
 		});
 	}

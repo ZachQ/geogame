@@ -65,14 +65,15 @@
 		<activity android:label="@string/app_name" android:name=".Family"></activity>
 		<activity android:label="@string/app_name" android:name=".Market"></activity>
 		<activity android:label="@string/app_name" android:name=".MyProperty"></activity>
-		<activity android:name="Menu" android:label="@string/app_name"></activity>
-		<activity android:name="SelectedProperty"></activity>
+		<activity android:name=".Menu" android:label="@string/app_name"></activity>
+		<activity android:name=".SelectedProperty"></activity>
 		<activity android:name=".GameActivity" android:label="Game"></activity>
 		<activity android:name=".MapTabActivity" android:label="Map"></activity>
 		<activity android:name=".MarketTabActivity" android:label="Market"></activity>
 		<activity android:name=".ScoreboardTabActivity" android:label="Scoreboard"></activity>
 		<activity android:name=".JoinGame"></activity>
-		<activity android:name="PlayGame"></activity>
+		<activity android:name=".PlayGame"></activity>
+		<activity android:name=".TransactionActivity"></activity>
 		
         
     </application>
