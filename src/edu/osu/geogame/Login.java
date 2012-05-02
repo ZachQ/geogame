@@ -2,6 +2,7 @@ package edu.osu.geogame;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.view.View;
@@ -57,6 +58,14 @@ public class Login extends Activity {
 						Toast.makeText(getApplicationContext(),
 								"Unknown Error", Toast.LENGTH_SHORT).show();
 					game.username = editLogin.getText().toString();
+					
+					// -------------------------------------------
+					// SAVE LOGIN INFORMATION TO PHONE
+					SharedPreferences sp = getSharedPreferences("Login", 0);
+					SharedPreferences.Editor Ed = sp.edit();
+					Ed.putString("Cookie", game.sessionCookie.toString() );                
+					Ed.commit();
+					// -------------------------------------------
 					
 					// Next Screen
 					Intent myIntent = new Intent(v.getContext(), edu.osu.geogame.Menu.class);

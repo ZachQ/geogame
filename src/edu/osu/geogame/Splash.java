@@ -4,6 +4,7 @@ package edu.osu.geogame;
 import edu.osu.geogame.R;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.view.View;
@@ -26,14 +27,29 @@ public class Splash extends Activity {
         // Get references
         start = (Button) findViewById(R.id.buttonStart);
         
-        // Add ActionListeners to buttons
-        start.setOnClickListener(new View.OnClickListener() {
- 			@Override
- 			public void onClick(View v) {
- 				Intent myIntent = new Intent(v.getContext(), Login.class);
-                startActivityForResult(myIntent, 0);
- 			}
- 		});
+        // Attempt to get the saved Cookie
+        SharedPreferences sp1 = this.getSharedPreferences("Login",0);
+        String cookie = sp1.getString("Cookie", null); 
+        
+        if (cookie != null) { // Cookie has been retrieved, continue to Menu screen
+            // Add ActionListeners to buttons
+            start.setOnClickListener(new View.OnClickListener() {
+     			@Override
+     			public void onClick(View v) {
+     				Intent myIntent = new Intent(v.getContext(), Menu.class);
+                    startActivityForResult(myIntent, 0);
+     			}
+     		});
+        } else { // Cookie not found, continue to Login screen     	
+            // Add ActionListeners to buttons
+            start.setOnClickListener(new View.OnClickListener() {
+     			@Override
+     			public void onClick(View v) {
+     				Intent myIntent = new Intent(v.getContext(), Login.class);
+                    startActivityForResult(myIntent, 0);
+     			}
+     		});
+        }
 	}
 	
 	@Override
