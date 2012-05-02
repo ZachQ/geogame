@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Random;
 
 public class MapTabActivity extends Activity {
 
@@ -60,7 +61,7 @@ public class MapTabActivity extends Activity {
 		// Add the click-able feature layer
 		featureLayer = new ArcGISFeatureLayer(
 				"http://128.146.194.14/ArcGIS/rest/services/India/MapServer/0",
-				MODE.SELECTION);
+				MODE.SNAPSHOT);
 
 		// /////////////////////////////////////////////////////////////////////////////////
 		// /////////////////////////////////////////////////////////////////////////////////
@@ -70,53 +71,69 @@ public class MapTabActivity extends Activity {
 		// /////////////////////////////////////////////////////////////////////////////////
 
 		// Set tap listener for MapView
-		mapView.setOnSingleTapListener(new OnSingleTapListener() {
+		mapView.setOnSingleTapListener(new FingerTapListener() );
+	}
+	
+	private class FingerTapListener implements OnSingleTapListener {
 
-			private static final long serialVersionUID = 1L;
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 
-			@Override
-			public void onSingleTap(float x, float y) {
+		@Override
+		public void onSingleTap(float x, float y) {
+			//Log.d("test outside", game.test);
+			
+			// convert event into screen click
+			pointClicked = mapView.toMapPoint(x, y);
+			Log.d(Float.toString(x),"x");
+			Log.d(Float.toString(y),"y");
 
-				//Log.d("test outside", game.test);
-				
-				// convert event into screen click
-				pointClicked = mapView.toMapPoint(x, y);
-				Log.d(Float.toString(x),"x");
-				Log.d(Float.toString(y),"y");
+			// build a query to select the clicked feature
+			Query query = new Query();
+			query.setOutFields(new String[] { "*" });
+			query.setSpatialRelationship(SpatialRelationship.INTERSECTS);
+			query.setGeometry(pointClicked);
+			query.setInSpatialReference(mapView.getSpatialReference());
 
-				// build a query to select the clicked feature
-				Query query = new Query();
-				query.setOutFields(new String[] { "*" });
-				query.setSpatialRelationship(SpatialRelationship.INTERSECTS);
-				query.setGeometry(pointClicked);
-				query.setInSpatialReference(mapView.getSpatialReference());
+			// call the select features method and implement the
+			// callbacklistener
+			
+			featureLayer.selectFeatures(query,
+					ArcGISFeatureLayer.SELECTION_METHOD.NEW,
+					new CallbackListener<FeatureSet>() {
+						// handle any errors
+						@Override
+						public void onError(Throwable e) {
+							game.test = "fail";
+							Log.d("test fail",game.test);
+							// Cant toast here???
+						}
 
-				// call the select features method and implement the
-				// callbacklistener
-				featureLayer.selectFeatures(query,
-						ArcGISFeatureLayer.SELECTION_METHOD.NEW,
-						new CallbackListener<FeatureSet>() {
-							// handle any errors
-							@Override
-							public void onError(Throwable e) {
-								game.test = "fail";
-								Log.d("test fail",game.test);
-								// Cant toast here???
+						@Override
+						public void onCallback(FeatureSet queryResults) {
+							Log.d("In the method","blah");
+							if (queryResults.getGraphics().length > 0) {
+								game.test = " ID:" + queryResults.getGraphics()[0].getAttributeValue(featureLayer.getObjectIdField());
+								// ontap
+								Log.d("In the if","skj");
+								updatePlotData(game.test);
+								// Forward to a property select screen
 							}
-
-							@Override
-							public void onCallback(FeatureSet queryResults) {
-								if (queryResults.getGraphics().length > 0) {
-									game.test = " ID:" + queryResults.getGraphics()[0].getAttributeValue(featureLayer.getObjectIdField());
-									// ontap
-									plotData.setText(game.test);
-									Log.d("test win", game.test);
-									// Forward to a property select screen
-								}
-							}
-						});
-			}
-		});
+						}
+					});
+			Log.d("now","now");
+			//plotData.setText(game.test);
+		}
+		
+	}
+	
+	private void updatePlotData( String id ) {
+		Log.d("SET TEXT",id);
+		//Random ran = new Random();
+		//plotData.setText(Integer.toString(ran.nextInt(99)));
+		plotData.setText(id);
 	}
 
 	@Override
