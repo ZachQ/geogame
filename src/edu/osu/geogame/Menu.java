@@ -77,7 +77,7 @@ public class Menu extends Activity {
 		logOut.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// Clear the saved cookie from SharedPreferences
+				// Clear the saved cookie from SharedPreferences to Logout
 				SharedPreferences sp = getSharedPreferences("Login", 0);
 				SharedPreferences.Editor Ed = sp.edit();
 				Ed.putString("Cookie", null);                
@@ -85,7 +85,9 @@ public class Menu extends Activity {
 				
 				// Continue to Login page
 				Intent myIntent = new Intent(v.getContext(), Login.class);
-                startActivityForResult(myIntent, 0);
+				// To clear activities so back button won't work after logout
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(myIntent);
 			}
 		});
 	}
