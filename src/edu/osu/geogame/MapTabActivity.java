@@ -16,15 +16,16 @@ import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MapTabActivity extends Activity {
 
-	MapView mapView;
-	Point pointClicked;
-	ArcGISFeatureLayer featureLayer;
-
-	GeoGame game;
+	private MapView mapView;
+	private Point pointClicked;
+	private ArcGISFeatureLayer featureLayer;
+	private TextView plotData;
+	private GeoGame game;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,8 @@ public class MapTabActivity extends Activity {
 		// View mapTabView = inflater.inflate(R.layout.map_tab, null);
 		// setContentView(mapTabView);
 		setContentView(R.layout.map_tab);
+		
+		plotData = (TextView) findViewById(R.id.plot_data);
 
 		RestClient client = new RestClient(
 				"http://arcsrv.rolltherock.net/ArcGIS/rest/services/India_Gameboard/MapServer");
@@ -74,12 +77,12 @@ public class MapTabActivity extends Activity {
 			@Override
 			public void onSingleTap(float x, float y) {
 
-				// ontap
-				Toast.makeText(getApplicationContext(),
-						"tap tap " + game.test, Toast.LENGTH_SHORT).show();
+				//Log.d("test outside", game.test);
 				
 				// convert event into screen click
 				pointClicked = mapView.toMapPoint(x, y);
+				Log.d(Float.toString(x),"x");
+				Log.d(Float.toString(y),"y");
 
 				// build a query to select the clicked feature
 				Query query = new Query();
@@ -97,6 +100,7 @@ public class MapTabActivity extends Activity {
 							@Override
 							public void onError(Throwable e) {
 								game.test = "fail";
+								Log.d("test fail",game.test);
 								// Cant toast here???
 							}
 
@@ -104,7 +108,9 @@ public class MapTabActivity extends Activity {
 							public void onCallback(FeatureSet queryResults) {
 								if (queryResults.getGraphics().length > 0) {
 									game.test = " ID:" + queryResults.getGraphics()[0].getAttributeValue(featureLayer.getObjectIdField());
-									
+									// ontap
+									plotData.setText(game.test);
+									Log.d("test win", game.test);
 									// Forward to a property select screen
 								}
 							}
