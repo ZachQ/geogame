@@ -3,6 +3,7 @@ package edu.osu.geogame;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -14,46 +15,34 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.View.OnClickListener;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageButton;
 
 public class MarketTabActivity extends Activity {
 	
 	private ViewPager vPager;
 	private ScrollerAdapter sAdapter;
-	private View marketView = null;
+	private View buyMarketView = null;
 	private View playerMarketView = null;
 	private View sellItemsView = null;
 	
-	
+	private ImageButton seedLR, seedHYC, fertilizer, water, ox, labor;
 		
 	@Override
 	public void onCreate( Bundle savedInstanceState ) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.market_scroller_mech);
 	
 		vPager = (ViewPager) findViewById(R.id.viewpager);
-		
 		sAdapter = new ScrollerAdapter();
-		
-		
 		vPager.setAdapter(sAdapter);		
 		vPager.setCurrentItem(1);
 		
-		marketView = marketView();
+		// Create views
+		buyMarketView = marketView();
 		playerMarketView = playerMarketView();
 		sellItemsView = sellItemsView();
-
-		
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * This will change the color format of the Activity so that
-	 * the background gradient will be very smooth.  Without this
-	 * it has noticeable color-stepping.
-	 */
 	@Override
 	public void onAttachedToWindow() {
 		super.onAttachedToWindow();
@@ -93,57 +82,47 @@ public class MarketTabActivity extends Activity {
 		
 		LayoutInflater inflater = (LayoutInflater)this.getSystemService
 			      (Context.LAYOUT_INFLATER_SERVICE);
-		View marketView = inflater.inflate(R.layout.market_tab,null);
+		View marketView = inflater.inflate(R.layout.market_tab_1,null);
 		
+		seedLR = (ImageButton) marketView.findViewById(R.id.SeedLRButton);
+		seedHYC = (ImageButton) marketView.findViewById(R.id.SeedHYCButton);
+		fertilizer = (ImageButton) marketView.findViewById(R.id.FertilizerButton);
+		water = (ImageButton) marketView.findViewById(R.id.WaterButton);
+		ox  = (ImageButton) marketView.findViewById(R.id.OxButton);
+		labor = (ImageButton) marketView.findViewById(R.id.LaborButton);
 		
-		/*
-		 * Produce the TextViews that holds the prices of the items, so that
-		 * they can be set to the prices retrieved from the server
-		 */
-		TextView price_SeedLR = (TextView) findViewById(R.id.SeedLRPrice);
-		TextView price_SeedHYC = (TextView) findViewById(R.id.SeedLRPrice);
-		TextView price_Fertilizer = (TextView) findViewById(R.id.SeedLRPrice);
-		TextView price_Water = (TextView) findViewById(R.id.SeedLRPrice);
-		TextView price_Oxen = (TextView) findViewById(R.id.SeedLRPrice);
-		
-		/*
-		 * Produce the EditTexts that the user enters purchase quantities into,
-		 * so that the app can react appropriately
-		 */
-		EditText quantity_SeedLR = (EditText) findViewById(R.id.SeedLRQuantity);
-		EditText uantity_SeedHYC = (EditText) findViewById(R.id.SeedHYCQuantity);
-		EditText quantity_Fertilizer = (EditText) findViewById(R.id.FertilizerQuantity);
-		EditText quantity_Water = (EditText) findViewById(R.id.WaterQuantity);
-		EditText quantity_Oxen = (EditText) findViewById(R.id.OxenQuantity);
+		// Add onClick with button ID to pass
+		seedLR.setOnClickListener(new MarketListener(0,0));
+		seedHYC.setOnClickListener(new MarketListener(1,0));
+		fertilizer.setOnClickListener(new MarketListener(2,0));
+		water.setOnClickListener(new MarketListener(3,0));
+		ox.setOnClickListener(new MarketListener(4,0));
+		labor.setOnClickListener(new MarketListener(5,0));
 
-		marketView.setOnClickListener( new MarketListener() );
 		return marketView;
 	}
 	
-	/**
-	 * The listener of the buttons in the marketView
-	 */
 	private class MarketListener implements OnClickListener {
+		private int id, action;
 
-		@Override
-		public void onClick(View v) {
-			switch( v.getId() ) {
-			case R.id.SeedLRBuy:
-				//do something
-			case R.id.SeedHYCBuy:
-				//do something
-			case R.id.FertilizerBuy:
-				//do something
-			case R.id.WaterBuy:
-				//do something
-			case R.id.OxenBuy:
-				//do something
-			}
+		/**
+		 * Creates custom action listeners that will pass info to the next screen.
+		 * @param id is the ID to pass to the buy screen to buy the correct item.
+		 * @param type is the action to perform (buy / sell / auction).
+		 */
+		public MarketListener(int id, int action) {
+			this.id = id;
+			this.action = action;
 		}
 		
+		@Override
+		public void onClick(View v) {
+			Intent myIntent = new Intent(v.getContext(), TransactionActivity.class);
+			myIntent.putExtra("id", id);
+			myIntent.putExtra("action", action);
+            startActivity(myIntent);
+		}
 	}
-	
-	
 	
 	
 	/**
@@ -153,27 +132,15 @@ public class MarketTabActivity extends Activity {
 	private View playerMarketView() {
 		LayoutInflater inflater = (LayoutInflater)this.getSystemService
 			      (Context.LAYOUT_INFLATER_SERVICE);
-		View playerMarketView = inflater.inflate(R.layout.player_market,null);
+		View playerMarketView = inflater.inflate(R.layout.market_tab_0,null);
 		
 		
-		playerMarketView.setOnClickListener( new PlayerMarketListener() );
+		//playerMarketView.setOnClickListener( new PlayerMarketListener() );
 		return playerMarketView;
 	}
-	
-	/**
-	 * The listener of the buttons in the playerMarket View
-	 * @author danielfischer
-	 *
-	 */
-	private class PlayerMarketListener implements OnClickListener {
 
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-	}
+	
+	
 	
 	/**
 	 * The View where users put items up on the playerMarket
@@ -182,12 +149,11 @@ public class MarketTabActivity extends Activity {
 	private View sellItemsView() {
 		LayoutInflater inflater = (LayoutInflater)this.getSystemService
 			      (Context.LAYOUT_INFLATER_SERVICE);
-		View sellItemsView = inflater.inflate(R.layout.sell_items,null);
+		View sellItemsView = inflater.inflate(R.layout.market_tab_2,null);
 		
 		sellItemsView.setOnClickListener( new SellItemsListener() );
 		return sellItemsView;
 	}
-	
 	/**
 	 * The listener of the buttons in the sellItems View
 	 * @author danielfischer
@@ -207,11 +173,6 @@ public class MarketTabActivity extends Activity {
 	
 	
 	
-	
-	
-	
-	
-	
 	/**
 	 * Changes views upon swiping
 	 * @author danielfischer
@@ -227,7 +188,6 @@ public class MarketTabActivity extends Activity {
 		
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			Log.d("getCount",Integer.toString(NUMBER_OF_SCREENS));
 			return NUMBER_OF_SCREENS;
 		}
@@ -238,8 +198,8 @@ public class MarketTabActivity extends Activity {
 			View screen = null;
 			switch( position ) {
 			case 0: screen = playerMarketView; break;
-			case 1: screen = sellItemsView; break;
-			case 2: screen = marketView; break;
+			case 1: screen = buyMarketView; break;
+			case 2: screen = sellItemsView; break;
 			default: screen = playerMarketView;
 			}
 			Log.d("number",Integer.toString(position));

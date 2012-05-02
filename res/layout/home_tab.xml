@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <ScrollView android:id="@+id/scroll_view" 
-            android:layout_width="wrap_content" 
-            android:layout_height="wrap_content"
-            xmlns:android="http://schemas.android.com/apk/res/android">
-
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/radialback"
-    android:padding="10dp"
-	android:orientation="vertical"
-     >
+    android:background="@drawable/back"
+    android:orientation="vertical"
+    android:padding="10dp" >
 
     <TextView
         android:id="@+id/textView1"

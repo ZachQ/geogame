@@ -69,7 +69,7 @@ public class Login extends Activity {
 					
 					// Next Screen
 					Intent myIntent = new Intent(v.getContext(), edu.osu.geogame.Menu.class);
-                	startActivityForResult(myIntent, 0);
+					startActivity(myIntent);
 				} else if (client.getResponseCode() == 200) {
 					// Failure
 					Toast.makeText(getApplicationContext(),
@@ -84,7 +84,7 @@ public class Login extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent myIntent = new Intent(v.getContext(), Register.class);
-                startActivityForResult(myIntent, 0);
+				startActivity(myIntent);
 			}
 		});
 	}
