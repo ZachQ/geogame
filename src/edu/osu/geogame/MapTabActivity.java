@@ -27,6 +27,7 @@ public class MapTabActivity extends Activity {
 	private ArcGISFeatureLayer featureLayer;
 	private TextView plotData;
 	private GeoGame game;
+	private static String id;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,8 @@ public class MapTabActivity extends Activity {
 		setContentView(R.layout.map_tab);
 		
 		plotData = (TextView) findViewById(R.id.plot_data);
+		
+		plotData.setText("text");
 
 		RestClient client = new RestClient(
 				"http://arcsrv.rolltherock.net/ArcGIS/rest/services/India_Gameboard/MapServer");
@@ -71,7 +74,7 @@ public class MapTabActivity extends Activity {
 		// /////////////////////////////////////////////////////////////////////////////////
 
 		// Set tap listener for MapView
-		mapView.setOnSingleTapListener(new FingerTapListener() );
+		mapView.setOnSingleTapListener(new FingerTapListener( plotData ) );
 	}
 	
 	private class FingerTapListener implements OnSingleTapListener {
@@ -80,11 +83,18 @@ public class MapTabActivity extends Activity {
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
-
+		
+		private TextView view;
+		public FingerTapListener( TextView view ) {
+			this.view = view;
+			plotData.setText("test");
+		}
+		
 		@Override
 		public void onSingleTap(float x, float y) {
 			//Log.d("test outside", game.test);
-			
+			plotData.setText("Loading...");
+
 			// convert event into screen click
 			pointClicked = mapView.toMapPoint(x, y);
 			Log.d(Float.toString(x),"x");
@@ -100,40 +110,51 @@ public class MapTabActivity extends Activity {
 			// call the select features method and implement the
 			// callbacklistener
 			
+			MyCallBackListener myCBListener = new MyCallBackListener();
 			featureLayer.selectFeatures(query,
 					ArcGISFeatureLayer.SELECTION_METHOD.NEW,
-					new CallbackListener<FeatureSet>() {
-						// handle any errors
-						@Override
-						public void onError(Throwable e) {
-							game.test = "fail";
-							Log.d("test fail",game.test);
-							// Cant toast here???
-						}
-
-						@Override
-						public void onCallback(FeatureSet queryResults) {
-							Log.d("In the method","blah");
-							if (queryResults.getGraphics().length > 0) {
-								game.test = " ID:" + queryResults.getGraphics()[0].getAttributeValue(featureLayer.getObjectIdField());
-								// ontap
-								Log.d("In the if","skj");
-								updatePlotData(game.test);
-								// Forward to a property select screen
-							}
-						}
-					});
+					myCBListener); 
 			Log.d("now","now");
-			//plotData.setText(game.test);
+			Log.d(myCBListener.getId(),"IDsdaf");
+			try {
+				Thread.sleep(1500);
+			} catch (InterruptedException e) {
+				Log.d("sleeping errror","sleeping error");
+				System.exit(1);
+			}
+			plotData.setText(myCBListener.getId());
 		}
+		
+		
 		
 	}
 	
-	private void updatePlotData( String id ) {
-		Log.d("SET TEXT",id);
-		//Random ran = new Random();
-		//plotData.setText(Integer.toString(ran.nextInt(99)));
-		plotData.setText(id);
+	private class MyCallBackListener implements CallbackListener<FeatureSet> {
+		
+		@Override
+		public void onCallback( FeatureSet queryResults ) {
+			Log.d("In the method","blah");
+			if (queryResults.getGraphics().length > 0) {
+				Log.d(id,"rrrrID");
+				id = " ID:" + queryResults.getGraphics()[0].getAttributeValue(featureLayer.getObjectIdField());
+				// ontap
+				Log.d("1","1");
+				Log.d("2","2");
+				// Forward to a property select screen
+			}
+		}
+
+		@Override
+		public void onError(Throwable e) {
+			game.test = "fail";
+			Log.d("test fail",game.test);
+			// Cant toast here???
+		}
+		
+		public String getId() {
+			return id;
+		}
+		
 	}
 
 	@Override
