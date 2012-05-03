@@ -76,8 +76,14 @@ public class Menu extends Activity {
 		logOut.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				//Intent myIntent = new Intent(v.getContext(), Login.class);
-                //startActivityForResult(myIntent, 0);
+				/** THIS IS ZACH'S COMMENT:
+			 	* When you get rid of this line, logout just exits to entire application
+				* so if you have your information saved to the phone, you can never log
+				* in as another user
+				*/
+				// Intent myIntent = new Intent(v.getContext(), Login.class);
+                // startActivityForResult(myIntent, 0);
+                
 				finish();
 			}
 		});
