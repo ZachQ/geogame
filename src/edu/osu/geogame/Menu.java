@@ -2,6 +2,7 @@ package edu.osu.geogame;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.view.View;
@@ -42,7 +43,7 @@ public class Menu extends Activity {
 		loggedIn = (TextView) findViewById(R.id.textViewloggedIn);
 		
 		// Set screen text
-		loggedIn.setText("Logged in as: " + game.username);
+		loggedIn.setText("Logged in as: " + GeoGame.username);
 		
 		// Add ActionListeners to buttons
 		joinGame.setOnClickListener(new View.OnClickListener() {
@@ -81,20 +82,21 @@ public class Menu extends Activity {
 				* so if you have your information saved to the phone, you can never log
 				* in as another user
 				*/
-				// Intent myIntent = new Intent(v.getContext(), Login.class);
-                // startActivityForResult(myIntent, 0);
-                
-				finish();
+				// Clear the saved cookie from SharedPreferences to Logout
+				SharedPreferences sp = getSharedPreferences("Login", 0);
+				SharedPreferences.Editor Ed = sp.edit();
+				Ed.putString("Cookie", null);		
+				Ed.commit();
+				
+				// Continue to Login page		
+				Intent myIntent = new Intent(v.getContext(), Login.class);		
+				// To clear activities so back button won't work after logout		
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);		
+				startActivity(myIntent);
 			}
 		});
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * This will change the color format of the Activity so that
-	 * the background gradient will be very smooth.  Without this
-	 * it has noticeable color-stepping.
-	 */
 	@Override
 	public void onAttachedToWindow() {
 		super.onAttachedToWindow();
