@@ -39,7 +39,7 @@ public class Login extends Activity {
 			@Override
 			public void onClick(View v) {
 				// Attempt login
-				RestClient client = new RestClient(game.URL_LOGON);
+				RestClient client = new RestClient(GeoGame.URL_LOGON);
 				client.AddParam("UserName", editLogin.getText().toString());
 				client.AddParam("Password", editPassword.getText().toString());
 				
@@ -53,17 +53,17 @@ public class Login extends Activity {
 					// Success
 					// Store the login Cookie and UserName
 					if (client.getCookies().size() > 0)
-						game.sessionCookie = client.getCookies().get(0);
+						GeoGame.sessionCookie = client.getCookies().get(0);
 					else
 						Toast.makeText(getApplicationContext(),
 								"Unknown Error", Toast.LENGTH_SHORT).show();
-					game.username = editLogin.getText().toString();
+					GeoGame.username = editLogin.getText().toString();
 					
 					// -------------------------------------------
 					// SAVE LOGIN INFORMATION TO PHONE
 					SharedPreferences sp = getSharedPreferences("Login", 0);
 					SharedPreferences.Editor Ed = sp.edit();
-					Ed.putString("Cookie", game.sessionCookie.toString() );                
+					Ed.putString("Cookie", GeoGame.sessionCookie.toString() );                
 					Ed.commit();
 					// -------------------------------------------
 					

@@ -18,6 +18,8 @@ public class GeoGame extends Application {
 	/* Game Variables */
 	public static String username;
 	public static String currentGameId; 
+	public static String familyName, money, adults, seedLR, seedHYC, fertilizer, grainLR, grainHYC, water, oxen, labor;
+	
 	
 	// for testing
 	public static String test;

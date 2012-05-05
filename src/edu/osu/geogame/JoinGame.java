@@ -49,8 +49,8 @@ public class JoinGame extends ListActivity {
 	
 	private Thread populateList = new Thread() {
 		public void run() {
-			RestClient client = new RestClient(game.URL_GAME + "OpenGames");
-			client.addCookie(game.sessionCookie);
+			RestClient client = new RestClient(GeoGame.URL_GAME + "OpenGames");
+			client.addCookie(GeoGame.sessionCookie);
 			JSONObject j;
 			JSONArray a;
 			try {
@@ -99,7 +99,7 @@ public class JoinGame extends ListActivity {
     			public void onItemClick(AdapterView<?> parent, View view,
     					int position, long id) {
     			    // Join the game
-    				RestClient client = new RestClient(game.URL_GAME + "Join");
+    				RestClient client = new RestClient(GeoGame.URL_GAME + "Join");
     				
     				// Back to Menu
     				Intent i= new Intent(getApplicationContext(), Menu.class);

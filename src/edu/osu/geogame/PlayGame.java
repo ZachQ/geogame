@@ -47,8 +47,8 @@ public class PlayGame extends ListActivity {
 
 	private Thread populateList = new Thread() {
 		public void run() {
-			RestClient client = new RestClient(game.URL_GAME + "YourGames");
-			client.addCookie(game.sessionCookie);
+			RestClient client = new RestClient(GeoGame.URL_GAME + "YourGames");
+			client.addCookie(GeoGame.sessionCookie);
 			JSONObject j;
 			JSONArray a;
 			try {
@@ -94,7 +94,7 @@ public class PlayGame extends ListActivity {
     					int position, long id) {
     				
     				// Set current game
-    				game.currentGameId = data.elementAt(position).get("gameID");
+    				GeoGame.currentGameId = data.elementAt(position).get("gameID");
     				
     				Intent i= new Intent(getApplicationContext(), GameActivity.class);
     				startActivity(i);

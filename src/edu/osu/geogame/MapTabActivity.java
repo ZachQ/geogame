@@ -146,8 +146,8 @@ public class MapTabActivity extends Activity {
 
 		@Override
 		public void onError(Throwable e) {
-			game.test = "fail";
-			Log.d("test fail",game.test);
+			GeoGame.test = "fail";
+			Log.d("test fail",GeoGame.test);
 			// Cant toast here???
 		}
 		

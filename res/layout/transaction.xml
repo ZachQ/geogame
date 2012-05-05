@@ -14,29 +14,29 @@
         android:gravity="center"
         android:text="transaction_title"
         android:textColor="@color/title"
-        android:textSize="@dimen/titleTextSize" />
-
+        android:textSize="@dimen/titleTextSize" />
+
     <SeekBar
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/seekBar1"
+        android:id="@+id/market_progressBar"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
-        android:maxHeight="6dip"
-        android:minHeight="6dip"
-        android:paddingBottom="10dp"
+        android:maxHeight="60dip"
+        android:minHeight="59dip"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
-        android:paddingTop="10dp" />
+        android:progressDrawable="@drawable/slider_progress"
+        android:thumb="@drawable/slider_thumb" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/market_buyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/seekBar1"
+        android:layout_below="@+id/market_progressBar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="32dp"
         android:text="BUY NOW" />
 
 </RelativeLayout>

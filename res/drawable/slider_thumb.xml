@@ -9,6 +9,6 @@
 	    android:angle="270"/>
 	
 	<size 
-	    android:height="100dp"
+	    android:height="60dp"
 	    android:width="5dp"/>
 </shape>
