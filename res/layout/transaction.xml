@@ -82,15 +82,14 @@
                 android:textSize="@dimen/tableTextSize" />
         </TableRow>
     </TableLayout>
-
-    
-
-    <Button
-        android:id="@+id/market_buyButton"
+
+    <LinearLayout
+        android:id="@+id/market_buttonArea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tableLayout1"
-        android:layout_centerHorizontal="true"
-        android:text="BUY NOW" />
+        android:layout_centerHorizontal="true" >
+
+    </LinearLayout>
 
 </RelativeLayout>

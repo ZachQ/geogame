@@ -35,10 +35,12 @@ public class HomeTabActivity extends Activity {
 		
 		// Get the game data, then update the home display
 		mHandler = new Handler();
-		Update.start();
+		//Thread update = new updateThread();
+		//update.start();
 	}
 
-	private Thread Update = new Thread() {
+	public class updateThread extends Thread {
+		@Override
 		public void run() {
 			RestClient g_client = new RestClient(GeoGame.URL_GAME + "Dash/" + GeoGame.currentGameId);
 			RestClient m_client = new RestClient(GeoGame.URL_MARKET + "myBank/" + GeoGame.currentGameId);
@@ -50,8 +52,6 @@ public class HomeTabActivity extends Activity {
 			} catch (Exception e) {} finally {
 				JSONObject j;
 				JSONObject data, market, family;
-				
-				
 				try {
 					// Get the data
 					j = new JSONObject(g_client.getResponse());
@@ -77,7 +77,7 @@ public class HomeTabActivity extends Activity {
 				} catch (Exception e) {}
 			}
 		}
-	};
+	}
 	
 	private Runnable showUpdate = new Runnable(){
         public void run(){
@@ -95,6 +95,15 @@ public class HomeTabActivity extends Activity {
 			oxen.setText(GeoGame.oxen);
         }
     };
+    
+    @Override
+    protected void onResume() {
+    	// Update the home page every time the user looks at it
+    	// From server
+    	super.onResume();
+    	Thread update = new updateThread();
+		update.start();
+    }
     
 	@Override
 	public void onAttachedToWindow() {
