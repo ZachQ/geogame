@@ -38,7 +38,7 @@ public class MapTabActivity extends Activity {
 		// setContentView(mapTabView);
 		setContentView(R.layout.map_tab);
 		
-		plotData = (TextView) findViewById(R.id.plot_data);
+		plotData = (TextView) findViewById(R.id.plot_id);
 		
 		plotData.setText("text");
 
@@ -122,7 +122,9 @@ public class MapTabActivity extends Activity {
 				Log.d("sleeping errror","sleeping error");
 				System.exit(1);
 			}
-			plotData.setText(myCBListener.getId());
+			String display = "Plot ID = " + myCBListener.getId();
+
+			plotData.setText(display);
 		}
 		
 		
