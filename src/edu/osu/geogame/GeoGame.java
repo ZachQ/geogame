@@ -19,7 +19,8 @@ public class GeoGame extends Application {
 	public static String username;
 	public static String currentGameId; 
 	public static String familyName, money, adults, seedLR, seedHYC, fertilizer, grainLR, grainHYC, water, oxen, labor;
-	
+	/* Item Costs */
+	public static int costSeedLR = 2;
 	
 	// for testing
 	public static String test;

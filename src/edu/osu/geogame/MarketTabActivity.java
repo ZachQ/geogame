@@ -92,34 +92,32 @@ public class MarketTabActivity extends Activity {
 		labor = (ImageButton) marketView.findViewById(R.id.LaborButton);
 		
 		// Add onClick with button ID to pass
-		seedLR.setOnClickListener(new MarketListener(0,0));
-		seedHYC.setOnClickListener(new MarketListener(1,0));
-		fertilizer.setOnClickListener(new MarketListener(2,0));
-		water.setOnClickListener(new MarketListener(3,0));
-		ox.setOnClickListener(new MarketListener(4,0));
-		labor.setOnClickListener(new MarketListener(5,0));
+		seedLR.setOnClickListener(new MarketListener(0));
+		seedHYC.setOnClickListener(new MarketListener(1));
+		fertilizer.setOnClickListener(new MarketListener(2));
+		water.setOnClickListener(new MarketListener(3));
+		ox.setOnClickListener(new MarketListener(4));
+		labor.setOnClickListener(new MarketListener(5));
 
 		return marketView;
 	}
 	
 	private class MarketListener implements OnClickListener {
-		private int id, action;
+		private int id;
 
 		/**
 		 * Creates custom action listeners that will pass info to the next screen.
 		 * @param id is the ID to pass to the buy screen to buy the correct item.
 		 * @param type is the action to perform (buy / sell / auction).
 		 */
-		public MarketListener(int id, int action) {
+		public MarketListener(int id) {
 			this.id = id;
-			this.action = action;
 		}
 		
 		@Override
 		public void onClick(View v) {
 			Intent myIntent = new Intent(v.getContext(), TransactionActivity.class);
 			myIntent.putExtra("id", id);
-			myIntent.putExtra("action", action);
             startActivity(myIntent);
 		}
 	}
