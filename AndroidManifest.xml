@@ -74,6 +74,7 @@
 		<activity android:name=".JoinGame"></activity>
 		<activity android:name=".PlayGame"></activity>
 		<activity android:name=".TransactionActivity"></activity>
+		<activity android:name=".ForumTabActivity"></activity>
 		
         
     </application>
