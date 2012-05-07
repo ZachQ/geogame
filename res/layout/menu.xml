@@ -40,17 +40,6 @@
         android:textSize="@dimen/buttonTextSize" />
 
     <Button
-        android:id="@+id/buttonEditAccout"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/buttonHeight"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:ems="12"
-        android:gravity="center"
-        android:text="Edit Account"
-        android:textSize="@dimen/buttonTextSize" />
-
-    <Button
         android:id="@+id/buttonAbout"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/buttonHeight"

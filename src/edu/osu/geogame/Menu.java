@@ -15,7 +15,7 @@ import android.widget.Toast;
  * @author Ben Elliott
  */
 public class Menu extends Activity {
-	Button joinGame, playGame, edit, about, logOut;
+	Button joinGame, playGame, about, logOut;
 	TextView loggedIn;
 	GeoGame game;
 	
@@ -37,7 +37,6 @@ public class Menu extends Activity {
 		// Get references
 		joinGame = (Button) findViewById(R.id.buttonJoinGame);
 		playGame = (Button) findViewById(R.id.buttonPlayGame);
-		edit = (Button) findViewById(R.id.buttonEditAccout);
 		about = (Button) findViewById(R.id.buttonAbout);
 		logOut = (Button) findViewById(R.id.buttonLogOut);
 		loggedIn = (TextView) findViewById(R.id.textViewloggedIn);
@@ -60,13 +59,6 @@ public class Menu extends Activity {
                 startActivityForResult(myIntent, 0);
 			}
 		});
-		edit.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent myIntent = new Intent(v.getContext(), null);
-                startActivityForResult(myIntent, 0);
-			}
-		});
 		about.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -77,11 +69,6 @@ public class Menu extends Activity {
 		logOut.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				/** THIS IS ZACH'S COMMENT:
-			 	* When you get rid of this line, logout just exits to entire application
-				* so if you have your information saved to the phone, you can never log
-				* in as another user
-				*/
 				// Clear the saved cookie from SharedPreferences to Logout
 				SharedPreferences sp = getSharedPreferences("Login", 0);
 				SharedPreferences.Editor Ed = sp.edit();
