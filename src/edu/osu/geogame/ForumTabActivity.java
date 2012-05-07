@@ -1,74 +1,60 @@
 package edu.osu.geogame;
 
 import java.util.HashMap;
-import java.util.Vector;
+import java.util.Map;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Window;
 import android.widget.SimpleAdapter;
 
+import org.json.JSONTokener;
+
 public class ForumTabActivity extends Activity {
-	GeoGame game;
 	private Handler mHandler;
-	SimpleAdapter adapter;
+	private SimpleAdapter adapter;
+	private Map<Integer,ForumThreadTuple> forumContent;
+
 	
 	@Override
 	public void onCreate( Bundle savedInstanceState ) {
 		super.onCreate(savedInstanceState);
+		Log.d("In onCreate","Forum");
 	    setContentView(R.layout.forum_tab);
-	    game = (GeoGame)getApplicationContext();
-		
+	    forumContent = new HashMap<Integer,ForumThreadTuple>();
+	    
 		// get the list of games
 		mHandler = new Handler();
+		populateList.run();
 	}
 	
-	/*
+	
 	private Thread populateList = new Thread() {
 		public void run() {
-			RestClient client = new RestClient(GeoGame.URL_FORUM + "Get/Threads/");
+			RestClient client = new RestClient(GeoGame.URL_FORUM + "Get/Threads/"
+					+ GeoGame.currentGameId);
 			client.addCookie(GeoGame.sessionCookie);
 			JSONObject j;
 			JSONArray a;
+			
 			try {
-				client.Execute(RequestMethod.POST);
-			} catch (Exception e) {} finally {
-				String response = client.getResponse();
-				
-				try {
-					j = new JSONObject(response);
-					a = (JSONArray) j.get("data");
-					
-					if (a.length() == 0 && j.getBoolean("success") == true) {
-						// No open games
-						mHandler.post(showMessage);
-					} else {	
-						// Import Games
-						for (int i = 0; i < a.length(); i++) {
-							HashMap<String,String> temp = new HashMap<String,String>();
-							temp.put("gameID", a.getJSONObject(i).getString("gameID"));
-							temp.put("title", a.getJSONObject(i).getString("location"));
-							temp.put("one", "Seats: " + a.getJSONObject(i).getString("seats"));
-							temp.put("two", "Duration: " + a.getJSONObject(i).getString("turnDuration"));
-							temp.put("three", "Turns: " + a.getJSONObject(i).getString("numberOfTurns"));
-							data.add(temp);
-						}
-						
-						// Complete = notify
-						mHandler.post(showUpdate);
-					}
-				} catch (Exception e) {
-					int test = 9;
-				}
+				client.Execute(RequestMethod.GET);
+				parseResponse(client.getResponse());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			
 		}
 	};
-	*/
+	
 	
 	
 	@Override
@@ -107,6 +93,86 @@ public class ForumTabActivity extends Activity {
 		super.onAttachedToWindow();
 		Window window = getWindow();
 		window.setFormat(PixelFormat.RGBA_8888);
+	}
+	
+	private void parseResponse( String json ) {
+		JSONTokener tokenizer = new JSONTokener(json);
+		try {
+			
+			//Check that there is forum content to display
+			String temp = tokenizer.next(11);
+			if( !temp.equals("{success\":") ) { 
+				throw new JSONException("success var");
+			}
+			
+			temp = tokenizer.next(4);
+			if( !temp.equals("true") ) {
+				throw new JSONException("success var: not true");
+			}
+			
+			temp = tokenizer.next(11);
+			if( !temp.equals(",\"status\":\"") ) {
+				throw new JSONException("status var");
+			}
+			
+			temp = tokenizer.next(7);
+			if( !temp.equals("threads") ) {
+				throw new JSONException("status var: not threads");
+			}
+			
+			temp = tokenizer.next(13);
+			if( !temp.equals("\",\"threads\":[") ) {
+				throw new NoThreadsExistException();
+			}
+			
+			//Begin retrieving forum content
+			boolean cont = true;
+			do {
+				String threadId;
+				String title;
+				String message;
+				String family;
+				String timestamp;
+				String count;
+				
+				//threadId
+				temp = tokenizer.next(12);
+				if( !temp.equals("{\"threadId\":") ) {
+					throw new JSONException("threadId var");
+				}
+				threadId = tokenizer.nextTo(',');
+			
+				//title
+				temp = tokenizer.next(10);
+				if( !temp.equals(",\"title\":\"") ) {
+					throw new JSONException("title var");
+				}
+				title = tokenizer.nextTo('"');
+				
+				//message
+				temp = tokenizer.next(12);
+				if( !temp.equals(",\"message\":\"") ) {
+					throw new JSONException("message var");
+				}		
+				message = tokenizer.nextTo(',');
+				
+				
+				
+				
+				
+			} while( cont );
+			
+			
+			
+					
+				
+				
+				
+		} catch( JSONException ex ) {
+			
+		} catch( NoThreadsExistException ex ) {
+			
+		}
 	}
 	
 }
