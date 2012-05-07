@@ -11,6 +11,7 @@ public class GeoGame extends Application {
 	public static String URL_LOGON = "http://geogame.osu.edu/Account/LogOn";
 	public static String URL_GAME = "http://geogame.osu.edu/Game/";
 	public static String URL_MARKET = "http://geogame.osu.edu/Market/";
+	public static String URL_FORUM = "http://geogame.osu.edu/Forum/";
 	
 	/* Login Cookie */
 	public static Cookie sessionCookie;
