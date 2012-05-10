@@ -12,6 +12,8 @@ import com.esri.core.tasks.SpatialRelationship;
 import com.esri.core.tasks.ags.query.Query;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.util.Log;
@@ -331,6 +333,14 @@ public class MapTabActivity extends Activity {
 		window.setFormat(PixelFormat.RGBA_8888);
 	}
 	
+	private class OwnedParcelDialog extends Dialog {
+
+		public OwnedParcelDialog(Context context) {
+			super(context);
+			// TODO Auto-generated constructor stub
+		}
+	}
+	
 	private void setUIWithPacket( ParcelPacket packet ) {
 		if( packet.parecelType() == ParcelType.FOR_SALE ) {
 			plotId.setText("Plot ID: " + packet.plotID());
@@ -340,6 +350,11 @@ public class MapTabActivity extends Activity {
 			plotId.setText("");
 			plotArea.setText("");
 			plotOther.setText("");
+			Context mContext = this;
+			OwnedParcelDialog dialog = new OwnedParcelDialog(mContext);
+			dialog.setContentView(R.layout.owned_parcel_dialog);
+			dialog.show();
+
 		} else {
 			plotId.setText("Plot ID: " + packet.plotID());
 			plotArea.setText("Plot Area: " + packet.area());
