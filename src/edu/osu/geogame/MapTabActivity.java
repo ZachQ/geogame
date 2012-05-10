@@ -343,7 +343,7 @@ public class MapTabActivity extends Activity {
 		} else {
 			plotId.setText("Plot ID: " + packet.plotID());
 			plotArea.setText("Plot Area: " + packet.area());
-			plotOther.setText("Owner" + packet.opponentOwner());
+			plotOther.setText("Owner: " + packet.opponentOwner());
 		}
 	}
 	
