@@ -137,26 +137,7 @@ public class ForumTabActivity extends Activity {
 				String timestamp;
 				String count;
 				
-				//threadId
-				temp = tokenizer.next(12);
-				if( !temp.equals("{\"threadId\":") ) {
-					throw new JSONException("threadId var");
-				}
-				threadId = tokenizer.nextTo(',');
-			
-				//title
-				temp = tokenizer.next(10);
-				if( !temp.equals(",\"title\":\"") ) {
-					throw new JSONException("title var");
-				}
-				title = tokenizer.nextTo('"');
 				
-				//message
-				temp = tokenizer.next(12);
-				if( !temp.equals(",\"message\":\"") ) {
-					throw new JSONException("message var");
-				}		
-				message = tokenizer.nextTo(',');
 				
 				
 				
