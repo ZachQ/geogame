@@ -34,7 +34,7 @@ public class MapTabActivity extends Activity {
 	private TextView plotArea;
 	private TextView plotOther;
 	private GeoGame game;
-	private static String id;
+	private static String id = "";
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,10 @@ public class MapTabActivity extends Activity {
 		plotId = (TextView) findViewById(R.id.plot_id);
 		plotArea = (TextView) findViewById(R.id.plot_area);
 		plotOther = (TextView) findViewById(R.id.plot_price_or_plot_owner);
+		
+		//MapThread mapThread = new MapThread();
+		//mapThread.run();
+		
 		
 		RestClient client = new RestClient(
 				"http://arcsrv.rolltherock.net/ArcGIS/rest/services/India_Gameboard/MapServer");
@@ -89,7 +93,7 @@ public class MapTabActivity extends Activity {
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
-		
+		private MyCallBackListener myCBListener = new MyCallBackListener();
 		private TextView view;
 		public FingerTapListener( TextView view ) {
 			this.view = view;
@@ -97,8 +101,64 @@ public class MapTabActivity extends Activity {
 		
 		@Override
 		public void onSingleTap(float x, float y) {
-			PlotDataThread retrievePlotData = new PlotDataThread(x,y);
+			Thread loadingThread = new Thread() {
+				public void run() {
+					plotId.setText("Plot Id:  Loading..");
+					plotArea.setText("Plot Area:  Loading..");
+					plotOther.setText("Loading..");
+				}
+			};
+			loadingThread.run();
+			PlotDataThread retrievePlotData = new PlotDataThread(x,y,myCBListener);
 			retrievePlotData.run();
+			
+			/*
+			pointClicked = mapView.toMapPoint(x, y);
+
+			// build a query to select the clicked feature
+			Query query = new Query();
+			query.setOutFields(new String[] { "*" });
+			query.setSpatialRelationship(SpatialRelationship.INTERSECTS);
+			query.setGeometry(pointClicked);
+			query.setInSpatialReference(mapView.getSpatialReference());
+
+			// call the select features method and implement the
+			// callbacklistener
+			
+			featureLayer.selectFeatures(query,
+					ArcGISFeatureLayer.SELECTION_METHOD.NEW,
+					myCBListener); 
+			
+			try {
+				Thread.sleep(3500);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			Log.d(myCBListener.getId(),"ID after sleep");
+			
+//String display = "Plot ID = " + myCBListener.getId();
+
+			//plotId.setText(display);
+			
+			 String url = GeoGame.URL_GAME + "/India/" + GeoGame.currentGameId
+				+ "/Info/" + myCBListener.getId();
+			 
+			 myCBListener.finish();
+			 
+			
+			RestClient client = new RestClient(url);
+			client.addCookie(GeoGame.sessionCookie);
+			try {
+				client.Execute(RequestMethod.GET);
+			} catch (Exception e) {
+				Log.d("ERROR5","454");
+			}
+			ParcelPacket packet = parseResponse(client.getResponse());	
+			setUIWithPacket(packet);
+			*/
+
 		}
 		
 		
@@ -107,15 +167,16 @@ public class MapTabActivity extends Activity {
 	
 	private class MyCallBackListener implements CallbackListener<FeatureSet> {
 		
+		//boolean idSet = false;
+		String idPrevious = "";
+		
 		@Override
 		public void onCallback( FeatureSet queryResults ) {
-			Log.d("In the method","blah");
 			if (queryResults.getGraphics().length > 0) {
-				Log.d(id,"rrrrID");
+				Log.d(id,"ID before change");
 				id = ""+queryResults.getGraphics()[0].getAttributeValue(featureLayer.getObjectIdField());
+				//Log.d(id,idPrevious);
 				// ontap
-				Log.d("1","1");
-				Log.d("2","2");
 				// Forward to a property select screen
 			}
 		}
@@ -128,27 +189,63 @@ public class MapTabActivity extends Activity {
 		}
 		
 		public String getId() {
+			while( id.equals(idPrevious) ) Log.d(id,idPrevious);
 			return id;
 		}
 		
+		public void finish() {
+			idPrevious = id;
+		}
+		
+	}
+	
+	private class MapThread extends Thread {
+		
+		@Override
+		public void run() {
+			RestClient client = new RestClient(
+					"http://arcsrv.rolltherock.net/ArcGIS/rest/services/India_Gameboard/MapServer");
+			try {
+				client.Execute(RequestMethod.POST);
+			} catch (Exception ex) {
+
+			}
+
+			String temp = client.getResponse();
+			Log.d(temp, "RESPONSE");
+
+			// Retrieve the map and initial extent from XML layout
+			mapView = (MapView) findViewById(R.id.map);
+
+			// Create the base map
+			ArcGISDynamicMapServiceLayer dMap = new ArcGISDynamicMapServiceLayer(
+					"http://128.146.194.14/ArcGIS/rest/services/India/MapServer");
+			mapView.addLayer(dMap);
+
+			// Add the click-able feature layer
+			featureLayer = new ArcGISFeatureLayer(
+					"http://128.146.194.14/ArcGIS/rest/services/India/MapServer/0",
+					MODE.SNAPSHOT);
+
+		}
 	}
 	
 	private class PlotDataThread extends Thread {
 		
 		private float x;
 		private float y;
+		private MyCallBackListener myCBListener;
 		
-		public PlotDataThread( float x, float y ) {
+		public PlotDataThread( float x, float y, MyCallBackListener myCBListener ) {
 			super();
 			this.x = x;
 			this.y = y;
+			this.myCBListener = myCBListener;
 		}
 		
 		@Override
 		public void run() {
 			pointClicked = mapView.toMapPoint(x, y);
-			Log.d(Float.toString(x),"x");
-			Log.d(Float.toString(y),"y");
 
 			// build a query to select the clicked feature
 			Query query = new Query();
@@ -160,26 +257,28 @@ public class MapTabActivity extends Activity {
 			// call the select features method and implement the
 			// callbacklistener
 			
-			MyCallBackListener myCBListener = new MyCallBackListener();
 			featureLayer.selectFeatures(query,
 					ArcGISFeatureLayer.SELECTION_METHOD.NEW,
 					myCBListener); 
-			Log.d("now","now");
-			Log.d(myCBListener.getId(),"IDsdaf");
+			/*
 			try {
-				Thread.sleep(1500);
-			} catch (InterruptedException e) {
-				Log.d("sleeping errror","sleeping error");
-				System.exit(1);
+				Thread.sleep(3500);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			//String display = "Plot ID = " + myCBListener.getId();
+			*/
+			Log.d(myCBListener.getId(),"ID after sleep");
+			
+//String display = "Plot ID = " + myCBListener.getId();
 
 			//plotId.setText(display);
 			
 			 String url = GeoGame.URL_GAME + "/India/" + GeoGame.currentGameId
 				+ "/Info/" + myCBListener.getId();
 			 
-			 Log.d("URL",url);
+			 myCBListener.finish();
+			 
 			
 			RestClient client = new RestClient(url);
 			client.addCookie(GeoGame.sessionCookie);
@@ -324,10 +423,12 @@ public class MapTabActivity extends Activity {
 			
 		} catch( ParcelNotFoundException ex ) {
 			
+		} catch( NullPointerException ex ) { 
+
 		} catch( Exception ex ) {
-			Log.d("error",ex.getMessage());
-			System.exit(1);
-		}
+			//Log.d("error",ex.getMessage());
+			//System.exit(1);
+		} 
 		
 		return parcelPacket;
 	}
