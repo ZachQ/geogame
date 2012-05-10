@@ -1,4 +1,4 @@
-package edu.osu.geogame;
+package edu.osu.geogame.exception;
 
 public class NoThreadsExistException extends Exception {
 
