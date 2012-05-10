@@ -17,6 +17,8 @@ import android.widget.SimpleAdapter;
 
 import org.json.JSONTokener;
 
+import edu.osu.geogame.exception.NoThreadsExistException;
+
 public class ForumTabActivity extends Activity {
 	private Handler mHandler;
 	private SimpleAdapter adapter;

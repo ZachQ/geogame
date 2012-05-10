@@ -42,7 +42,7 @@ public class ParcelPacket {
 		this.irrigation = irrigationAmt;
 	}
 	
-	public void setOwner( String owner ) {
+	public void setOpponentOwner( String owner ) {
 		this.owner = owner;
 	}
 	
@@ -74,7 +74,7 @@ public class ParcelPacket {
 		return this.irrigation;
 	}
 	
-	public String owner() {
+	public String opponentOwner() {
 		return this.owner;
 	}
 	
