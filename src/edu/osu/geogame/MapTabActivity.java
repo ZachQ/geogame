@@ -20,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Random;
 
+import org.json.JSONTokener;
+
 public class MapTabActivity extends Activity {
 
 	private MapView mapView;
@@ -75,7 +77,8 @@ public class MapTabActivity extends Activity {
 
 		// Set tap listener for MapView
 		mapView.setOnSingleTapListener(new FingerTapListener( plotData ) );
-	}
+		
+		}
 	
 	private class FingerTapListener implements OnSingleTapListener {
 
@@ -125,6 +128,20 @@ public class MapTabActivity extends Activity {
 			String display = "Plot ID = " + myCBListener.getId();
 
 			plotData.setText(display);
+			
+			 String url = GeoGame.URL_GAME + "/India/" + GeoGame.currentGameId
+				+ "/Info/" + myCBListener.getId();
+			 
+			 Log.d("URL",url);
+			
+			RestClient client = new RestClient(url);
+			client.addCookie(GeoGame.sessionCookie);
+			try {
+				client.Execute(RequestMethod.GET);
+			} catch (Exception e) {
+				Log.d("ERROR5","454");
+			}
+			ParcelPacket packet = parseResponse(client.getResponse());			
 		}
 		
 		
@@ -138,7 +155,7 @@ public class MapTabActivity extends Activity {
 			Log.d("In the method","blah");
 			if (queryResults.getGraphics().length > 0) {
 				Log.d(id,"rrrrID");
-				id = " ID:" + queryResults.getGraphics()[0].getAttributeValue(featureLayer.getObjectIdField());
+				id = ""+queryResults.getGraphics()[0].getAttributeValue(featureLayer.getObjectIdField());
 				// ontap
 				Log.d("1","1");
 				Log.d("2","2");
@@ -194,6 +211,12 @@ public class MapTabActivity extends Activity {
 		super.onAttachedToWindow();
 		Window window = getWindow();
 		window.setFormat(PixelFormat.RGBA_8888);
+	}
+	
+	private ParcelPacket parseResponse( String json ) {
+		JSONTokener tokenizer = new JSONTokener(json);
+		
+		return null;
 	}
 
 }
