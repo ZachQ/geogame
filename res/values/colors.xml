@@ -1,4 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="title">#11A611</color>
+    <!-- Style Reference Colors -->
+    <color name="title">#D2482A</color>
+    <color name="primary">#F5FFFA</color>
+    <color name="secondary">#D2982A</color>
+    <color name="accent">#F5FFFA</color>
+    <color name="header">#D2482A</color>
+    <color name="subHeader">#D2482A</color>
+    <color name="text">#000000</color>
+    
+    <!-- secondary values -->
+    <color name="primary_d">#559955</color>
+    <color name="secondary_d">#222222</color>
+    <color name="primary_n">#D2482A</color>
+    <color name="secondary_n">#F8F8FF</color>
+    
+    <!-- StyleGuide Colors -->
+    <color name="orange">#D2F82A</color>
+    <color name="olivedrab">#6B8E23</color>
+    <color name="mintcream">#F5FFFA</color>
+    <color name="ghostwhite">#F8F8FF</color>
+    
+    <!-- Secondary StyleGuide Colors -->
+    <color name="waterblue">#5555AA</color>
+    <color name="seedlr">#004411</color>
+    <color name="seedhyc">#009933</color>
+    <color name="ox">#222222</color>
+    <color name="labor">#888888</color>
+    <color name="fertilizer">#666633</color>
+    
 </resources>

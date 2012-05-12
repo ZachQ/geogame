@@ -7,4 +7,10 @@
     <dimen name="buttonHeight">60dp</dimen>
     <dimen name="buttonTextSize">20dp</dimen>
     <dimen name="titleMargin">20dp</dimen>
+    
+    <dimen name="corner">5dp</dimen>
+    
+    <!-- icon sizes -->
+    <dimen name="icon_hw">48dp</dimen>
+    <dimen name="icon_cr">5dp</dimen>
 </resources>

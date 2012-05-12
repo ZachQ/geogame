@@ -15,7 +15,8 @@
         android:shadowDx="2"
         android:shadowDy="2"
         android:shadowRadius="4.0"
-        android:text="GeoGame"
+        android:text=" "
+        android:drawableTop="@drawable/logo"
         android:textColor="@color/title"
         android:textSize="55dp" />
 
