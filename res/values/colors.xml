@@ -15,6 +15,18 @@
     <color name="primary_n">#D2482A</color>
     <color name="secondary_n">#F8F8FF</color>
     
+    <!-- slider colors -->
+    <color name="sliderbg_s">#ff9d9e9d</color>
+    <color name="sliderbg_c">#ff5a5d5a</color>
+    <color name="sliderbg_e">#ff747674</color>
+    <color name="sliderp_s">#DDDDDD</color>
+    <color name="sliderp_e">#222222</color>
+    <color name="slider2_s">#80ffd300</color>
+    <color name="slider2_c">#80ffb600</color>
+    <color name="slider2_e">#a0ffcb00</color>
+    <color name="sel_s">#ffffffff</color>
+    <color name="sel_e">#ff585858</color>
+    
     <!-- StyleGuide Colors -->
     <color name="orange">#D2F82A</color>
     <color name="olivedrab">#6B8E23</color>

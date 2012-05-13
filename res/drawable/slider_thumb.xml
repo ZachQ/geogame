@@ -3,12 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
  	android:shape="rectangle">
  	<corners android:radius="@dimen/corner" />
+ 	
+ 	<!-- Slider Selection Bar -->
 	<gradient
-	    android:startColor="#ffffffff" 
-	    android:endColor="#ff585858" 
-	    android:angle="270"/>
-	
+	    android:startColor="@color/sel_s" 
+	    android:endColor="@color/sel_e" 
+	    android:angle="270" />
 	<size 
-	    android:height="60dp"
-	    android:width="5dp"/>
+	    android:height="@dimen/slider_h"
+	    android:width="@dimen/slider_sel_w" />
 </shape>

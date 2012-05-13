@@ -13,4 +13,8 @@
     <!-- icon sizes -->
     <dimen name="icon_hw">48dp</dimen>
     <dimen name="icon_cr">5dp</dimen>
+    
+    <!-- slider consts -->
+    <dimen name="slider_h">60dp</dimen>
+    <dimen name="slider_sel_w">5dp</dimen>
 </resources>
