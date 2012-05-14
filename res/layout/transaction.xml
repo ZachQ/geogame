@@ -66,20 +66,21 @@
             android:id="@+id/tableRow2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-
+
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/market_costText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cost"
                 android:textSize="@dimen/tableTextSize" />
-
+
             <TextView
-                android:id="@+id/textViewAdults"
+                android:id="@+id/market_cost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="to do"
+                android:text="$0"
                 android:textSize="@dimen/tableTextSize" />
+
         </TableRow>
     </TableLayout>
 
@@ -104,13 +105,13 @@
 	        android:text="Sell" />
 
 	</RadioGroup>
-
+
     <Button
         android:id="@+id/market_commitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/radio_group"
         android:layout_centerHorizontal="true"
-        android:text="Button" />
+        android:text="Okay" />
 
 </RelativeLayout>

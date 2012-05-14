@@ -22,7 +22,7 @@ import android.widget.Toast;
 public class TransactionActivity extends Activity {
 
 	private int id, cost = 1;
-	private TextView titleView, amount;
+	private TextView titleView, amount, totalcost, costText;
 	private SeekBar bar;
 	private Button commitButton;
 	private Handler mHandler;
@@ -53,6 +53,8 @@ public class TransactionActivity extends Activity {
 
 	    // Get resource transaction cost
 	    amount = (TextView)findViewById(R.id.market_amount);
+	    totalcost = (TextView)findViewById(R.id.market_cost);
+	    costText = (TextView)findViewById(R.id.market_costText);
 	    // Grab the bar
 	    bar = (SeekBar)findViewById(R.id.market_progressBar);
 	    // Set listener to update cost/amount
@@ -60,6 +62,13 @@ public class TransactionActivity extends Activity {
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 				amount.setText(String.valueOf(progress));
+				if (radioBuy) {
+					totalcost.setText("$" + String.valueOf(progress * cost));
+					costText.setText("Cost");
+				} else {
+					totalcost.setText("");
+					costText.setText("");
+				}
 			}
 			@Override
 			public void onStartTrackingTouch(SeekBar seekBar) {}
