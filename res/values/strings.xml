@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+	<string-array name="seed_type">
+    	<item>None</item>
+    	<item>Land Race</item>
+    	<item>High Yield</item>
+    </string-array>
+    
+    <string-array name="fertilizer_level">
+    	<item>None</item>
+    	<item>Low</item>
+    	<item>High</item>
+    </string-array>
+    
+    <string-array name="irrigation_level">
+    	<item>0</item>
+    	<item>1</item>
+    	<item>2</item>
+    	<item>3</item>
+    	<item>4</item>
+    </string-array>
+    
+    <string name="seed">Seed</string>
+    <string name="fertilizer">fertilizer</string>
+    <string name="irrigation">irrigation</string>
+    
+    
     <string name="hello">Hello World, GeoGameActivity!</string>
     <string name="app_name">GeoGame</string>
 	<string name="about_descrip">\u0020 GeoGame is a virtual workbench for teaching and learning
