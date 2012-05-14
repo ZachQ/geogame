@@ -98,6 +98,7 @@ public class ForumTabActivity extends ListActivity {
 				e.printStackTrace();
 			}
 			
+			Log.d("here","9");
 			
 			}
 			
@@ -168,7 +169,7 @@ public class ForumTabActivity extends ListActivity {
 	
 	private void parseThreadResponse( String json ) {
 		JSONTokener tokenizer = new JSONTokener(json);
-		//Log.d("JSON",json);
+		Log.d("JSON",json);
 		try {
 			
 			//Check that there is forum content to display
