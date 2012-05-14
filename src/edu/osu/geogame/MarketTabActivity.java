@@ -170,7 +170,8 @@ public class MarketTabActivity extends Activity {
 	private View sellItemsView() {
 		LayoutInflater inflater = (LayoutInflater)this.getSystemService
 			      (Context.LAYOUT_INFLATER_SERVICE);
-		View sellItemsView = inflater.inflate(R.layout.joingame,null);
+		ListView auctionView = new ListView(this);
+		
 		data = new Vector<HashMap<String, String>>();
 		
 		adapter = new SimpleAdapter(
@@ -180,12 +181,16 @@ public class MarketTabActivity extends Activity {
 				new String[] {"title","one","two","three"},
 				new int[] {R.id.text1,R.id.text2,R.id.text3,R.id.text4});
 		
+		// Load data
+		
+		auctionView.setAdapter(adapter);
+		
 		// Create the list of properties
 		mHandler = new Handler();
 		Thread thread = new populateList();
 		thread.start();
 		
-		return sellItemsView;
+		return auctionView;
 	}	
 	
 	public class populateList extends Thread {
