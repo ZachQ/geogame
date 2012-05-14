@@ -56,14 +56,16 @@ public class ForumTabActivity extends Activity {
 			Iterator<Integer> ids = forumContent.keySet().iterator();
 			while( ids.hasNext() ) {
 			
+				int currentId = ids.next();
+				
 				client = new RestClient(GeoGame.URL_FORUM + "Get/Comments/"
-					+ Integer.toString(ids.next()));
+					+ Integer.toString(currentId));
 				
 			client.addCookie(GeoGame.sessionCookie);
 			
 			try {
 				client.Execute(RequestMethod.GET);
-				parseCommentResponse(client.getResponse());
+				parseCommentResponse(client.getResponse(), currentId);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -180,7 +182,7 @@ public class ForumTabActivity extends Activity {
 		}
 	}
 	
-	private void parseCommentResponse( String json ) {
+	private void parseCommentResponse( String json, int parentId ) {
 		JSONTokener tokenizer = new JSONTokener(json);
 
 		try {
@@ -195,7 +197,7 @@ public class ForumTabActivity extends Activity {
 		
 		tokenizer.nextTo(':');
 		tokenizer.next(2);
-		if( !tokenizer.nextTo('"').equals("threads") ) {
+		if( !tokenizer.nextTo('"').equals("comments") ) {
 			return;
 		}
 		
@@ -205,28 +207,28 @@ public class ForumTabActivity extends Activity {
 		
 		//Begin retrieving forum content
 		do {
-			int id = -1;
+
+			CommentThreadTuple commentInfo = new CommentThreadTuple();
 			
 			tokenizer.nextTo(':');
 			tokenizer.next();
-			id = Integer.parseInt(tokenizer.nextTo(','));
+			commentInfo.setId(Integer.parseInt(tokenizer.nextTo(',')));
 			
 			tokenizer.nextTo(':');
 			tokenizer.next(2);
+			commentInfo.setMessage(tokenizer.nextTo('"'));
 			
 			tokenizer.nextTo(':');
 			tokenizer.next(2);
+			commentInfo.setFamily(tokenizer.nextTo('"'));
 			
 			tokenizer.nextTo(':');
 			tokenizer.next(2);
-			
-			tokenizer.nextTo(':');
-			tokenizer.next(2);
-			
-			tokenizer.nextTo(':');
-			tokenizer.next(2);
+			commentInfo.setTimestamp(tokenizer.nextTo('"'));
 						
-			tokenizer.next();
+			forumContent.get(parentId).addComment(commentInfo);
+			
+			tokenizer.next(2);
 			if( tokenizer.next() != ',' ) {
 				return;
 			}
