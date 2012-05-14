@@ -12,13 +12,11 @@ import android.widget.TextView;
 public class HomeTabActivity extends Activity {
 	TextView name, money, adults, labor, seedLR, seedHYC, fertilizer, water, grainLR, grainHYC, oxen;
 	private Handler mHandler;
-	GeoGame game;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.home_tab);
-		game = (GeoGame)getApplicationContext();
 		
 		// Get references
 		name = (TextView) findViewById(R.id.textViewName);
@@ -44,14 +42,17 @@ public class HomeTabActivity extends Activity {
 		public void run() {
 			RestClient g_client = new RestClient(GeoGame.URL_GAME + "Dash/" + GeoGame.currentGameId);
 			RestClient m_client = new RestClient(GeoGame.URL_MARKET + "myBank/" + GeoGame.currentGameId);
+			RestClient cost_client = new RestClient(GeoGame.URL_MARKET + "Get/" + GeoGame.currentGameId + "/bank");
 			g_client.addCookie(GeoGame.sessionCookie);
 			m_client.addCookie(GeoGame.sessionCookie);
+			cost_client.addCookie(GeoGame.sessionCookie);
 			try {
 				g_client.Execute(RequestMethod.POST);
 				m_client.Execute(RequestMethod.POST);
+				cost_client.Execute(RequestMethod.POST);
 			} catch (Exception e) {} finally {
 				JSONObject j;
-				JSONObject data, market, family;
+				JSONObject data, market, family, cost;
 				try {
 					// Get the data
 					j = new JSONObject(g_client.getResponse());
@@ -59,6 +60,8 @@ public class HomeTabActivity extends Activity {
 					j = new JSONObject(m_client.getResponse());
 					market = (JSONObject) j.get("data");
 					family = (JSONObject) j.get("family");
+					j = new JSONObject(cost_client.getResponse());
+					cost = (JSONObject) j.get("bank");
 					
 					// Update the global resource values
 					GeoGame.familyName = family.getString("name");
@@ -74,6 +77,14 @@ public class HomeTabActivity extends Activity {
 					
 					// Do the actual screen update
 					mHandler.post(showUpdate);
+					
+					// Store the prices
+					GeoGame.costSeedLR = cost.getInt("SeedLR");
+					GeoGame.costGrainHYC = cost.getInt("SeedHYC");
+					GeoGame.costFertilizer = cost.getInt("Fertilizer");
+					GeoGame.costWater = cost.getInt("Water");
+					GeoGame.costOxen = cost.getInt("Oxen");
+					
 				} catch (Exception e) {}
 			}
 		}

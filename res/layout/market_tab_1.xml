@@ -2,13 +2,13 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scroll_view"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
 
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_gravity="center"
         android:background="@drawable/back"
         android:padding="10dp" >
 
@@ -19,7 +19,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dip"
             android:gravity="center"
-            android:text="Buy From Bank"
+            android:text="Buy or Sell"
             android:textColor="@color/title"
             android:textSize="25dp" />
 
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="40dp"
             android:orientation="horizontal" >
 
             <LinearLayout
@@ -82,29 +82,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="Fertilizer"
-                        android:textSize="20dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp" >
-
-                    <ImageButton
-                        android:id="@+id/OxButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ox" />
-
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Ox"
                         android:textSize="20dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -161,30 +138,25 @@
                         android:text="Water"
                         android:textSize="20dp" />
                 </LinearLayout>
-
-                <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp" >
-
-                    <ImageButton
-                        android:id="@+id/LaborButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/labor" />
-
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Labor"
-                        android:textSize="20dp" />
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/arrow" />
+
+        <ImageView
+            android:id="@+id/ImageView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/arrow" />
+
     </RelativeLayout>
 
 </ScrollView>

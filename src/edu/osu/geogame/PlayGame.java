@@ -21,7 +21,6 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class PlayGame extends ListActivity {
-	GeoGame game;
 	private Vector<HashMap<String, String>> data;
 	private Handler mHandler;
 	SimpleAdapter adapter;
@@ -30,7 +29,6 @@ public class PlayGame extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.joingame);
-	    game = (GeoGame)getApplicationContext();
 	    data = new Vector<HashMap<String, String>>();
 		
 		adapter = new SimpleAdapter(

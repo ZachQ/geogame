@@ -23,7 +23,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 
 public class JoinGame extends ListActivity {
-	GeoGame game;
 	private Vector<HashMap<String, String>> data;
 	private Handler mHandler;
 	SimpleAdapter adapter;
@@ -32,7 +31,6 @@ public class JoinGame extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.joingame);
-	    game = (GeoGame)getApplicationContext();
 	    data = new Vector<HashMap<String, String>>();
 		
 	    adapter = new SimpleAdapter(
@@ -80,9 +78,7 @@ public class JoinGame extends ListActivity {
 						// Complete = notify
 						mHandler.post(showUpdate);
 					}
-				} catch (Exception e) {
-					int test = 9;
-				}
+				} catch (Exception e) {	}
 			}
 		}
 	};
