@@ -1,7 +1,9 @@
 package edu.osu.geogame;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONArray;
@@ -9,21 +11,35 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.ListActivity;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.SimpleAdapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.TextView;
 
 import org.json.JSONTokener;
 
 import edu.osu.geogame.exception.NoThreadsExistException;
 
-public class ForumTabActivity extends Activity {
+public class ForumTabActivity extends ListActivity {
 	private Handler mHandler;
-	private SimpleAdapter adapter;
+	private MyAdapter<ForumThreadTuple> threadAdapter;
+	private MyAdapter<CommentThreadTuple> commentAdapter;
 	private Map<Integer,ForumThreadTuple> forumContent;
+	
+	private ArrayList<ForumThreadTuple> auxilary;
 
 	
 	@Override
@@ -32,10 +48,21 @@ public class ForumTabActivity extends Activity {
 		Log.d("In onCreate","Forum");
 	    setContentView(R.layout.forum_tab);
 	    forumContent = new HashMap<Integer,ForumThreadTuple>();
-	    
+	    auxilary = new ArrayList<ForumThreadTuple>();
+	    Context context = this;
+	    threadAdapter = new MyAdapter<ForumThreadTuple>(context,R.layout.forum_row,R.id.threadInfo);
+	    commentAdapter = new MyAdapter<CommentThreadTuple>(context,R.layout.forum_row,R.id.threadInfo);
 		// get the list of games
 		mHandler = new Handler();
 		populateList.run();
+		
+		Iterator<Integer> forumIt = forumContent.keySet().iterator();
+		while( forumIt.hasNext() ) {
+			auxilary.add(forumContent.get(forumIt.next()));
+			threadAdapter.add(auxilary.get(auxilary.size()-1));
+		}
+		
+		showUpdate.run();
 	}
 	
 	
@@ -71,11 +98,34 @@ public class ForumTabActivity extends Activity {
 				e.printStackTrace();
 			}
 			
+			
 			}
 			
 		}
 	};
 	
+	private Runnable showUpdate = new Runnable(){
+        public void run(){
+        	setListAdapter(threadAdapter);
+        	
+        	// Add listeners
+    		ListView listView = getListView();
+    		listView.setTextFilterEnabled(true);
+    		/*
+    		listView.setOnItemClickListener(new OnItemClickListener() {
+    			@Override
+    			public void onItemClick(AdapterView<?> parent, View view,
+    					int position, long id) {
+    				
+    				// Set current game
+    				
+    				Intent i= new Intent(getApplicationContext(), GameActivity.class);
+    				startActivity(i);
+    			}
+    		});
+    		*/
+        }
+    };
 	
 	
 	@Override
@@ -238,6 +288,24 @@ public class ForumTabActivity extends Activity {
 		Log.d("EXC_COM",ex.getMessage());
 	}
 	
+	}
+	
+	
+	private class MyAdapter<ForumThreadTuple> extends ArrayAdapter<ForumThreadTuple> {
+
+		public MyAdapter(Context context, int resource, int textViewResourceId) {
+			super(context, resource, textViewResourceId);
+		}
+		
+		public View getView (int position, View convertView, ViewGroup parent) {
+			View v = convertView;
+			LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            v = vi.inflate(R.layout.forum_row, null);
+            TextView threadInfo = (TextView) v.findViewById(R.id.threadInfo);
+            threadInfo.setText(Html.fromHtml(auxilary.get(position).toString()));
+            return v;
+		}
+		
 	}
 }
 

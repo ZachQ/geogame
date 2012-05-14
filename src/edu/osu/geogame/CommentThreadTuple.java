@@ -45,5 +45,10 @@ public class CommentThreadTuple {
 	}
 	
 	
+	public String toString() {
+		return family() + ": " + message() + "\n" + timestamp(); 
+	}
+	
+	
 
 }

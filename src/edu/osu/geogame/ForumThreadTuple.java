@@ -64,5 +64,14 @@ public class ForumThreadTuple {
 		return this.comments.iterator();
 	}
 	
+	
+	public String toString() {
+		return "<h4>" + title() + "</h4><br>" +
+				family() + ": " + message() + "<br>" +
+				timestamp() + "<br>" +
+				"comments: " + count();
+	
+	}
+	
 
 }
