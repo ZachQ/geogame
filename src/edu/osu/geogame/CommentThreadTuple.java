@@ -10,7 +10,6 @@ public class CommentThreadTuple {
 	public CommentThreadTuple() {
 	}
 	
-	
 	public void setId( int id ) {
 		this.id = id;
 	}

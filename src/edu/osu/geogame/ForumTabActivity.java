@@ -35,11 +35,11 @@ import edu.osu.geogame.exception.NoThreadsExistException;
 
 public class ForumTabActivity extends ListActivity {
 	private Handler mHandler;
-	private MyAdapter<ForumThreadTuple> threadAdapter;
-	private MyAdapter<CommentThreadTuple> commentAdapter;
+	private MyForumAdapter<ForumThreadTuple> threadAdapter;
 	private Map<Integer,ForumThreadTuple> forumContent;
 	
-	private ArrayList<ForumThreadTuple> auxilary;
+	private ArrayList<Integer> auxilaryIds;
+	private ArrayList<ForumThreadTuple> auxilaryData;
 
 	
 	@Override
@@ -48,21 +48,23 @@ public class ForumTabActivity extends ListActivity {
 		Log.d("In onCreate","Forum");
 	    setContentView(R.layout.forum_tab);
 	    forumContent = new HashMap<Integer,ForumThreadTuple>();
-	    auxilary = new ArrayList<ForumThreadTuple>();
+	    auxilaryData = new ArrayList<ForumThreadTuple>();
+	    auxilaryIds = new ArrayList<Integer>();
 	    Context context = this;
-	    threadAdapter = new MyAdapter<ForumThreadTuple>(context,R.layout.forum_row,R.id.threadInfo);
-	    commentAdapter = new MyAdapter<CommentThreadTuple>(context,R.layout.forum_row,R.id.threadInfo);
+	    threadAdapter = new MyForumAdapter<ForumThreadTuple>(context,R.layout.forum_row,R.id.threadInfo);
 		// get the list of games
 		mHandler = new Handler();
 		populateList.run();
 		
 		Iterator<Integer> forumIt = forumContent.keySet().iterator();
 		while( forumIt.hasNext() ) {
-			auxilary.add(forumContent.get(forumIt.next()));
-			threadAdapter.add(auxilary.get(auxilary.size()-1));
+			int currentId = forumIt.next();
+			auxilaryIds.add(currentId);
+			auxilaryData.add(forumContent.get(currentId));
+			threadAdapter.add(auxilaryData.get(auxilaryData.size()-1));
 		}
 		
-		showUpdate.run();
+		showThreads.run();
 	}
 	
 	
@@ -80,39 +82,18 @@ public class ForumTabActivity extends ListActivity {
 				e.printStackTrace();
 			}
 			
-			Iterator<Integer> ids = forumContent.keySet().iterator();
-			while( ids.hasNext() ) {
-			
-				int currentId = ids.next();
-				
-				client = new RestClient(GeoGame.URL_FORUM + "Get/Comments/"
-					+ Integer.toString(currentId));
-				
-			client.addCookie(GeoGame.sessionCookie);
-			
-			try {
-				client.Execute(RequestMethod.GET);
-				parseCommentResponse(client.getResponse(), currentId);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
 			Log.d("here","9");
-			
-			}
-			
+						
 		}
 	};
 	
-	private Runnable showUpdate = new Runnable(){
+	private Runnable showThreads = new Runnable(){
         public void run(){
         	setListAdapter(threadAdapter);
         	
         	// Add listeners
     		ListView listView = getListView();
     		listView.setTextFilterEnabled(true);
-    		/*
     		listView.setOnItemClickListener(new OnItemClickListener() {
     			@Override
     			public void onItemClick(AdapterView<?> parent, View view,
@@ -120,39 +101,16 @@ public class ForumTabActivity extends ListActivity {
     				
     				// Set current game
     				
-    				Intent i= new Intent(getApplicationContext(), GameActivity.class);
+    				Log.d(Integer.toString(auxilaryIds.get(position)),Integer.toString(auxilaryIds.size()));
+    				Intent i= new Intent(getApplicationContext(), CommentPageActivity.class);
+    				i.putExtra("thread_index",auxilaryIds.get(position));
+    				Log.d(Integer.toString(auxilaryIds.get(position)),Integer.toString(auxilaryIds.size()));
+    				
     				startActivity(i);
     			}
     		});
-    		*/
         }
-    };
-	
-	
-	@Override
-	public void onPause() {
-		super.onPause();
-	}
-	
-	@Override
-	protected void onRestart() {
-		super.onRestart();
-	}
-
-	@Override
-    protected void onResume() {
-		super.onResume();
-	}
-
-	@Override
-    protected void onStop() {
-		super.onStop();
-	}
-
-	@Override
-    protected void onDestroy() {
-		super.onDestroy();
-	}
+	};
 	
 	/*
 	 * (non-Javadoc)
@@ -233,68 +191,11 @@ public class ForumTabActivity extends ListActivity {
 		}
 	}
 	
-	private void parseCommentResponse( String json, int parentId ) {
-		JSONTokener tokenizer = new JSONTokener(json);
-
-		try {
-		Log.d("comment",json);
-		
-		//Check that there is forum content to display
-		tokenizer.nextTo(':');
-		tokenizer.next();
-		if( !tokenizer.nextTo(',').equals("true") ) {
-			return;
-		}
-		
-		tokenizer.nextTo(':');
-		tokenizer.next(2);
-		if( !tokenizer.nextTo('"').equals("comments") ) {
-			return;
-		}
-		
-		tokenizer.nextTo('{');
-		tokenizer.next(2);
-		
-		
-		//Begin retrieving forum content
-		do {
-
-			CommentThreadTuple commentInfo = new CommentThreadTuple();
-			
-			tokenizer.nextTo(':');
-			tokenizer.next();
-			commentInfo.setId(Integer.parseInt(tokenizer.nextTo(',')));
-			
-			tokenizer.nextTo(':');
-			tokenizer.next(2);
-			commentInfo.setMessage(tokenizer.nextTo('"'));
-			
-			tokenizer.nextTo(':');
-			tokenizer.next(2);
-			commentInfo.setFamily(tokenizer.nextTo('"'));
-			
-			tokenizer.nextTo(':');
-			tokenizer.next(2);
-			commentInfo.setTimestamp(tokenizer.nextTo('"'));
-						
-			forumContent.get(parentId).addComment(commentInfo);
-			
-			tokenizer.next(2);
-			if( tokenizer.next() != ',' ) {
-				return;
-			}
-			
-		} while( true );
-	} catch( JSONException ex ) {
-		Log.d("EXC_COM",ex.getMessage());
-	}
-	
-	}
 	
 	
-	private class MyAdapter<ForumThreadTuple> extends ArrayAdapter<ForumThreadTuple> {
+	private class MyForumAdapter<ForumThreadTuple> extends ArrayAdapter<ForumThreadTuple> {
 
-		public MyAdapter(Context context, int resource, int textViewResourceId) {
+		public MyForumAdapter(Context context, int resource, int textViewResourceId) {
 			super(context, resource, textViewResourceId);
 		}
 		
@@ -303,12 +204,138 @@ public class ForumTabActivity extends ListActivity {
 			LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = vi.inflate(R.layout.forum_row, null);
             TextView threadInfo = (TextView) v.findViewById(R.id.threadInfo);
-            threadInfo.setText(Html.fromHtml(auxilary.get(position).toString()));
+            threadInfo.setText(Html.fromHtml(auxilaryData.get(position).toString()));
             return v;
 		}
 		
 	}
-}
+	
+	/*
+	
+	public class CommentPageActivity extends ListActivity {
+		
+		private MyCommentAdapter<CommentThreadTuple> commentAdapter;
+		private int threadId;
+		
+		@Override
+		public void onCreate( Bundle savedInstanceState ) {
+			super.onCreate(savedInstanceState);
+		    setContentView(R.layout.forum_tab);
+			threadId = savedInstanceState.getInt("thread_index");
+			commentAdapter = new MyCommentAdapter<CommentThreadTuple>(this,R.layout.forum_row,R.id.threadInfo);
+			populateList.run();
+			showComments.run();
+			Log.d("what is", "going on");
+			
+		}
+		
+		
+		private Thread populateList = new Thread() {
+			public void run() {
+									
+				RestClient client = new RestClient(GeoGame.URL_FORUM + "Get/Comments/"
+						+ Integer.toString(threadId));
+					
+				client.addCookie(GeoGame.sessionCookie);
+				
+				try {
+					client.Execute(RequestMethod.GET);
+					parseCommentResponse(client.getResponse(), threadId);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				Log.d("here","9");
+				
+			}
+		};
+		
+		
+		
+		private void parseCommentResponse( String json, int parentId ) {
+			JSONTokener tokenizer = new JSONTokener(json);
 
+			try {
+			Log.d("comment",json);
+			
+			//Check that there is forum content to display
+			tokenizer.nextTo(':');
+			tokenizer.next();
+			if( !tokenizer.nextTo(',').equals("true") ) {
+				return;
+			}
+			
+			tokenizer.nextTo(':');
+			tokenizer.next(2);
+			if( !tokenizer.nextTo('"').equals("comments") ) {
+				return;
+			}
+			
+			tokenizer.nextTo('{');
+			tokenizer.next(2);
+			
+			
+			//Begin retrieving forum content
+			do {
+
+				CommentThreadTuple commentInfo = new CommentThreadTuple();
+				
+				tokenizer.nextTo(':');
+				tokenizer.next();
+				commentInfo.setId(Integer.parseInt(tokenizer.nextTo(',')));
+				
+				tokenizer.nextTo(':');
+				tokenizer.next(2);
+				commentInfo.setMessage(tokenizer.nextTo('"'));
+				
+				tokenizer.nextTo(':');
+				tokenizer.next(2);
+				commentInfo.setFamily(tokenizer.nextTo('"'));
+				
+				tokenizer.nextTo(':');
+				tokenizer.next(2);
+				commentInfo.setTimestamp(tokenizer.nextTo('"'));
+							
+				forumContent.get(parentId).addComment(commentInfo);
+				
+				tokenizer.next(2);
+				if( tokenizer.next() != ',' ) {
+					return;
+				}
+				
+			} while( true );
+		} catch( JSONException ex ) {
+			Log.d("EXC_COM",ex.getMessage());
+		}
+		
+		}
+		
+		
+		private Runnable showComments = new Runnable(){
+	        public void run(){
+	        	setListAdapter(commentAdapter);
+	        	
+	        	// Add listeners
+	    		ListView listView = getListView();
+	    		listView.setTextFilterEnabled(true);
+	        }
+		};
+		
+		
+	}
+	
+	private class MyCommentAdapter<CommentThreadTuple> extends ArrayAdapter<CommentThreadTuple> {
+
+		public MyCommentAdapter(Context context, int resource,
+				int textViewResourceId) {
+			super(context, resource, textViewResourceId);
+			// TODO Auto-generated constructor stub
+		}
+		
+	}
+	*/
+	
+}
 
 

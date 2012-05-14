@@ -36,9 +36,6 @@ public class ForumThreadTuple {
 		this.count = count;
 	}
 	
-	public void addComment( CommentThreadTuple comment ) {
-		this.comments.add(comment);
-	}
 	
 	public String title() {
 		return this.title;
@@ -60,9 +57,6 @@ public class ForumThreadTuple {
 		return this.count;
 	}
 	
-	public Iterator<CommentThreadTuple> comments() {
-		return this.comments.iterator();
-	}
 	
 	
 	public String toString() {
