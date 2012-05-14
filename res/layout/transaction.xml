@@ -83,12 +83,34 @@
         </TableRow>
     </TableLayout>
 
-    <LinearLayout
-        android:id="@+id/market_buttonArea"
+    
+	<RadioGroup
+	    android:layout_centerHorizontal="true"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:id="@+id/radio_group"
+	    android:layout_below="@+id/tableLayout1">
+	    <RadioButton
+	        android:paddingRight="40dp"
+	        android:id="@+id/radioBuy"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Buy" />
+	    <RadioButton
+	        android:id="@+id/radioSell"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Sell" />
+
+	</RadioGroup>
+
+    <Button
+        android:id="@+id/market_commitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tableLayout1"
-        android:layout_centerHorizontal="true" >
-    </LinearLayout>
+        android:layout_below="@+id/radio_group"
+        android:layout_centerHorizontal="true"
+        android:text="Button" />
 
 </RelativeLayout>

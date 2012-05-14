@@ -1,11 +1,19 @@
 package edu.osu.geogame;
 
 
+import java.util.HashMap;
+import java.util.Vector;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -15,7 +23,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class MarketTabActivity extends Activity {
 	
@@ -25,7 +39,11 @@ public class MarketTabActivity extends Activity {
 	private View playerMarketView = null;
 	private View sellItemsView = null;
 	
-	private ImageButton seedLR, seedHYC, fertilizer, water, ox, labor;
+	private ImageButton seedLR, seedHYC, grainLR, grainHYC, fertilizer, water, ox, labor;
+	
+	private Handler mHandler;
+	SimpleAdapter adapter;
+	private Vector<HashMap<String, String>> data;
 		
 	@Override
 	public void onCreate( Bundle savedInstanceState ) {
@@ -88,16 +106,12 @@ public class MarketTabActivity extends Activity {
 		seedHYC = (ImageButton) marketView.findViewById(R.id.SeedHYCButton);
 		fertilizer = (ImageButton) marketView.findViewById(R.id.FertilizerButton);
 		water = (ImageButton) marketView.findViewById(R.id.WaterButton);
-		ox  = (ImageButton) marketView.findViewById(R.id.OxButton);
-		labor = (ImageButton) marketView.findViewById(R.id.LaborButton);
 		
 		// Add onClick with button ID to pass
 		seedLR.setOnClickListener(new MarketListener(0));
 		seedHYC.setOnClickListener(new MarketListener(1));
 		fertilizer.setOnClickListener(new MarketListener(2));
 		water.setOnClickListener(new MarketListener(3));
-		ox.setOnClickListener(new MarketListener(4));
-		labor.setOnClickListener(new MarketListener(5));
 
 		return marketView;
 	}
@@ -130,11 +144,20 @@ public class MarketTabActivity extends Activity {
 	private View playerMarketView() {
 		LayoutInflater inflater = (LayoutInflater)this.getSystemService
 			      (Context.LAYOUT_INFLATER_SERVICE);
-		View playerMarketView = inflater.inflate(R.layout.market_tab_0,null);
+		View marketView = inflater.inflate(R.layout.market_tab_0,null);
 		
+		grainLR = (ImageButton) marketView.findViewById(R.id.GrainLRButton);
+		grainHYC = (ImageButton) marketView.findViewById(R.id.GrainHYCButton);
+		ox  = (ImageButton) marketView.findViewById(R.id.OxButton);
+		labor = (ImageButton) marketView.findViewById(R.id.LaborButton);
 		
-		//playerMarketView.setOnClickListener( new PlayerMarketListener() );
-		return playerMarketView;
+		// Add onClick with button ID to pass
+		grainLR.setOnClickListener(new MarketListener(6));
+		grainHYC.setOnClickListener(new MarketListener(7));
+		ox.setOnClickListener(new MarketListener(4));
+		labor.setOnClickListener(new MarketListener(5));
+		
+		return marketView;
 	}
 
 	
@@ -147,29 +170,82 @@ public class MarketTabActivity extends Activity {
 	private View sellItemsView() {
 		LayoutInflater inflater = (LayoutInflater)this.getSystemService
 			      (Context.LAYOUT_INFLATER_SERVICE);
-		View sellItemsView = inflater.inflate(R.layout.market_tab_2,null);
+		View sellItemsView = inflater.inflate(R.layout.joingame,null);
+		data = new Vector<HashMap<String, String>>();
 		
-		sellItemsView.setOnClickListener( new SellItemsListener() );
+		adapter = new SimpleAdapter(
+				this,
+				data,
+				R.layout.game_row,
+				new String[] {"title","one","two","three"},
+				new int[] {R.id.text1,R.id.text2,R.id.text3,R.id.text4});
+		
+		// Create the list of properties
+		mHandler = new Handler();
+		Thread thread = new populateList();
+		thread.start();
+		
 		return sellItemsView;
-	}
-	/**
-	 * The listener of the buttons in the sellItems View
-	 * @author danielfischer
-	 *
-	 */
-	private class SellItemsListener implements OnClickListener {
-
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			
+	}	
+	
+	public class populateList extends Thread {
+		public void run() {
+			RestClient client = new RestClient(GeoGame.URL_MARKET + "Get/" + GeoGame.currentGameId + "/seller");
+			client.addCookie(GeoGame.sessionCookie);
+			JSONObject j;
+			JSONArray a;
+			try {
+				client.Execute(RequestMethod.POST);
+			} catch (Exception e) {} finally {
+				try {
+					j = new JSONObject(client.getResponse());
+//					a = (JSONArray) j.get("seller");
+//					
+//					if (a.length() == 0 && j.getBoolean("success") == true) {
+//						// No open games
+//						mHandler.post(showMessage);
+//					} else {	
+//						// Import Games
+//						for (int i = 0; i < a.length(); i++) {
+//							HashMap<String,String> temp = new HashMap<String,String>();
+//							//temp.put("gameID", a.getJSONObject(i).getString("gameID"));
+//							data.add(temp);
+//						}
+//						
+//						// Complete = notify
+//						mHandler.post(showUpdate);
+//					}
+				} catch (Exception e) {}
+			}
 		}
-		
-		
 	}
 	
-	
-	
+	private Runnable showUpdate = new Runnable(){
+        public void run(){
+//        	setListAdapter(adapter);
+//        	
+//        	// Add listeners
+//    		ListView listView = getListView();
+//    		listView.setTextFilterEnabled(true);
+//    		listView.setOnItemClickListener(new OnItemClickListener() {
+//    			@Override
+//    			public void onItemClick(AdapterView<?> parent, View view,
+//    					int position, long id) {
+//    				
+//    				//todo
+//    			}
+//    		});
+        }
+    };
+    
+    private Runnable showMessage = new Runnable(){
+        public void run(){
+        	TextView v = (TextView) findViewById(R.id.market_errorText);
+			v.setText("No Auctions");
+			ProgressBar p = (ProgressBar) findViewById(R.id.market_progress);
+			p.setVisibility(View.INVISIBLE);
+        }
+    };
 	
 	/**
 	 * Changes views upon swiping

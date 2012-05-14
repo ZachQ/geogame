@@ -49,7 +49,7 @@ public class GameActivity extends TabActivity {
 				.setContent( new Intent( this, ForumTabActivity.class ) );
 	tabs.addTab(tabSpec);
 	
-	tabs.setCurrentTab(2);
+	tabs.setCurrentTab(0);
 	
 		
 		
