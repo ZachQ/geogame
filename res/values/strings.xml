@@ -18,6 +18,9 @@
         <item>3</item>
         <item>4</item>
     </string-array>
+    
+    <string name="No_threads">No threads have been started in this game</string>
+    
 
     <string name="seed">Seed</string>
     <string name="fertilizer">fertilizer</string>
