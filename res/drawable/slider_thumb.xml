@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<shape
-    xmlns:android="http://schemas.android.com/apk/res/android"
- 	android:shape="rectangle">
- 	<corners android:radius="@dimen/corner" />
- 	
- 	<!-- Slider Selection Bar -->
-	<gradient
-	    android:startColor="@color/sel_s" 
-	    android:endColor="@color/sel_e" 
-	    android:angle="270" />
-	<size 
-	    android:height="@dimen/slider_h"
-	    android:width="@dimen/slider_sel_w" />
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" >
+
+    <corners android:radius="@dimen/corner" />
+
+    <!-- Slider Selection Bar -->
+    <gradient
+        android:angle="270"
+        android:endColor="@color/sel_e"
+        android:startColor="@color/sel_s" />
+
+    <size
+        android:height="@dimen/slider_h"
+        android:width="@dimen/slider_sel_w" />
+
 </shape>

@@ -4,23 +4,30 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp" >
-    
-	<TextView android:id="@+id/text1" 
-		android:textSize="@dimen/header" 
-		android:textColor="@color/title" 
-		android:layout_width="fill_parent" 
-		android:layout_height="wrap_content"/>
-	
-	<TextView android:id="@+id/text2"
-		android:textSize="@dimen/text" 
-		android:layout_width="fill_parent" 
-		android:layout_height="wrap_content"/>
-	<TextView android:id="@+id/text3"
-		android:textSize="@dimen/text" 
-		android:layout_width="fill_parent" 
-		android:layout_height="wrap_content"/>
-	<TextView android:id="@+id/text4"
-		android:textSize="@dimen/text" 
-		android:layout_width="fill_parent" 
-		android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/title"
+        android:textSize="@dimen/header" />
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text" />
+
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text" />
+
+    <TextView
+        android:id="@+id/text4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text" />
+
 </LinearLayout>

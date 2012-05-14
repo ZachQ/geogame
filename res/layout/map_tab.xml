@@ -2,28 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical">
-    <TextView
-    	android:id="@+id/plot_id"
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:text="" />
-    <TextView
-    	android:id="@+id/plot_area"
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:text="Area:  todo" />
-    <TextView
-    	android:id="@+id/plot_price_or_plot_owner"
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:text="Price:  todo" />
-   <com.esri.android.map.MapView xmlns:android="http://schemas.android.com/apk/res/android"
-       android:id="@+id/map"
-       android:layout_width="fill_parent"
-       android:layout_height="fill_parent"
-       initExtent="8263526.06296947 3589534.42197701 8264180.11427757 3590040.83548984" >
+    android:orientation="vertical" >
 
-	</com.esri.android.map.MapView>
-  
-  </LinearLayout>
+    <TextView
+        android:id="@+id/plot_id"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/plot_area"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Area:  todo" />
+
+    <TextView
+        android:id="@+id/plot_price_or_plot_owner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Price:  todo" />
+
+    <com.esri.android.map.MapView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/map"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        initExtent="8263526.06296947 3589534.42197701 8264180.11427757 3590040.83548984" >
+    </com.esri.android.map.MapView>
+
+</LinearLayout>

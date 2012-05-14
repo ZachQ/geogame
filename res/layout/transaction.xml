@@ -6,16 +6,16 @@
     android:padding="10dp" >
 
     <TextView
-		        android:id="@+id/transaction_title"
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_gravity="center"
-		        android:layout_marginTop="@dimen/titleMargin"
-		        android:gravity="center"
-		        android:text="transaction_title"
-		        android:textColor="@color/title"
-		        android:textSize="@dimen/titleTextSize" />
-    
+        android:id="@+id/transaction_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/titleMargin"
+        android:gravity="center"
+        android:text="transaction_title"
+        android:textColor="@color/title"
+        android:textSize="@dimen/titleTextSize" />
+
     <SeekBar
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/market_progressBar"
@@ -36,9 +36,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/market_progressBar"
-        android:stretchColumns="0"
         android:paddingLeft="30dp"
-        android:paddingRight="30dp" >
+        android:paddingRight="30dp"
+        android:stretchColumns="0" >
 
         <TableRow
             android:id="@+id/tableRow1"
@@ -53,13 +53,13 @@
                 android:textSize="@dimen/tableTextSize" />
 
             <TextView
-		        android:id="@+id/market_amount"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_below="@+id/market_progressBar"
-		        android:layout_centerHorizontal="true"
-		        android:text="0"
-		        android:textSize="@dimen/tableTextSize" />
+                android:id="@+id/market_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/market_progressBar"
+                android:layout_centerHorizontal="true"
+                android:text="0"
+                android:textSize="@dimen/tableTextSize" />
         </TableRow>
 
         <TableRow
@@ -82,14 +82,13 @@
                 android:textSize="@dimen/tableTextSize" />
         </TableRow>
     </TableLayout>
-
+
     <LinearLayout
         android:id="@+id/market_buttonArea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tableLayout1"
         android:layout_centerHorizontal="true" >
-
     </LinearLayout>
 
 </RelativeLayout>

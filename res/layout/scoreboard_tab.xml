@@ -15,4 +15,5 @@
         android:text="Scoreboard"
         android:textColor="@color/title"
         android:textSize="25dp" />
+
 </RelativeLayout>

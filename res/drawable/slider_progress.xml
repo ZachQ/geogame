@@ -1,46 +1,47 @@
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <!-- Progress Slider background -->
-	<item android:id="@android:id/background">
-	    <shape>
-	        <corners android:radius="@dimen/corner" />
-	        <gradient
-	                android:startColor="@color/sliderbg_s"
-	                android:centerColor="@color/sliderbg_c"
-	                android:centerY="0.75"
-	                android:endColor="@color/sliderbg_e"
-	                android:angle="270"
-	        />
-	    </shape>
-	</item>
-	
-	<!-- Progress -->
-	<item android:id="@android:id/progress">
-	    <clip>
-	        <shape>
-	            <corners android:radius="@dimen/corner" />
-	            <gradient
-	                android:startColor="@color/sliderp_s"
-	                android:endColor="@color/sliderp_e"
-	                android:angle="270" />
-	        </shape>
-	    </clip>
-	</item>
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="@dimen/corner" />
 
-	<!-- Secondary Progress -->
-	<item android:id="@android:id/secondaryProgress">
-	    <clip>
-	        <shape>
-	            <corners android:radius="@dimen/corner" />
-	            <gradient
-	                    android:startColor="@color/slider2_s"
-	                    android:centerColor="@color/slider2_c"
-	                    android:centerY="0.75"
-	                    android:endColor="@color/slider2_e"
-	                    android:angle="270"
-	            />
-	        </shape>
-	    </clip>
-	</item>
-	
+            <gradient
+                android:angle="270"
+                android:centerColor="@color/sliderbg_c"
+                android:centerY="0.75"
+                android:endColor="@color/sliderbg_e"
+                android:startColor="@color/sliderbg_s" />
+        </shape>
+    </item>
+
+    <!-- Progress -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="@dimen/corner" />
+
+                <gradient
+                    android:angle="270"
+                    android:endColor="@color/sliderp_e"
+                    android:startColor="@color/sliderp_s" />
+            </shape>
+        </clip>
+    </item>
+
+    <!-- Secondary Progress -->
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape>
+                <corners android:radius="@dimen/corner" />
+
+                <gradient
+                    android:angle="270"
+                    android:centerColor="@color/slider2_c"
+                    android:centerY="0.75"
+                    android:endColor="@color/slider2_e"
+                    android:startColor="@color/slider2_s" />
+            </shape>
+        </clip>
+    </item>
+
 </layer-list>

@@ -1,5 +1,8 @@
 package edu.osu.geogame;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class ForumThreadTuple {
 	
 	private String title;
@@ -7,6 +10,7 @@ public class ForumThreadTuple {
 	private String family;
 	private String timestamp;
 	private String count;
+	private ArrayList<CommentThreadTuple> comments;
 	
 	public ForumThreadTuple() {
 	}
@@ -31,24 +35,33 @@ public class ForumThreadTuple {
 		this.count = count;
 	}
 	
+	public void addComment( CommentThreadTuple comment ) {
+		this.comments.add(comment);
+	}
+	
 	public String title() {
-		return title;
+		return this.title;
 	}
 	
 	public String message() {
-		return message;
+		return this.message;
 	}
 	
 	public String family() {
-		return family;
+		return this.family;
 	}
 	
 	public String timestamp() {
-		return timestamp;
+		return this.timestamp;
 	}
 	
 	public String count() {
-		return count;
+		return this.count;
 	}
+	
+	public Iterator<CommentThreadTuple> comments() {
+		return this.comments.iterator();
+	}
+	
 
 }
