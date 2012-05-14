@@ -1,44 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string-array name="seed_type">
-    	<item>None</item>
-    	<item>Land Race</item>
-    	<item>High Yield</item>
+    <string-array name="seed_type">
+        <item>None</item>
+        <item>Land Race</item>
+        <item>High Yield</item>
     </string-array>
-    
     <string-array name="fertilizer_level">
-    	<item>None</item>
-    	<item>Low</item>
-    	<item>High</item>
+        <item>None</item>
+        <item>Low</item>
+        <item>High</item>
     </string-array>
-    
     <string-array name="irrigation_level">
-    	<item>0</item>
-    	<item>1</item>
-    	<item>2</item>
-    	<item>3</item>
-    	<item>4</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
     </string-array>
-    
+
     <string name="seed">Seed</string>
     <string name="fertilizer">fertilizer</string>
     <string name="irrigation">irrigation</string>
-    
-    
     <string name="hello">Hello World, GeoGameActivity!</string>
     <string name="app_name">GeoGame</string>
-	<string name="about_descrip">\u0020 GeoGame is a virtual workbench for teaching and learning
+    <string name="about_descrip">\u0020 GeoGame is a virtual workbench for teaching and learning
 	     through real-world geography. Created by the Geography Department with help from
 	     the computer science department.</string>
-	<string name="land_descrip">
-		\u0020	You may buy and sell land. Initial land costs
+    <string name="land_descrip">		\u0020	You may buy and sell land. Initial land costs
 		from the bank are $300 per acre. Land
 		purchased between families is negotiable.
 		Obtain a Land Card for each acre your
 		household owns.</string>
-	<string name="wheat_descrip">
-		\u0020	There are two types of wheat varieties to
+    <string name="wheat_descrip">		\u0020	There are two types of wheat varieties to
 		choose from, land races (LR) and the new
 		high yield cultivars (HYC) of the Green
 		Revolution. HYCs have a high yield potential,
@@ -59,8 +53,7 @@
 		Return one of the HYC Cards to the banker
 		when collecting money at the end of the
 		growing season. </string>
-	<string name="fert_descrip">
-		\u0020	You must decide if you will apply fertilizer.
+    <string name="fert_descrip">		\u0020	You must decide if you will apply fertilizer.
 		You can apply fertilizer at three levels, coded
 		by the index F ranging from 1 to 3. When F = 1
 		you apply 80 lb. fertilizer per acre. For F = 2
@@ -70,8 +63,7 @@
 		corresponding to the level of fertilizer you
 		purchased and place it on top of your Land
 		Card.</string>
-	<string name="irrigation_descrip">
-		\u0020	You must decide whether you will irrigate. To
+    <string name="irrigation_descrip">		\u0020	You must decide whether you will irrigate. To
 		be able to irrigate, you must install a tubewell.
 		Each tubewell will cost $1,000 to install and
 		will pump enough water to irrigate 25 acres.
@@ -95,8 +87,7 @@
 		\n
 		\u0020 After irrigation, figure your yield for the
 		given season using a weather index of W = 1. </string>
-	<string name="yield_descrip">
-		\u0020 Yield will depend on the type of seeds you
+    <string name="yield_descrip">		\u0020 Yield will depend on the type of seeds you
 		use, the weather conditions, and the level of
 		fertilizer inputs you apply to the crop. The
 		yield potential is 80 bushels/acre for HYCs
@@ -110,13 +101,11 @@
 		describe the relative performance of the two
 		wheat types as affected by weather and
 		fertilizer input level.</string>
-	<string name="labour_descrip">
-		\u0020	You can buy labour or you can generate extra
+    <string name="labour_descrip">		\u0020	You can buy labour or you can generate extra
 		income by selling your labour. Wages are
 		$240 per growing season (negotiable between
 		families). </string>
-	<string name="labourReq_descrip">
-		• 1 adult (male or female) per 2 acres of
+    <string name="labourReq_descrip">		• 1 adult (male or female) per 2 acres of
 		unirrigated land
 		\n
 		• 1 adult per 1 acre of irrigated land
@@ -141,8 +130,7 @@
 		\n
 		• No more than 4 children under 10 years of
 		age are allowed in each family.</string>
-	<string name="consumption_descrip">
-		• Each child requires 5 bushels of wheat/year.
+    <string name="consumption_descrip">		• Each child requires 5 bushels of wheat/year.
 		\n
 		• Each adult needs 9 bushels of wheat/year.
 		\n
@@ -153,16 +141,14 @@
 		needs 5 bushels. If the family has more than
 		4 children, 1 existing child ‘grows up’ to
 		become an adult and needs 4 bushels extra.</string>
-	<string name="trans_descrip">
-		\u0020	In order for the results of the simulation to be
+    <string name="trans_descrip">		\u0020	In order for the results of the simulation to be
 		realistic, your transactions must be "real." In
 		other words, when you decide to sell land, you
 		must find a buyer. When you decide to buy
 		something, you must have the budget for it. If
 		you want to work for wages, you must find a
 		willing employer. </string>
-	<string name="seqOfPlay_descrip">
-		1. Check that land and labour are on hand.
+    <string name="seqOfPlay_descrip">		1. Check that land and labour are on hand.
 		Fill in household details on the
 		Household Score sheet. Calculate
 		consumption requirements.
@@ -196,4 +182,5 @@
 		household’s final assets to show how much
 		extra wealth the new technology has
 		generated in the village.</string>
+
 </resources>

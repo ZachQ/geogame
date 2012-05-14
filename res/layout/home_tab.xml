@@ -1,269 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:id="@+id/scroll_view" 
-    android:layout_width="fill_parent" 
-    android:layout_height="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll_view"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/back"
-    android:orientation="vertical"
-    android:padding="10dp" >
+    android:layout_height="fill_parent" >
 
-    <TextView
-        android:id="@+id/textView1"
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/titleMargin"
-        android:gravity="center"
-        android:text="Welcome Home"
-        android:textColor="@color/title"
-        android:textSize="@dimen/titleTextSize" />
-
-    <TextView
-        android:id="@+id/textViewName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:text="Player_One" />
+        android:layout_height="fill_parent"
+        android:background="@drawable/back"
+        android:orientation="vertical"
+        android:padding="10dp" >
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="100dp"
-        android:textSize="30dp"
-        android:text="Status"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_below="@+id/textView3"
-        android:stretchColumns="0" >
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/titleMargin"
+            android:gravity="center"
+            android:text="Welcome Home"
+            android:textColor="@color/title"
+            android:textSize="@dimen/titleTextSize" />
 
-        <TableRow
-            android:id="@+id/tableRow1"
+        <TextView
+            android:id="@+id/textViewName"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView1"
+            android:layout_centerHorizontal="true"
+            android:text="Player_One" />
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/tableTextSize"
-                android:text="Money" />
-
-            <TextView
-                android:id="@+id/textViewMoney"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="$0"
-                android:textSize="@dimen/tableTextSize" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
+        <TextView
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="100dp"
+            android:text="Status"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="30dp" />
 
-            <TextView
-                android:id="@+id/textView6"
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView3"
+            android:layout_below="@+id/textView3"
+            android:stretchColumns="0" >
+
+            <TableRow
+                android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/tableTextSize"
-                android:text="Adults" />
-
-            <TextView
-                android:id="@+id/textViewAdults"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Money"
+                    android:textSize="@dimen/tableTextSize" />
+
+                <TextView
+                    android:id="@+id/textViewMoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$0"
+                    android:textSize="@dimen/tableTextSize" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="@dimen/tableTextSize" />
+                android:layout_height="wrap_content" >
 
-        </TableRow>
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Adults"
+                    android:textSize="@dimen/tableTextSize" />
 
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+                <TextView
+                    android:id="@+id/textViewAdults"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="@dimen/tableTextSize" />
+            </TableRow>
 
-            <TextView
-                android:id="@+id/textView8"
+            <TableRow
+                android:id="@+id/tableRow3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/tableTextSize"
-                android:text="Labor" />
-
-            <TextView
-                android:id="@+id/textViewLabor"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Labor"
+                    android:textSize="@dimen/tableTextSize" />
+
+                <TextView
+                    android:id="@+id/textViewLabor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="@dimen/tableTextSize" />
+            </TableRow>
+
+            <View
+                android:layout_height="2dip"
+                android:background="#FFFFFF" />
+
+            <TableRow
+                android:id="@+id/tableRow4"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="@dimen/tableTextSize" />
+                android:layout_height="wrap_content" >
 
-        </TableRow>
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SeedLR"
+                    android:textSize="@dimen/tableTextSize" />
 
-        <View
-            android:layout_height="2dip"
-            android:background="#FFFFFF" />
+                <TextView
+                    android:id="@+id/textViewSeedLR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="@dimen/tableTextSize" />
+            </TableRow>
 
-        <TableRow
-            android:id="@+id/tableRow4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/textView9"
+            <TableRow
+                android:id="@+id/tableRow5"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/tableTextSize"
-                android:text="SeedLR" />
-
-            <TextView
-                android:id="@+id/textViewSeedLR"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SeedHYC"
+                    android:textSize="@dimen/tableTextSize" />
+
+                <TextView
+                    android:id="@+id/textViewSeedHYC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="@dimen/tableTextSize" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow6"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="@dimen/tableTextSize" />
+                android:layout_height="wrap_content" >
 
-        </TableRow>
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fertilizer"
+                    android:textSize="@dimen/tableTextSize" />
 
-        <TableRow
-            android:id="@+id/tableRow5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+                <TextView
+                    android:id="@+id/textViewFertilizer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="@dimen/tableTextSize" />
+            </TableRow>
 
-            <TextView
-                android:id="@+id/textView10"
+            <TableRow
+                android:id="@+id/tableRow7"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/tableTextSize"
-                android:text="SeedHYC" />
-
-            <TextView
-                android:id="@+id/textViewSeedHYC"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Water"
+                    android:textSize="@dimen/tableTextSize" />
+
+                <TextView
+                    android:id="@+id/textViewWater"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="@dimen/tableTextSize" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow8"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="@dimen/tableTextSize" />
+                android:layout_height="wrap_content" >
 
-        </TableRow>
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GrainLR"
+                    android:textSize="@dimen/tableTextSize" />
 
-        <TableRow
-            android:id="@+id/tableRow6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+                <TextView
+                    android:id="@+id/textViewGrainLR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="@dimen/tableTextSize" />
+            </TableRow>
 
-            <TextView
-                android:id="@+id/textView16"
+            <TableRow
+                android:id="@+id/tableRow9"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/tableTextSize"
-                android:text="Fertilizer" />
-
-            <TextView
-                android:id="@+id/textViewFertilizer"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GrainHYC"
+                    android:textSize="@dimen/tableTextSize" />
+
+                <TextView
+                    android:id="@+id/textViewGrainHYC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="@dimen/tableTextSize" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow10"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="@dimen/tableTextSize" />
+                android:layout_height="wrap_content" >
 
-        </TableRow>
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Oxen"
+                    android:textSize="@dimen/tableTextSize" />
 
-        <TableRow
-            android:id="@+id/tableRow7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/tableTextSize"
-                android:text="Water" />
-
-            <TextView
-                android:id="@+id/textViewWater"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="@dimen/tableTextSize" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/tableTextSize"
-                android:text="GrainLR" />
-
-            <TextView
-                android:id="@+id/textViewGrainLR"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="@dimen/tableTextSize" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/tableTextSize"
-                android:text="GrainHYC" />
-
-            <TextView
-                android:id="@+id/textViewGrainHYC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="@dimen/tableTextSize" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/tableTextSize"
-                android:text="Oxen" />
-
-            <TextView
-                android:id="@+id/textViewOxen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="@dimen/tableTextSize" />
-
-        </TableRow>
-    </TableLayout>
-    
-
-</RelativeLayout>
+                <TextView
+                    android:id="@+id/textViewOxen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="@dimen/tableTextSize" />
+            </TableRow>
+        </TableLayout>
+    </RelativeLayout>
 
 </ScrollView>

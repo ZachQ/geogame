@@ -64,9 +64,9 @@
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="0dp"
                 android:gravity="right|top"
+                android:prompt="@string/seed"
                 android:text="Seed Type"
-                android:textSize="16dp"
-                android:prompt="@string/seed" />
+                android:textSize="16dp" />
         </TableRow>
 
         <TableRow
@@ -94,9 +94,9 @@
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="0dp"
                 android:gravity="right|top"
+                android:prompt="@string/fertilizer"
                 android:text="Fertilizer Level"
-                android:textSize="16dp"
-                android:prompt="@string/fertilizer" />
+                android:textSize="16dp" />
         </TableRow>
 
         <TableRow
@@ -124,9 +124,9 @@
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="0dp"
                 android:gravity="right|top"
+                android:prompt="@string/irrigation"
                 android:text="Irrigation Level"
-                android:textSize="16dp"
-                android:prompt="@string/irrigation" />
+                android:textSize="16dp" />
         </TableRow>
 
         <TableRow

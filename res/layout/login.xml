@@ -15,7 +15,7 @@
         android:text="Please Login"
         android:textColor="@color/title"
         android:textSize="@dimen/titleTextSize" />
-    
+
     <EditText
         android:id="@+id/editLogin"
         android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
         android:layout_below="@+id/editLogin"
         android:layout_marginTop="16dp"
         android:text="Password" />
-
+
     <EditText
         android:id="@+id/editPassword"
         android:layout_width="wrap_content"
@@ -47,24 +47,24 @@
         android:ems="12"
         android:inputType="textPassword"
         android:text="geogame" />
-
+
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/buttonHeight"
-        android:textSize="@dimen/buttonTextSize"
         android:layout_alignRight="@+id/editPassword"
         android:layout_below="@+id/editPassword"
-        android:text="Login" />
+        android:text="Login"
+        android:textSize="@dimen/buttonTextSize" />
 
     <Button
         android:id="@+id/buttonRegister"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/buttonHeight"
-        android:textSize="@dimen/buttonTextSize"
         android:layout_below="@+id/editPassword"
         android:layout_toLeftOf="@+id/buttonLogin"
-        android:text="Register" />
+        android:text="Register"
+        android:textSize="@dimen/buttonTextSize" />
 
     <TextView
         android:id="@+id/textView2"
@@ -74,7 +74,7 @@
         android:layout_alignLeft="@+id/editLogin"
         android:layout_marginBottom="48dp"
         android:text="Username" />
-
+
     <ProgressBar
         android:id="@+id/login_progress"
         android:layout_width="wrap_content"

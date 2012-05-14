@@ -1,6 +1,7 @@
 package edu.osu.geogame;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.json.JSONArray;
@@ -43,15 +44,31 @@ public class ForumTabActivity extends Activity {
 			RestClient client = new RestClient(GeoGame.URL_FORUM + "Get/Threads/"
 					+ GeoGame.currentGameId);
 			client.addCookie(GeoGame.sessionCookie);
-			JSONObject j;
-			JSONArray a;
 			
 			try {
 				client.Execute(RequestMethod.GET);
-				parseResponse(client.getResponse());
+				parseThreadResponse(client.getResponse());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
+			
+			Iterator<Integer> ids = forumContent.keySet().iterator();
+			while( ids.hasNext() ) {
+			
+				client = new RestClient(GeoGame.URL_FORUM + "Get/Comments/"
+					+ Integer.toString(ids.next()));
+				
+			client.addCookie(GeoGame.sessionCookie);
+			
+			try {
+				client.Execute(RequestMethod.GET);
+				parseCommentResponse(client.getResponse());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			}
 			
 		}
@@ -97,67 +114,129 @@ public class ForumTabActivity extends Activity {
 		window.setFormat(PixelFormat.RGBA_8888);
 	}
 	
-	private void parseResponse( String json ) {
+	private void parseThreadResponse( String json ) {
 		JSONTokener tokenizer = new JSONTokener(json);
+		//Log.d("JSON",json);
 		try {
 			
 			//Check that there is forum content to display
-			String temp = tokenizer.next(11);
-			if( !temp.equals("{success\":") ) { 
-				throw new JSONException("success var");
+			tokenizer.nextTo(':');
+			tokenizer.next();
+			if( !tokenizer.nextTo(',').equals("true") ) {
+				return;
 			}
 			
-			temp = tokenizer.next(4);
-			if( !temp.equals("true") ) {
-				throw new JSONException("success var: not true");
+			tokenizer.nextTo(':');
+			tokenizer.next(2);
+			if( !tokenizer.nextTo('"').equals("threads") ) {
+				return;
 			}
 			
-			temp = tokenizer.next(11);
-			if( !temp.equals(",\"status\":\"") ) {
-				throw new JSONException("status var");
-			}
+			tokenizer.nextTo('{');
+			tokenizer.next(2);
 			
-			temp = tokenizer.next(7);
-			if( !temp.equals("threads") ) {
-				throw new JSONException("status var: not threads");
-			}
-			
-			temp = tokenizer.next(13);
-			if( !temp.equals("\",\"threads\":[") ) {
-				throw new NoThreadsExistException();
-			}
 			
 			//Begin retrieving forum content
-			boolean cont = true;
 			do {
-				String threadId;
-				String title;
-				String message;
-				String family;
-				String timestamp;
-				String count;
+				int id = -1;
+				ForumThreadTuple threadInfo = new ForumThreadTuple();
+				
+				tokenizer.nextTo(':');
+				tokenizer.next();
+				id = Integer.parseInt(tokenizer.nextTo(','));
+				
+				tokenizer.nextTo(':');
+				tokenizer.next(2);
+				threadInfo.setTitle(tokenizer.nextTo('"'));
+				
+				tokenizer.nextTo(':');
+				tokenizer.next(2);
+				threadInfo.setMessage(tokenizer.nextTo('"'));
+				
+				tokenizer.nextTo(':');
+				tokenizer.next(2);
+				threadInfo.setFamily(tokenizer.nextTo('"'));
+				
+				tokenizer.nextTo(':');
+				tokenizer.next(2);
+				threadInfo.setTimestamp(tokenizer.nextTo('"'));
+				
+				tokenizer.nextTo(':');
+				tokenizer.next(2);
+				threadInfo.setCount(tokenizer.nextTo('}'));
+				
+				forumContent.put(id, threadInfo);
+				
+				tokenizer.next();
+				if( tokenizer.next() != ',' ) {
+					return;
+				}
 				
 				
-				
-				
-				
-				
-				
-			} while( cont );
-			
-			
-			
+			} while( true );
 					
-				
-				
-				
 		} catch( JSONException ex ) {
-			
-		} catch( NoThreadsExistException ex ) {
-			
+			Log.d("EXC",ex.getMessage());
 		}
 	}
 	
+	private void parseCommentResponse( String json ) {
+		JSONTokener tokenizer = new JSONTokener(json);
+
+		try {
+		Log.d("comment",json);
+		
+		//Check that there is forum content to display
+		tokenizer.nextTo(':');
+		tokenizer.next();
+		if( !tokenizer.nextTo(',').equals("true") ) {
+			return;
+		}
+		
+		tokenizer.nextTo(':');
+		tokenizer.next(2);
+		if( !tokenizer.nextTo('"').equals("threads") ) {
+			return;
+		}
+		
+		tokenizer.nextTo('{');
+		tokenizer.next(2);
+		
+		
+		//Begin retrieving forum content
+		do {
+			int id = -1;
+			
+			tokenizer.nextTo(':');
+			tokenizer.next();
+			id = Integer.parseInt(tokenizer.nextTo(','));
+			
+			tokenizer.nextTo(':');
+			tokenizer.next(2);
+			
+			tokenizer.nextTo(':');
+			tokenizer.next(2);
+			
+			tokenizer.nextTo(':');
+			tokenizer.next(2);
+			
+			tokenizer.nextTo(':');
+			tokenizer.next(2);
+			
+			tokenizer.nextTo(':');
+			tokenizer.next(2);
+						
+			tokenizer.next();
+			if( tokenizer.next() != ',' ) {
+				return;
+			}
+			
+		} while( true );
+	} catch( JSONException ex ) {
+		Log.d("EXC_COM",ex.getMessage());
+	}
+	
+	}
 }
 
 

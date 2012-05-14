@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-	<solid android:color="@color/seedlr" />
-	<size android:width="@dimen/icon_hw"
-	    android:height="@dimen/icon_hw" />
-	<corners android:radius="@dimen/icon_cr" />
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" >
+
+    <solid android:color="@color/seedlr" />
+
+    <size
+        android:height="@dimen/icon_hw"
+        android:width="@dimen/icon_hw" />
+
+    <corners android:radius="@dimen/icon_cr" />
+
 </shape>

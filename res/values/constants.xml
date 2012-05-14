@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <dimen name="tableTextSize">20dp</dimen>
     <dimen name="titleTextSize">30dp</dimen>
     <dimen name="header">30dp</dimen>
@@ -7,14 +8,14 @@
     <dimen name="buttonHeight">60dp</dimen>
     <dimen name="buttonTextSize">20dp</dimen>
     <dimen name="titleMargin">20dp</dimen>
-    
     <dimen name="corner">5dp</dimen>
-    
+
     <!-- icon sizes -->
     <dimen name="icon_hw">48dp</dimen>
     <dimen name="icon_cr">5dp</dimen>
-    
+
     <!-- slider consts -->
     <dimen name="slider_h">60dp</dimen>
     <dimen name="slider_sel_w">5dp</dimen>
+
 </resources>

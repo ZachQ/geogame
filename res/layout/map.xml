@@ -15,4 +15,4 @@
         android:text="MAP GOES HERE"
         android:textColor="@color/title"
         android:textSize="25dp" />
-</RelativeLayout>
+</RelativeLayout>
