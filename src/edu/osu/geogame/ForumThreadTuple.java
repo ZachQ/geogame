@@ -13,6 +13,7 @@ public class ForumThreadTuple {
 	private ArrayList<CommentThreadTuple> comments;
 	
 	public ForumThreadTuple() {
+		comments = new ArrayList<CommentThreadTuple>();
 	}
 	
 	public void setTitle( String title ) {
