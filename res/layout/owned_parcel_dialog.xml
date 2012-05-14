@@ -3,170 +3,158 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/back"
-    android:orientation="vertical">
-    
-    <RelativeLayout 
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/back"
-    android:orientation="horizontal"
-    android:padding="10dp" >
-    	<TextView
-        android:id="@+id/area"
+    android:orientation="vertical" >
+
+    <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="0dp"
-        android:text="Area:"
-        android:textSize="22dp" />
-    
-    	<TextView
-        android:id="@+id/area_value"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="right"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="0dp"
-        android:text=""
-        android:textSize="22dp" />
-    
-    </RelativeLayout>
-    
-    
-     <LinearLayout 
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/back"
-    android:orientation="horizontal"
-    android:padding="10dp" >
-    	<TextView
-        android:id="@+id/seed_type"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="0dp"
-        android:gravity="right"
-        android:text="Seed Type"
-        android:textSize="22dp" />
-        
-        <NumberPicker
-        android:id="@+id/seed_picker"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="0dp"
-        android:gravity="right"
-        android:text="Seed Type"
-        android:textSize="22dp"
-        />
-    
-    
-    </LinearLayout>
-    
-    
-     <LinearLayout 
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/back"
-    android:orientation="horizontal"
-    android:padding="10dp" >
-    	<TextView
-        android:id="@+id/fertilizer_type"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="0dp"
-        android:gravity="right"
-        android:text="Seed Type"
-        android:textSize="22dp" />
-        
-        <NumberPicker
-        android:id="@+id/fertilizer_picker"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="0dp"
-        android:gravity="right"
-        android:text="Seed Type"
-        android:textSize="22dp"
-        />
-    
-    
-    </LinearLayout>
-    
-    
-     <LinearLayout 
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/back"
-    android:orientation="horizontal"
-    android:padding="10dp" >
-    	<TextView
-        android:id="@+id/irrigation_amount"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="0dp"
-        android:gravity="right"
-        android:text="Seed Type"
-        android:textSize="22dp" />
-        
-        <NumberPicker
-        android:id="@+id/irrigation_picker"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="0dp"
-        android:gravity="right"
-        android:text="Seed Type"
-        android:textSize="22dp"
-        />
-    
-    
-    </LinearLayout>
-    
-    
-    
-    
-    <LinearLayout 
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/back"
-    android:orientation="horizontal"
-    android:padding="10dp" >
-    	<Button
-        android:id="@+id/submit"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/buttonHeight"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:ems="12"
-        android:gravity="center"
-        android:text="Submit"
-        android:textSize="@dimen/buttonTextSize" />
-    	
-    	<Button
-        android:id="@+id/cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/buttonHeight"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:ems="12"
-        android:gravity="center"
-        android:text="Exit"
-        android:textSize="@dimen/buttonTextSize" />
-    
-    </LinearLayout>
-    
-    
-    
-    
-    
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_below="@+id/textView3"
+        android:stretchColumns="0" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dip" >
+
+            <TextView
+                android:id="@+id/area"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="0dp"
+                android:gravity="left"
+                android:text="Area:"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/area_value"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="0dp"
+                android:gravity="right"
+                android:text=""
+                android:textSize="16dp" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dip" >
+
+            <TextView
+                android:id="@+id/seed_type"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|bottom"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="0dp"
+                android:gravity="bottom"
+                android:text="Seed Type"
+                android:textSize="16dp" />
+
+            <Spinner
+                android:id="@+id/seed_picker"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="0dp"
+                android:gravity="right|top"
+                android:text="Seed Type"
+                android:textSize="16dp"
+                android:prompt="@string/seed" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dip" >
+
+            <TextView
+                android:id="@+id/fertilizer_type"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|bottom"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="0dp"
+                android:gravity="bottom"
+                android:text="Seed Type"
+                android:textSize="16dp" />
+
+            <Spinner
+                android:id="@+id/fertilizer_picker"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="0dp"
+                android:gravity="right|top"
+                android:text="Fertilizer Level"
+                android:textSize="16dp"
+                android:prompt="@string/fertilizer" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dip" >
+
+            <TextView
+                android:id="@+id/irrigation_amount"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|bottom"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="0dp"
+                android:gravity="bottom"
+                android:text="Seed Type"
+                android:textSize="16dp" />
+
+            <Spinner
+                android:id="@+id/irrigation_picker"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="0dp"
+                android:gravity="right|top"
+                android:text="Irrigation Level"
+                android:textSize="16dp"
+                android:prompt="@string/irrigation" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dip" >
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="20dip"
+                android:layout_height="@dimen/buttonHeight"
+                android:layout_gravity="center"
+                android:ems="12"
+                android:gravity="center"
+                android:text="Submit"
+                android:textSize="@dimen/buttonTextSize" />
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="20dip"
+                android:layout_height="@dimen/buttonHeight"
+                android:layout_gravity="center"
+                android:ems="12"
+                android:gravity="center"
+                android:text="Exit"
+                android:textSize="@dimen/buttonTextSize" />
+        </TableRow>
+    </TableLayout>
+
 </RelativeLayout>

@@ -17,10 +17,16 @@ import android.content.Context;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-import java.util.Random;
+import android.widget.AdapterView.OnItemSelectedListener;
+
 
 import org.json.JSONException;
 import org.json.JSONTokener;
@@ -35,13 +41,11 @@ public class MapTabActivity extends Activity {
 	private TextView plotId;
 	private TextView plotArea;
 	private TextView plotOther;
-	private GeoGame game;
 	private static String id = "";
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		game = (GeoGame)getApplicationContext();
 
 		setContentView(R.layout.map_tab);
 		
@@ -103,6 +107,7 @@ public class MapTabActivity extends Activity {
 		
 		@Override
 		public void onSingleTap(float x, float y) {
+			/*
 			Thread loadingThread = new Thread() {
 				public void run() {
 					plotId.setText("Plot Id:  Loading..");
@@ -111,6 +116,7 @@ public class MapTabActivity extends Activity {
 				}
 			};
 			loadingThread.run();
+			*/
 			PlotDataThread retrievePlotData = new PlotDataThread(x,y,myCBListener);
 			retrievePlotData.run();
 			
@@ -159,8 +165,8 @@ public class MapTabActivity extends Activity {
 			}
 			ParcelPacket packet = parseResponse(client.getResponse());	
 			setUIWithPacket(packet);
-			*/
-
+			
+			 */
 		}
 		
 		
@@ -171,10 +177,12 @@ public class MapTabActivity extends Activity {
 		
 		//boolean idSet = false;
 		String idPrevious = "";
+		int pCounter = 0;
 		
 		@Override
 		public void onCallback( FeatureSet queryResults ) {
 			if (queryResults.getGraphics().length > 0) {
+				pCounter = 0;
 				Log.d(id,"ID before change");
 				id = ""+queryResults.getGraphics()[0].getAttributeValue(featureLayer.getObjectIdField());
 				//Log.d(id,idPrevious);
@@ -191,7 +199,10 @@ public class MapTabActivity extends Activity {
 		}
 		
 		public String getId() {
-			while( id.equals(idPrevious) ) Log.d(id,idPrevious);
+			while( id.equals(idPrevious) && pCounter < 100000 ) {
+				Log.d(id,idPrevious);
+				pCounter++;
+			}
 			return id;
 		}
 		
@@ -333,13 +344,73 @@ public class MapTabActivity extends Activity {
 		window.setFormat(PixelFormat.RGBA_8888);
 	}
 	
-	private class OwnedParcelDialog extends Dialog {
-
-		public OwnedParcelDialog(Context context) {
+	private class OwnedParcelDialog extends Dialog implements OnClickListener {
+		
+		private int seedType = 0;
+		private int fertilizerType = 0;
+		private int irrigationLevel = 0;
+		
+		public OwnedParcelDialog(Context context, float area) {
 			super(context);
+			this.setContentView(R.layout.owned_parcel_dialog);
+			
+			TextView areaValue = (TextView) findViewById(R.id.area_value);
+			
+			Spinner seedPicker = (Spinner) findViewById(R.id.seed_picker);
+			ArrayAdapter<CharSequence> seedPickerAdapter = ArrayAdapter.createFromResource(this.getContext(), R.array.seed_type, android.R.layout.simple_spinner_item);
+			seedPickerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			seedPicker.setAdapter(seedPickerAdapter);
+			seedPicker.setOnItemSelectedListener( new SpinnerOptionSelectedListener() );
+			
+			Spinner fertilizerPicker = (Spinner) findViewById(R.id.fertilizer_picker);
+			ArrayAdapter<CharSequence> fertilizerPickerAdapter = ArrayAdapter.createFromResource(this.getContext(), R.array.fertilizer_level, android.R.layout.simple_spinner_item);
+			fertilizerPickerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			fertilizerPicker.setAdapter(fertilizerPickerAdapter);
+			fertilizerPicker.setOnItemSelectedListener( new SpinnerOptionSelectedListener() );
+			
+			Spinner irrigationPicker = (Spinner) findViewById(R.id.irrigation_picker);
+			ArrayAdapter<CharSequence> irrigationPickerAdapter = ArrayAdapter.createFromResource(this.getContext(), R.array.irrigation_level, android.R.layout.simple_spinner_item);
+			irrigationPickerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			irrigationPicker.setAdapter(irrigationPickerAdapter);
+			irrigationPicker.setOnItemSelectedListener( new SpinnerOptionSelectedListener() );
+			
+			Button submit = (Button) findViewById(R.id.submit);
+			submit.setOnClickListener(this);
+			Button cancel = (Button) findViewById(R.id.cancel);
+			cancel.setOnClickListener(this);
+			
+			areaValue.setText(Float.toString(area));
+			
 			// TODO Auto-generated constructor stub
 		}
+
+		@Override
+		public void onClick(View v) {
+			Log.d("InOnClick","onclick");
+			switch( v.getId() ) {
+				case R.id.submit:
+					
+				case R.id.cancel:
+					Log.d("DISMISS","DIALOG");
+					this.dismiss();
+					break;
+			}
+		}
+		
+		private class SpinnerOptionSelectedListener implements OnItemSelectedListener {
+			
+			public void onItemSelected( AdapterView<?> parent, View view, int pos, long id ) {
+				
+			}
+			
+			public void onNothingSelected( AdapterView parent ) {
+				//do nothing
+			}
+		}
 	}
+	
+	
+	
 	
 	private void setUIWithPacket( ParcelPacket packet ) {
 		if( packet.parecelType() == ParcelType.FOR_SALE ) {
@@ -351,8 +422,7 @@ public class MapTabActivity extends Activity {
 			plotArea.setText("");
 			plotOther.setText("");
 			Context mContext = this;
-			OwnedParcelDialog dialog = new OwnedParcelDialog(mContext);
-			dialog.setContentView(R.layout.owned_parcel_dialog);
+			OwnedParcelDialog dialog = new OwnedParcelDialog(mContext, packet.area());
 			dialog.show();
 
 		} else {
@@ -446,6 +516,11 @@ public class MapTabActivity extends Activity {
 		} 
 		
 		return parcelPacket;
+	}
+	
+	
+	private void sendActionRequestion() {
+		
 	}
 
 }
