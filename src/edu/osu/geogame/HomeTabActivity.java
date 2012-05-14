@@ -80,7 +80,7 @@ public class HomeTabActivity extends Activity {
 					
 					// Store the prices
 					GeoGame.costSeedLR = cost.getInt("SeedLR");
-					GeoGame.costGrainHYC = cost.getInt("SeedHYC");
+					GeoGame.costSeedHYC = cost.getInt("SeedHYC");
 					GeoGame.costFertilizer = cost.getInt("Fertilizer");
 					GeoGame.costWater = cost.getInt("Water");
 					GeoGame.costOxen = cost.getInt("Oxen");
