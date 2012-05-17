@@ -7,7 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-
+/**
+ * This class is not used in the game now because the Client told us not to 
+ * worry about it. Instead we will leave this class for them to work with.
+ * 
+ * @author Zach
+ */
 public class Register extends Activity {
 
 	Button register;
@@ -25,7 +30,6 @@ public class Register extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO:: Try to register
-				
 				finish();
 			}
 		});

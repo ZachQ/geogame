@@ -104,6 +104,12 @@ public class Login extends Activity {
 			Ed.putString("Cookie", GeoGame.sessionCookie.toString() );                
 			Ed.commit();
 			// -------------------------------------------
+			// TESTING
+			SharedPreferences sp2 = getSharedPreferences("First", 0);
+			SharedPreferences.Editor Ed2 = sp2.edit();
+			Ed2.putBoolean("isFirstLogin", false);              
+			Ed2.commit();
+			// -------------------------------------------
 			
 			// Next Screen
 			Intent myIntent = new Intent(getApplicationContext(), edu.osu.geogame.Menu.class);
