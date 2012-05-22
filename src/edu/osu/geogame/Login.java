@@ -117,6 +117,7 @@ public class Login extends Activity {
 			*/
 			// Next Screen
 			Intent myIntent = new Intent(getApplicationContext(), edu.osu.geogame.Menu.class);
+			Log.d("COOKIE",GeoGame.sessionCookie.toString());
 			startActivity(myIntent);
         }
     };

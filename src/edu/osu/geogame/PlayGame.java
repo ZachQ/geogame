@@ -51,7 +51,7 @@ public class PlayGame extends ListActivity {
 			JSONObject j;
 			JSONArray a;
 			try {
-				client.Execute(RequestMethod.POST);
+				client.Execute(RequestMethod.GET);
 			} catch (Exception e) {} finally {
 				try {
 					Log.d("games",client.getResponse());

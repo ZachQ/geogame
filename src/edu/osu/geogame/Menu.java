@@ -70,10 +70,10 @@ public class Menu extends Activity {
 			@Override
 			public void onClick(View v) {
 				// Clear the saved cookie from SharedPreferences to Logout
-				SharedPreferences sp = getSharedPreferences("Login", 0);
-				SharedPreferences.Editor Ed = sp.edit();
-				Ed.putString("Cookie", null);		
-				Ed.commit();
+//				SharedPreferences sp = getSharedPreferences("Login", 0);
+//				SharedPreferences.Editor Ed = sp.edit();
+//				Ed.putString("Cookie", null);		
+//				Ed.commit();
 				
 				// Continue to Login page		
 				Intent myIntent = new Intent(v.getContext(), Login.class);		
