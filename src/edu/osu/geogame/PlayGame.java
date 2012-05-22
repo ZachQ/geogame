@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -53,6 +54,7 @@ public class PlayGame extends ListActivity {
 				client.Execute(RequestMethod.POST);
 			} catch (Exception e) {} finally {
 				try {
+					Log.d("games",client.getResponse());
 					j = new JSONObject(client.getResponse());
 					a = (JSONArray) j.get("data");
 					

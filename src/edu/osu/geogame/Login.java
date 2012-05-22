@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -69,6 +70,7 @@ public class Login extends Activity {
 							// Failure
 							mHandler.post(Failure);
 						} else {
+							Log.d(Integer.toString(client.getResponseCode()),"rcode");
 							mHandler.post(Error);
 						}
 						
@@ -95,8 +97,10 @@ public class Login extends Activity {
 	private Runnable Success = new Runnable(){
         public void run(){
         	// Store username
+        	
 			GeoGame.username = editLogin.getText().toString();
 			
+			/*
 			// -------------------------------------------
 			// SAVE LOGIN INFORMATION TO PHONE
 			SharedPreferences sp = getSharedPreferences("Login", 0);
@@ -110,7 +114,7 @@ public class Login extends Activity {
 			Ed2.putBoolean("isFirstLogin", false);              
 			Ed2.commit();
 			// -------------------------------------------
-			
+			*/
 			// Next Screen
 			Intent myIntent = new Intent(getApplicationContext(), edu.osu.geogame.Menu.class);
 			startActivity(myIntent);

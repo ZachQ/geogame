@@ -3,6 +3,7 @@ package edu.osu.geogame;
 import android.app.Activity;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 
 public class ScoreboardTabActivity extends Activity {
@@ -11,6 +12,15 @@ public class ScoreboardTabActivity extends Activity {
 	public void onCreate( Bundle savedInstanceState ) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.scoreboard_tab);
+		RestClient sClient = new RestClient(GeoGame.URL_GAME + "Scoreboard/" + GeoGame.currentGameId);
+		try {
+			sClient.Execute(RequestMethod.POST);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Log.d("S_RESPONSE",sClient.getResponse());
+		
 	}
 	
 	@Override
