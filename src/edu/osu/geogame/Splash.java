@@ -26,23 +26,20 @@ public class Splash extends Activity {
         
         // Get references
         start = (Button) findViewById(R.id.buttonStart);
-        
-        // Check to see if it is the first time opening the app
-        SharedPreferences sp2 = this.getSharedPreferences("First",0);
-        boolean firstLogin = sp2.getBoolean("isFirstLogin", true);
-        System.out.println("fewafw "+firstLogin);
-        
-        // Attempt to get the saved Cookie
-        SharedPreferences sp1 = this.getSharedPreferences("Login",0);
-        String cookie = sp1.getString("Cookie", null); 
+        String cookie = null;
+        boolean firstLogin = false;
+//        // Check to see if it is the first time opening the app
+//        SharedPreferences sp2 = this.getSharedPreferences("First",0);
+//        boolean firstLogin = sp2.getBoolean("isFirstLogin", true);
+//        System.out.println("fewafw "+firstLogin);
+//        
+//        // Attempt to get the saved Cookie
+//        SharedPreferences sp1 = this.getSharedPreferences("Login",0);
+//        String cookie = sp1.getString("Cookie", null); 
         
         if (cookie == null || firstLogin == true) { 
         	// Cookie not found, continue to Login screen
-        	
-        	// Set isFirstLogin to false to let app know
-			SharedPreferences.Editor Ed2 = sp2.edit();
-			Ed2.putBoolean("isFirstLogin", false);              
-			Ed2.commit();
+
         	
             // Add ActionListeners to buttons
             start.setOnClickListener(new View.OnClickListener() {
