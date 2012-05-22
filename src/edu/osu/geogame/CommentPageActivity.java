@@ -21,7 +21,7 @@ public class CommentPageActivity extends ListActivity {
 		@Override
 		public void onCreate( Bundle savedInstanceState ) {
 			super.onCreate(savedInstanceState);
-		    setContentView(R.layout.forum_tab);
+		    setContentView(R.layout.comments_page);
 		    Bundle extras = getIntent().getExtras();
 			threadId = extras.getInt("thread_index");
 			commentAdapter = new MyCommentAdapter<CommentThreadTuple>(this,R.layout.forum_row,R.id.threadInfo);

@@ -23,6 +23,8 @@ import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.CoreProtocolPNames;
+import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.protocol.HttpContext;
 
@@ -66,6 +68,8 @@ public class RestClient {
         params = new ArrayList<NameValuePair>();
         headers = new ArrayList<NameValuePair>();
         client = new DefaultHttpClient();
+        HttpParams params = client.getParams();
+        params.setParameter(CoreProtocolPNames.USE_EXPECT_CONTINUE,false);
         cookieStore = new BasicCookieStore(); 
     }
 
