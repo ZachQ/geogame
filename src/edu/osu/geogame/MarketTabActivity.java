@@ -37,7 +37,7 @@ public class MarketTabActivity extends Activity {
 	private ScrollerAdapter sAdapter;
 	private View buyMarketView = null;
 	private View playerMarketView = null;
-	private View sellItemsView = null;
+	private ListView buyAuctionView = null;
 	
 	private ImageButton seedLR, seedHYC, grainLR, grainHYC, fertilizer, water, ox, labor;
 	
@@ -50,15 +50,15 @@ public class MarketTabActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.market_scroller_mech);
 	
+		// Create views
+		buyMarketView = marketView();
+		playerMarketView = playerMarketView();
+		buyAuctionView = buyAuctionsView();
+		
 		vPager = (ViewPager) findViewById(R.id.viewpager);
 		sAdapter = new ScrollerAdapter();
 		vPager.setAdapter(sAdapter);		
 		vPager.setCurrentItem(1);
-		
-		// Create views
-		buyMarketView = marketView();
-		playerMarketView = playerMarketView();
-		sellItemsView = sellItemsView();
 	}
 	
 	@Override
@@ -159,19 +159,17 @@ public class MarketTabActivity extends Activity {
 		
 		return marketView;
 	}
-
-	
-	
 	
 	/**
 	 * The View where users put items up on the playerMarket
 	 * @return
 	 */
-	private View sellItemsView() {
+	private ListView buyAuctionsView() {
 		LayoutInflater inflater = (LayoutInflater)this.getSystemService
 			      (Context.LAYOUT_INFLATER_SERVICE);
 		ListView auctionView = new ListView(this);
-		
+		//ListView auctionView = (ListView) inflater.inflate(R.layout.market_tab_2, null);
+				
 		data = new Vector<HashMap<String, String>>();
 		
 		adapter = new SimpleAdapter(
@@ -182,7 +180,6 @@ public class MarketTabActivity extends Activity {
 				new int[] {R.id.text1,R.id.text2,R.id.text3,R.id.text4});
 		
 		// Load data
-		
 		auctionView.setAdapter(adapter);
 		
 		// Create the list of properties
@@ -204,22 +201,27 @@ public class MarketTabActivity extends Activity {
 			} catch (Exception e) {} finally {
 				try {
 					j = new JSONObject(client.getResponse());
-//					a = (JSONArray) j.get("seller");
-//					
-//					if (a.length() == 0 && j.getBoolean("success") == true) {
-//						// No open games
-//						mHandler.post(showMessage);
-//					} else {	
-//						// Import Games
-//						for (int i = 0; i < a.length(); i++) {
-//							HashMap<String,String> temp = new HashMap<String,String>();
-//							//temp.put("gameID", a.getJSONObject(i).getString("gameID"));
-//							data.add(temp);
-//						}
-//						
-//						// Complete = notify
-//						mHandler.post(showUpdate);
-//					}
+					a = (JSONArray) j.get("seller");
+					
+					if (a.length() == 0 && j.getBoolean("success") == true) {
+						// No open games
+						mHandler.post(showMessage);
+					} else {	
+						// Import Games
+						for (int i = 0; i < a.length(); i++) {
+							HashMap<String,String> temp = new HashMap<String,String>();
+							temp.put("auctionID", a.getJSONObject(i).getString("ID"));
+							temp.put("sellerID", a.getJSONObject(i).getString("Seller"));
+							temp.put("title", a.getJSONObject(i).getString("Category"));
+							temp.put("one", "$" + a.getJSONObject(i).getString("Price"));
+							temp.put("two", "Qty: " + a.getJSONObject(i).getString("Quantity"));
+							temp.put("three", a.getJSONObject(i).getString("Seller"));
+							data.add(temp);
+						}
+						
+						// Complete = notify
+						mHandler.post(showUpdate);
+					}
 				} catch (Exception e) {}
 			}
 		}
@@ -227,28 +229,25 @@ public class MarketTabActivity extends Activity {
 	
 	private Runnable showUpdate = new Runnable(){
         public void run(){
-//        	setListAdapter(adapter);
-//        	
-//        	// Add listeners
-//    		ListView listView = getListView();
-//    		listView.setTextFilterEnabled(true);
-//    		listView.setOnItemClickListener(new OnItemClickListener() {
-//    			@Override
-//    			public void onItemClick(AdapterView<?> parent, View view,
-//    					int position, long id) {
-//    				
-//    				//todo
-//    			}
-//    		});
+        	// Add listeners
+        	buyAuctionView.setTextFilterEnabled(true);
+        	buyAuctionView.setOnItemClickListener(new OnItemClickListener() {
+    			@Override
+    			public void onItemClick(AdapterView<?> parent, View view,
+    					int position, long id) {
+    				
+    				//todo
+    			}
+    		});
         }
     };
     
     private Runnable showMessage = new Runnable(){
         public void run(){
-        	TextView v = (TextView) findViewById(R.id.market_errorText);
-			v.setText("No Auctions");
-			ProgressBar p = (ProgressBar) findViewById(R.id.market_progress);
-			p.setVisibility(View.INVISIBLE);
+        	//TextView v = (TextView)buyAuctionView.findViewById(R.id.market_errorText);
+			//v.setText("No Auctions");
+			//ProgressBar p = (ProgressBar)buyAuctionView.findViewById(R.id.market_progress);
+			//p.setVisibility(View.INVISIBLE);
         }
     };
 	
@@ -272,17 +271,30 @@ public class MarketTabActivity extends Activity {
 		}
 		
 		@Override 
-		public Object instantiateItem( ViewGroup container, int position ) {
+		public Object instantiateItem( View container, int position ) {
 			Log.d("instantiateItem",Integer.toString(position));
-			View screen = null;
+			Object screen = null;
 			switch( position ) {
-			case 0: screen = playerMarketView; break;
-			case 1: screen = buyMarketView; break;
-			case 2: screen = sellItemsView; break;
-			default: screen = playerMarketView;
+			case 0: 
+				{
+					screen = playerMarketView;
+					((ViewPager) container).addView((View)screen,0);
+					break;
+				}
+			case 1: 
+				{
+					screen = buyMarketView;
+					((ViewPager) container).addView((View)screen,0);
+					break;
+				}
+			case 2:
+				{
+					screen = buyAuctionView;
+					((ViewPager) container).addView((ListView)screen,0);
+					break;
+				}
 			}
-			Log.d("number",Integer.toString(position));
-			((ViewPager) container).addView(screen,0);
+			
 			return screen;
 		}
 

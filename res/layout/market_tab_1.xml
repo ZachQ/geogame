@@ -141,21 +141,23 @@
             </LinearLayout>
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imageView1"
+        <TextView
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/arrow" />
+            android:text=">"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <ImageView
-            android:id="@+id/ImageView01"
+        <TextView
+            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/arrow" />
+            android:text="&lt;"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </RelativeLayout>
 
