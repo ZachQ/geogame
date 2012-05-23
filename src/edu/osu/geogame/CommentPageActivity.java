@@ -125,7 +125,8 @@ public class CommentPageActivity extends ListActivity {
 	        	
 	        	// Add listeners
 	    		ListView listView = getListView();
-	    		listView.setTextFilterEnabled(true);
+	    		//listView.setTextFilterEnabled(true);
+	    		listView.setEnabled(false);
 	        }
 		};
 		
