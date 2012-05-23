@@ -126,7 +126,7 @@
 	                    android:id="@+id/LaborButton"
 	                    android:layout_width="wrap_content"
 	                    android:layout_height="wrap_content"
-	                    android:src="@drawable/labor" />
+	                    android:src="@drawable/adultmale" />
 	
 	                <TextView
 	                    android:id="@+id/textView2"
@@ -138,14 +138,15 @@
 	            </LinearLayout>
 	        </LinearLayout>
 	    </LinearLayout>
-	    
-	    <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/arrow" />
+
+	    <TextView
+	        android:id="@+id/textView3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentRight="true"
+	        android:layout_centerVertical="true"
+	        android:text=">"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
 	    
 	</RelativeLayout>
 </ScrollView>
