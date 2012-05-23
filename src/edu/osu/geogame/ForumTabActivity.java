@@ -21,10 +21,12 @@ import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
@@ -33,13 +35,17 @@ import org.json.JSONTokener;
 
 import edu.osu.geogame.exception.NoThreadsExistException;
 
-public class ForumTabActivity extends ListActivity {
+public class ForumTabActivity extends ListActivity implements OnClickListener {
 	private Handler mHandler;
 	private MyForumAdapter<ForumThreadTuple> threadAdapter;
 	private Map<Integer,ForumThreadTuple> forumContent;
 	
 	private ArrayList<Integer> auxilaryIds;
 	private ArrayList<ForumThreadTuple> auxilaryData;
+	
+	private Button createPostButton;
+	private Button submitPostButton;
+	private Button cancelPostButton;
 
 	
 	@Override
@@ -63,6 +69,13 @@ public class ForumTabActivity extends ListActivity {
 			auxilaryData.add(forumContent.get(currentId));
 			threadAdapter.add(auxilaryData.get(auxilaryData.size()-1));
 		}
+		
+		
+		submitPostButton = (Button) findViewById(R.id.submit);
+		//submitPostButton.setVisibility(View.GONE);
+		
+		cancelPostButton = (Button) findViewById(R.id.clear);
+		//cancelPostButton.setVisibility(View.GONE);
 		
 		showThreads.run();
 	}
@@ -209,6 +222,21 @@ public class ForumTabActivity extends ListActivity {
 		}
 		
 	}
+
+
+
+	@Override
+	public void onClick(View v) {
+		switch( v.getId() ) {
+		case R.id.submit:
+			
+		case R.id.clear:
+		}
+	}
+
+
+
+	
 	
 	/*
 	

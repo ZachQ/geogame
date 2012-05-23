@@ -10,24 +10,24 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/title"
-        android:textSize="@dimen/header" />
+        android:textSize="15dp" />
 <!--
     <TextView
         android:id="@+id/family"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text" />
+        android:textSize="12dp" />
 
     <TextView
         android:id="@+id/data"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text" />
+        android:textSize="12dp" />
 
     <TextView
         android:id="@+id/comments"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text" />
+        android:textSize="12dp" />
 -->
 </LinearLayout>
