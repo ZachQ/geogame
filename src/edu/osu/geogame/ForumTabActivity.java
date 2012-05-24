@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -28,6 +29,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 
@@ -71,10 +73,8 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 		}
 		
 		
-		submitPostButton = (Button) findViewById(R.id.submit);
 		//submitPostButton.setVisibility(View.GONE);
 		
-		cancelPostButton = (Button) findViewById(R.id.clear);
 		//cancelPostButton.setVisibility(View.GONE);
 		
 		showThreads.run();
@@ -228,141 +228,37 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch( v.getId() ) {
-		case R.id.submit:
-			
-		case R.id.clear:
+		case R.id.create_post:
+			Context mContext = this;
+			CreatePostDialog dialog = new CreatePostDialog(mContext);
+			dialog.show();	
 		}
 	}
-
-
-
 	
 	
-	/*
 	
-	public class CommentPageActivity extends ListActivity {
-		
-		private MyCommentAdapter<CommentThreadTuple> commentAdapter;
-		private int threadId;
-		
+	
+	
+	
+	private class CreatePostDialog extends Dialog implements OnClickListener {
+
+		public CreatePostDialog(Context context) {
+			super(context);
+			this.setContentView(R.layout.create_post_dialog);
+		}
+
 		@Override
-		public void onCreate( Bundle savedInstanceState ) {
-			super.onCreate(savedInstanceState);
-		    setContentView(R.layout.forum_tab);
-			threadId = savedInstanceState.getInt("thread_index");
-			commentAdapter = new MyCommentAdapter<CommentThreadTuple>(this,R.layout.forum_row,R.id.threadInfo);
-			populateList.run();
-			showComments.run();
-			Log.d("what is", "going on");
+		public void onClick(View v) {
 			
 		}
-		
-		
-		private Thread populateList = new Thread() {
-			public void run() {
-									
-				RestClient client = new RestClient(GeoGame.URL_FORUM + "Get/Comments/"
-						+ Integer.toString(threadId));
-					
-				client.addCookie(GeoGame.sessionCookie);
-				
-				try {
-					client.Execute(RequestMethod.GET);
-					parseCommentResponse(client.getResponse(), threadId);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				Log.d("here","9");
-				
-			}
-		};
-		
-		
-		
-		private void parseCommentResponse( String json, int parentId ) {
-			JSONTokener tokenizer = new JSONTokener(json);
-
-			try {
-			Log.d("comment",json);
-			
-			//Check that there is forum content to display
-			tokenizer.nextTo(':');
-			tokenizer.next();
-			if( !tokenizer.nextTo(',').equals("true") ) {
-				return;
-			}
-			
-			tokenizer.nextTo(':');
-			tokenizer.next(2);
-			if( !tokenizer.nextTo('"').equals("comments") ) {
-				return;
-			}
-			
-			tokenizer.nextTo('{');
-			tokenizer.next(2);
-			
-			
-			//Begin retrieving forum content
-			do {
-
-				CommentThreadTuple commentInfo = new CommentThreadTuple();
-				
-				tokenizer.nextTo(':');
-				tokenizer.next();
-				commentInfo.setId(Integer.parseInt(tokenizer.nextTo(',')));
-				
-				tokenizer.nextTo(':');
-				tokenizer.next(2);
-				commentInfo.setMessage(tokenizer.nextTo('"'));
-				
-				tokenizer.nextTo(':');
-				tokenizer.next(2);
-				commentInfo.setFamily(tokenizer.nextTo('"'));
-				
-				tokenizer.nextTo(':');
-				tokenizer.next(2);
-				commentInfo.setTimestamp(tokenizer.nextTo('"'));
-							
-				forumContent.get(parentId).addComment(commentInfo);
-				
-				tokenizer.next(2);
-				if( tokenizer.next() != ',' ) {
-					return;
-				}
-				
-			} while( true );
-		} catch( JSONException ex ) {
-			Log.d("EXC_COM",ex.getMessage());
-		}
-		
-		}
-		
-		
-		private Runnable showComments = new Runnable(){
-	        public void run(){
-	        	setListAdapter(commentAdapter);
-	        	
-	        	// Add listeners
-	    		ListView listView = getListView();
-	    		listView.setTextFilterEnabled(true);
-	        }
-		};
-		
 		
 	}
+
+
+
 	
-	private class MyCommentAdapter<CommentThreadTuple> extends ArrayAdapter<CommentThreadTuple> {
-
-		public MyCommentAdapter(Context context, int resource,
-				int textViewResourceId) {
-			super(context, resource, textViewResourceId);
-			// TODO Auto-generated constructor stub
-		}
-		
-	}
-	*/
+	
+	
 	
 }
 
