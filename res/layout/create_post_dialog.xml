@@ -13,7 +13,7 @@
   	/>
   	
   	<Button
-  		android:id="@+id/create"
+  		android:id="@+id/create_post"
   		android:layout_height="wrap_content"
   		android:layout_width="150dp"
   		android:gravity="center|center"
@@ -21,7 +21,7 @@
   	/>
   	
   	<Button
-  		android:id="@+id/cancel"
+  		android:id="@+id/cancel_post"
   		android:layout_height="wrap_content"
   		android:layout_width="150dp"
   		android:gravity="center|center"
