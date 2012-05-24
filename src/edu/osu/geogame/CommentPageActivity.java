@@ -5,18 +5,26 @@ import java.util.ArrayList;
 import org.json.JSONException;
 import org.json.JSONTokener;
 
+
+import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
-public class CommentPageActivity extends ListActivity {
+public class CommentPageActivity extends ListActivity implements OnClickListener {
 		
 		private MyCommentAdapter<CommentThreadTuple> commentAdapter;
 		private ArrayList<CommentThreadTuple> comments;
 		private int threadId;
+		
+		private Button createComment;
 		
 		@Override
 		public void onCreate( Bundle savedInstanceState ) {
@@ -34,8 +42,18 @@ public class CommentPageActivity extends ListActivity {
 				commentAdapter.add(comments.get(i));
 			}
 			
+			createComment = (Button) findViewById(R.id.create_comment);
+			
 		}
 		
+		@Override
+		public void onClick(View v) {
+			switch( v.getId() ) {
+			case R.id.create_comment:
+				CreateCommentDialog dialog = new CreateCommentDialog(this);
+				dialog.show();
+			}
+		}
 		
 		private Thread populateList = new Thread() {
 			public void run() {
@@ -142,4 +160,44 @@ public class CommentPageActivity extends ListActivity {
 		
 	}
 	
+	private class CreateCommentDialog extends Dialog implements OnClickListener {
+
+		EditText writeComment;
+		Button create;
+		Button cancel;
+		
+		public CreateCommentDialog(Context context) {
+			super(context);
+			this.setContentView(R.layout.create_comment_dialog);
+			
+			writeComment = (EditText) findViewById(R.id.write_comment);
+			
+			create = (Button) findViewById(R.id.create_comment);
+			create.setOnClickListener(this);
+			
+			cancel = (Button) findViewById(R.id.cancel_comment);
+			cancel.setOnClickListener(this);
+			
+		}
+
+		@Override
+		public void onClick(View v) {
+			switch( v.getId() ) {
+			case R.id.create_comment:
+				publishComment( writeComment.getText().toString() );
+				break;
+			case R.id.cancel_comment:
+				this.dismiss();
+				break;
+			}
+		}
+		
+		
+		private boolean publishComment( String post ) {
+			
+			return true;
+		}
+		
+	}
+
 }

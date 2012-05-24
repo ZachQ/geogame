@@ -45,10 +45,6 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 	
 	private ArrayList<Integer> auxilaryIds;
 	private ArrayList<ForumThreadTuple> auxilaryData;
-	
-	private Button createPostButton;
-	private Button submitPostButton;
-	private Button cancelPostButton;
 
 	
 	@Override
@@ -243,16 +239,20 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 	
 	private class CreatePostDialog extends Dialog implements OnClickListener {
 
+		EditText writeComment;
+		Button create;
+		Button cancel;
+		
 		public CreatePostDialog(Context context) {
 			super(context);
 			this.setContentView(R.layout.create_post_dialog);
 			
-			EditText writeComment = (EditText) findViewById(R.id.write_post);
+			writeComment = (EditText) findViewById(R.id.write_post);
 			
-			Button create = (Button) findViewById(R.id.create_post);
+			create = (Button) findViewById(R.id.create_post);
 			create.setOnClickListener(this);
 			
-			Button cancel = (Button) findViewById(R.id.cancel_post);
+			cancel = (Button) findViewById(R.id.cancel_post);
 			cancel.setOnClickListener(this);
 			
 		}
@@ -261,7 +261,8 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 		public void onClick(View v) {
 			switch( v.getId() ) {
 			case R.id.create_post:
-				
+				publishPost( writeComment.getText().toString() );
+				break;
 			case R.id.cancel_post:
 				this.dismiss();
 				break;
