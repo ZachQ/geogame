@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/back"
+    android:background="@drawable/back2"
     android:orientation="vertical" >
 
     <TextView
@@ -10,7 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="140dip"
-        android:drawableTop="@drawable/logo"
+        android:drawableTop="@drawable/logo2"
         android:gravity="center"
         android:shadowColor="#000000"
         android:shadowDx="2"
@@ -27,7 +27,7 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="120dp"
-        android:text="Start"
-        android:textSize="@dimen/buttonTextSize" />
+        android:background="@drawable/buttontest"
+        />
 
 </RelativeLayout>

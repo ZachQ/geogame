@@ -100,21 +100,6 @@ public class Login extends Activity {
         	
 			GeoGame.username = editLogin.getText().toString();
 			
-			/*
-			// -------------------------------------------
-			// SAVE LOGIN INFORMATION TO PHONE
-			SharedPreferences sp = getSharedPreferences("Login", 0);
-			SharedPreferences.Editor Ed = sp.edit();
-			Ed.putString("Cookie", GeoGame.sessionCookie.toString() );                
-			Ed.commit();
-			// -------------------------------------------
-			// TESTING
-			SharedPreferences sp2 = getSharedPreferences("First", 0);
-			SharedPreferences.Editor Ed2 = sp2.edit();
-			Ed2.putBoolean("isFirstLogin", false);              
-			Ed2.commit();
-			// -------------------------------------------
-			*/
 			// Next Screen
 			Intent myIntent = new Intent(getApplicationContext(), edu.osu.geogame.Menu.class);
 			Log.d("COOKIE",GeoGame.sessionCookie.toString());

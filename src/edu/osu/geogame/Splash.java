@@ -16,7 +16,6 @@ import android.widget.Button;
  * @author Zachary Quinn
  */
 public class Splash extends Activity {
-	
 	Button start;
 	
     @Override
@@ -26,40 +25,16 @@ public class Splash extends Activity {
         
         // Get references
         start = (Button) findViewById(R.id.buttonStart);
-        String cookie = null;
-        boolean firstLogin = false;
-//        // Check to see if it is the first time opening the app
-//        SharedPreferences sp2 = this.getSharedPreferences("First",0);
-//        boolean firstLogin = sp2.getBoolean("isFirstLogin", true);
-//        System.out.println("fewafw "+firstLogin);
-//        
-//        // Attempt to get the saved Cookie
-//        SharedPreferences sp1 = this.getSharedPreferences("Login",0);
-//        String cookie = sp1.getString("Cookie", null); 
-        
-        if (cookie == null || firstLogin == true) { 
-        	// Cookie not found, continue to Login screen
 
         	
-            // Add ActionListeners to buttons
-            start.setOnClickListener(new View.OnClickListener() {
-     			@Override
-     			public void onClick(View v) {
-     				Intent myIntent = new Intent(v.getContext(), Login.class);
-                    startActivityForResult(myIntent, 0);
-     			}
-     		});
-        } else { 
-        	// Cookie found, go to Menu screen   	
-            // Add ActionListeners to buttons
-            start.setOnClickListener(new View.OnClickListener() {
-     			@Override
-     			public void onClick(View v) {
-     				Intent myIntent = new Intent(v.getContext(), Menu.class);
-                    startActivityForResult(myIntent, 0);
-     			}
-     		});
-        }
+        // Add ActionListeners to buttons
+        start.setOnClickListener(new View.OnClickListener() {
+        	@Override
+        	public void onClick(View v) {
+        		Intent myIntent = new Intent(v.getContext(), Login.class);
+        		startActivityForResult(myIntent, 0);
+        	}
+        });
 	}
 	
 	@Override
