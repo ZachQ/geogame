@@ -276,7 +276,7 @@ public class MapTabActivity extends Activity {
 			RestClient client = new RestClient(url);
 			client.addCookie(GeoGame.sessionCookie);
 			try {
-				client.Execute(RequestMethod.GET);
+				client.Execute(RequestMethod.POST);
 			} catch (Exception e) {
 				Log.d("ERROR5", "454");
 			}

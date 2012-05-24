@@ -46,7 +46,7 @@ public class CommentPageActivity extends ListActivity {
 				client.addCookie(GeoGame.sessionCookie);
 				
 				try {
-					client.Execute(RequestMethod.GET);
+					client.Execute(RequestMethod.POST);
 					parseCommentResponse(client.getResponse(), threadId);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block

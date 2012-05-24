@@ -28,6 +28,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemClickListener;
@@ -245,11 +246,32 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 		public CreatePostDialog(Context context) {
 			super(context);
 			this.setContentView(R.layout.create_post_dialog);
+			
+			EditText writeComment = (EditText) findViewById(R.id.write_post);
+			
+			Button create = (Button) findViewById(R.id.create_post);
+			create.setOnClickListener(this);
+			
+			Button cancel = (Button) findViewById(R.id.cancel_post);
+			cancel.setOnClickListener(this);
+			
 		}
 
 		@Override
 		public void onClick(View v) {
+			switch( v.getId() ) {
+			case R.id.create_post:
+				
+			case R.id.cancel_post:
+				this.dismiss();
+				break;
+			}
+		}
+		
+		
+		private boolean publishPost( String post ) {
 			
+			return true;
 		}
 		
 	}
