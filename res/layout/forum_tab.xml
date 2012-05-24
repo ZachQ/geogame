@@ -40,7 +40,7 @@
             	android:layout_height="wrap_content"
             		android:layout_gravity="center"
             		android:gravity="center|center"
-            		android:text="submit"
+            		android:text="Create Post"
             	android:layout_below="@+id/forum_scroll"
          />
         </LinearLayout>
