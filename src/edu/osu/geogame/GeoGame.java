@@ -24,6 +24,7 @@ public class GeoGame extends Application {
 	/* Item Costs */
 	public static int costSeedLR, costSeedHYC, costFertilizer, costWater, costOxen, costGrainLR, costGrainHYC;
 	
+	
 	// for testing
 	public static String test;
 	
