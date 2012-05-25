@@ -45,6 +45,8 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 	
 	private ArrayList<Integer> auxilaryIds;
 	private ArrayList<ForumThreadTuple> auxilaryData;
+	
+	private int maxId = 0;
 
 	
 	@Override
@@ -69,6 +71,9 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 			threadAdapter.add(auxilaryData.get(auxilaryData.size()-1));
 		}
 		
+		
+		Button createPostButton = (Button) findViewById(R.id.create_post);
+		createPostButton.setOnClickListener(this);
 		
 		//submitPostButton.setVisibility(View.GONE);
 		
@@ -165,6 +170,9 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 				tokenizer.nextTo(':');
 				tokenizer.next();
 				id = Integer.parseInt(tokenizer.nextTo(','));
+				if( id > maxId ) {
+					maxId = id;
+				}
 				
 				tokenizer.nextTo(':');
 				tokenizer.next(2);
@@ -224,8 +232,10 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+		Log.d("Forum_Click","Forum_Click");
 		switch( v.getId() ) {
 		case R.id.create_post:
+			Log.d("Forum_Click_Dialog","Forum_Click_Dialog");
 			Context mContext = this;
 			CreatePostDialog dialog = new CreatePostDialog(mContext);
 			dialog.show();	
@@ -271,6 +281,8 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 		
 		
 		private boolean publishPost( String post ) {
+			maxId += 1;
+			RestClient client = new RestClient(GeoGame.URL_FORUM+"New/Thread/"+Integer.toString(maxId));
 			
 			return true;
 		}

@@ -5,19 +5,37 @@
     android:background="@drawable/back"
     android:orientation="vertical" >
 
-  	<EditText
-  		android:id="@+id/write_post"
-  		android:layout_height="400dp"
+	<TextView
+		android:id="@+id/post_title_header"
+  		android:layout_height="wrap_content"
   		android:layout_width="fill_parent"
   		android:gravity="top|left"
+  		android:text="Title"
   	/>
   	
-  	<Button
-  		android:id="@+id/create_post"
+	<EditText
+		android:id="@+id/post_title"
   		android:layout_height="wrap_content"
-  		android:layout_width="150dp"
-  		android:gravity="center|center"
-  		android:layout_below="@+id/write_post"
+  		android:layout_width="fill_parent"
+  		android:gravity="top|left"
+  		android:layout_below="@+id/post_title_header"
+  	/>
+  	
+  	<TextView
+  		android:id="@+id/write_post_header"
+  		android:layout_height="wrap_content"
+  		android:layout_width="fill_parent"
+  		android:gravity="top|left"
+  		android:text="Message"
+  		android:layout_below="@+id/post_title"
+  	/>
+  	
+  	<EditText
+  		android:id="@+id/write_post"
+  		android:layout_height="250dp"
+  		android:layout_width="fill_parent"
+  		android:gravity="top|left"
+  		android:layout_below="@+id/write_post_header"
   	/>
   	
   	<Button
@@ -26,7 +44,18 @@
   		android:layout_width="150dp"
   		android:gravity="center|center"
   		android:layout_below="@+id/write_post"
-  		android:layout_toRightOf="@+id/create"
+  		android:text="Cancel"
   	/>
+  	
+  	<Button
+  		android:id="@+id/create_post"
+  		android:layout_height="wrap_content"
+  		android:layout_width="150dp"
+  		android:gravity="center|center"
+  		android:layout_below="@+id/write_post"
+  		android:text="Submit"
+  		android:layout_toRightOf="@+id/cancel_post"
+  	/>
+  	
 
 </RelativeLayout>

@@ -43,6 +43,7 @@ public class CommentPageActivity extends ListActivity implements OnClickListener
 			}
 			
 			createComment = (Button) findViewById(R.id.create_comment);
+			createComment.setOnClickListener(this);
 			
 		}
 		
@@ -170,12 +171,12 @@ public class CommentPageActivity extends ListActivity implements OnClickListener
 			super(context);
 			this.setContentView(R.layout.create_comment_dialog);
 			
-			writeComment = (EditText) findViewById(R.id.write_comment);
+			writeComment = (EditText) findViewById(R.id.write_message);
 			
-			create = (Button) findViewById(R.id.create_comment);
+			create = (Button) findViewById(R.id.create_message);
 			create.setOnClickListener(this);
 			
-			cancel = (Button) findViewById(R.id.cancel_comment);
+			cancel = (Button) findViewById(R.id.cancel_message);
 			cancel.setOnClickListener(this);
 			
 		}
@@ -183,10 +184,10 @@ public class CommentPageActivity extends ListActivity implements OnClickListener
 		@Override
 		public void onClick(View v) {
 			switch( v.getId() ) {
-			case R.id.create_comment:
+			case R.id.create_message:
 				publishComment( writeComment.getText().toString() );
 				break;
-			case R.id.cancel_comment:
+			case R.id.cancel_message:
 				this.dismiss();
 				break;
 			}
