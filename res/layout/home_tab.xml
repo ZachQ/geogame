@@ -12,7 +12,33 @@
         android:background="@drawable/back"
         android:orientation="vertical"
         android:padding="10dp" >
-
+	<LinearLayout
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/back"
+        android:orientation="horizontal" 
+        android:weightSum="100">
+        <TextView
+            android:id="@+id/gameTurn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:text="Turn: 0"
+            android:textSize="18dip" 
+            android:layout_weight="50"/> 
+        <TextView
+            android:id="@+id/gameTimer"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:text="Time left: 00:00:00"
+            android:textSize="18dip" 
+            android:layout_weight="50"/> 
+	</LinearLayout>
+            
         <TextView
             android:id="@+id/textView1"
             android:layout_width="fill_parent"

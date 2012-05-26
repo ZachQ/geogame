@@ -1,17 +1,24 @@
 package edu.osu.geogame;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Window;
 import android.widget.TextView;
 
 public class HomeTabActivity extends Activity {
-	TextView name, money, adults, labor, seedLR, seedHYC, fertilizer, water, grainLR, grainHYC, oxen;
+	TextView name, money, adults, labor, seedLR, seedHYC, fertilizer, water, grainLR, grainHYC, oxen, 
+			timerTV, turnTV;
 	private Handler mHandler;
+	private RestClient gameTimeUpdater;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +37,8 @@ public class HomeTabActivity extends Activity {
 		grainLR = (TextView) findViewById(R.id.textViewGrainLR);
 		grainHYC = (TextView) findViewById(R.id.textViewGrainHYC);
 		oxen = (TextView) findViewById(R.id.textViewOxen);
+		timerTV = (TextView) findViewById(R.id.gameTimer);
+		turnTV = (TextView) findViewById(R.id.gameTurn);
 		
 		// Get the game data, then update the home display
 		mHandler = new Handler();
@@ -43,16 +52,23 @@ public class HomeTabActivity extends Activity {
 			RestClient g_client = new RestClient(GeoGame.URL_GAME + "Dash/" + GeoGame.currentGameId);
 			RestClient m_client = new RestClient(GeoGame.URL_MARKET + "myBank/" + GeoGame.currentGameId);
 			RestClient cost_client = new RestClient(GeoGame.URL_MARKET + "Get/" + GeoGame.currentGameId + "/bank");
+			RestClient game_time = new RestClient(GeoGame.URL_TIME + GeoGame.currentGameId);
 			g_client.addCookie(GeoGame.sessionCookie);
 			m_client.addCookie(GeoGame.sessionCookie);
 			cost_client.addCookie(GeoGame.sessionCookie);
+			game_time.addCookie(GeoGame.sessionCookie);
+			gameTimeUpdater = game_time;
 			try {
 				g_client.Execute(RequestMethod.POST);
 				m_client.Execute(RequestMethod.POST);
 				cost_client.Execute(RequestMethod.POST);
-			} catch (Exception e) {} finally {
+				game_time.Execute(RequestMethod.POST);
+			} catch (Exception e) {
+				Log.i("HomeTabActivity", "Post Failed");
+			} finally {
 				JSONObject j;
 				JSONObject data, market, family, cost;
+				String time = null, turn = null, status;
 				try {
 					// Get the data
 					j = new JSONObject(g_client.getResponse());
@@ -62,6 +78,17 @@ public class HomeTabActivity extends Activity {
 					family = (JSONObject) j.get("family");
 					j = new JSONObject(cost_client.getResponse());
 					cost = (JSONObject) j.get("bank");
+					
+					// Time results
+					j = new JSONObject(game_time.getResponse());
+					status = j.getString("status");
+					// if status = "end" then the other variables will not be returned
+					if (!status.equals("end")) {
+						turn = j.getString("turn");
+						time = j.getString("timer");
+					}
+					
+					String timeReadable = convertTime(time);
 					
 					// Update the global resource values
 					GeoGame.familyName = family.getString("name");
@@ -74,9 +101,15 @@ public class HomeTabActivity extends Activity {
 					GeoGame.grainHYC = market.getString("GrainHYC");
 					GeoGame.water = market.getString("Water");
 					GeoGame.oxen = market.getString("Oxen");
+					GeoGame.timer = timeReadable;
+					GeoGame.turn = turn;
+					GeoGame.status = status;
 					
 					// Do the actual screen update
 					mHandler.post(showUpdate);
+					mHandler.removeCallbacks(updateTime);
+			        mHandler.postDelayed(updateTime, 1000);
+
 					
 					// Store the prices
 					GeoGame.costSeedLR = cost.getInt("SeedLR");
@@ -85,7 +118,9 @@ public class HomeTabActivity extends Activity {
 					GeoGame.costWater = cost.getInt("Water");
 					GeoGame.costOxen = cost.getInt("Oxen");
 					
-				} catch (Exception e) {}
+				} catch (Exception e) {
+					Log.i("HomeTabActivity","Failed to get JSON");
+				}
 			}
 		}
 	}
@@ -104,7 +139,38 @@ public class HomeTabActivity extends Activity {
 			grainLR.setText(GeoGame.grainLR);
 			grainHYC.setText(GeoGame.grainHYC);
 			oxen.setText(GeoGame.oxen);
+			timerTV.setText("Time left: "+GeoGame.timer);
+			turnTV.setText("Turn: "+GeoGame.turn);
         }
+    };
+    
+    /**
+     * This is used to update the timer in real time without updating the entire page
+     * to see the current time left in game.
+     */
+    private Runnable updateTime = new Runnable(){
+    	public void run(){
+    		String time;
+    		timerTV.setText("Time left: "+GeoGame.timer);
+    		try {
+				gameTimeUpdater.Execute(RequestMethod.POST);
+			} catch (Exception e) {
+				Log.i("gameTimeUpdater","Failed to POST");
+			} finally {
+				JSONObject j;
+				try {
+					j = new JSONObject(gameTimeUpdater.getResponse());
+					time = j.getString("timer");
+					
+					String timeReadable = convertTime(time);
+					
+					GeoGame.timer = timeReadable;
+				} catch (JSONException e) {
+				}
+				
+			}
+    		mHandler.postAtTime(showUpdate, 1000);
+    	}
     };
     
     @Override
@@ -122,4 +188,42 @@ public class HomeTabActivity extends Activity {
 		Window window = getWindow();
 		window.setFormat(PixelFormat.RGBA_8888);
 	}
+	
+	/**
+	 * This method converts the miliseconds into readable format
+	 * @param time
+	 * @return
+	 */
+	private String convertTime(String time) {
+		String result = "00:00:00";
+		NumberFormat formatter = new DecimalFormat("#");
+		double temp = Double.parseDouble(time);
+		
+		long millis = Long.parseLong(formatter.format(temp).toString());
+	    int seconds = (int) (millis / 1000);
+	    int minutes = seconds / 60;
+	    int hours = minutes / 60;
+	    seconds = seconds % 60;
+	    minutes = minutes % 60;
+	    
+	    if(hours < 10){
+	    	result = "0" + hours + ":";
+	    } else {
+	    	result = "" + hours + ":";
+	    }
+	    
+	    if(minutes < 10){
+	    	result = result + "0" + minutes + ":";
+	    } else {
+	    	result = result + "" + minutes + ":";
+	    }
+	    
+	    if(seconds < 10){
+	    	result = result + "0" + seconds;
+	    } else {
+	    	result = result + "" + seconds;
+	    }
+	    return result;
+	}
+	
 }
