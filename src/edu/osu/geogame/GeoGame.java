@@ -13,6 +13,7 @@ public class GeoGame extends Application {
 	public static String URL_GAME = "http://geogame.osu.edu/Game/";
 	public static String URL_MARKET = "http://geogame.osu.edu/Market/";
 	public static String URL_FORUM = "http://geogame.osu.edu/Forum/";
+	public static String URL_TIME = "http://geogame.osu.edu/Game/Turn/";
 	
 	/* Login Cookie */
 	public static Cookie sessionCookie;
@@ -21,6 +22,7 @@ public class GeoGame extends Application {
 	public static String username;
 	public static String currentGameId; 
 	public static String familyName, money, adults, seedLR, seedHYC, fertilizer, grainLR, grainHYC, water, oxen, labor;
+	public static String timer, status, turn;
 	/* Item Costs */
 	public static int costSeedLR, costSeedHYC, costFertilizer, costWater, costOxen, costGrainLR, costGrainHYC;
 	
