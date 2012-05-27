@@ -2,6 +2,9 @@ package edu.osu.geogame;
 
 import java.util.ArrayList;
 
+import org.json.JSONException;
+import org.json.JSONTokener;
+
 
 import android.app.Activity;
 import android.content.Context;
@@ -20,13 +23,17 @@ import android.widget.TextView;
 public class ScoreboardTabActivity extends Activity {
 
 	private ArrayList<ScoreboardDataContainer> scoreboards;
+	private ViewPager vPager;
 	
 	@Override
 	public void onCreate( Bundle savedInstanceState ) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.market_scroller_mech);
 		scoreboards = new ArrayList<ScoreboardDataContainer>();
-		populateScoreboard.run();		
+		populateScoreboards.run();		
+		vPager = (ViewPager) findViewById(R.id.viewpager);
+		vPager.setAdapter(new ScrollerAdapter());
+		vPager.setCurrentItem(scoreboards.size()-1);
 	}
 	
 	@Override
@@ -41,6 +48,8 @@ public class ScoreboardTabActivity extends Activity {
 
 	@Override
     protected void onResume() {
+		scoreboards.clear();
+		populateScoreboards.run();
 		super.onResume();
 	}
 
@@ -68,7 +77,7 @@ public class ScoreboardTabActivity extends Activity {
 	}
 	
 	
-	private Thread populateScoreboard = new Thread() {
+	private Thread populateScoreboards = new Thread() {
 		public void run() {
 			RestClient sClient = new RestClient(GeoGame.URL_GAME + "Scoreboard/" + GeoGame.currentGameId);
 			sClient.addCookie(GeoGame.sessionCookie);
@@ -78,6 +87,154 @@ public class ScoreboardTabActivity extends Activity {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
+			
+			
+			JSONTokener tokenizer = new JSONTokener(sClient.getResponse());
+			try {
+				
+				//Check that there is forum content to display
+				tokenizer.nextTo(':');
+				tokenizer.next();
+				if( !tokenizer.nextTo(',').equals("true") ) {
+					return;
+				}
+				
+				tokenizer.nextTo(':');
+				tokenizer.next(2);
+				if( !tokenizer.nextTo('"').equals("data") ) {
+					return;
+				}
+				
+				tokenizer.nextTo('{');
+				tokenizer.next(2);
+				
+				tokenizer.nextTo('{');
+				tokenizer.next(2);
+				
+				
+				//Begin retrieving forum content
+				ScoreboardDataContainer scoreboard;
+				do {
+					scoreboard = new ScoreboardDataContainer();
+					
+					tokenizer.nextTo(':');
+					tokenizer.next();
+					int turnNumber = Integer.parseInt(tokenizer.nextTo(','));
+					scoreboard.setTurnNumber(turnNumber);
+					
+					tokenizer.nextTo(':');
+					tokenizer.next(2);
+					String fateCard = tokenizer.nextTo('"');
+					scoreboard.setFateCard(fateCard);
+					
+					tokenizer.nextTo(':');
+					tokenizer.next();
+					int money = Integer.parseInt(tokenizer.nextTo(','));
+					scoreboard.setMoney(money);
+					
+					tokenizer.nextTo(':');
+					tokenizer.next();
+					int adults = Integer.parseInt(tokenizer.nextTo(','));
+					scoreboard.setAdults(adults);
+					
+					tokenizer.nextTo(':');
+					tokenizer.next();
+					int children = Integer.parseInt(tokenizer.nextTo(','));
+					scoreboard.setChildren(children);
+					
+					tokenizer.nextTo(':');
+					tokenizer.next();
+					int totalConsumption = Integer.parseInt(tokenizer.nextTo(','));
+					scoreboard.setTotalConsumption(totalConsumption);
+					
+					tokenizer.nextTo(':');
+					tokenizer.next();
+					int totalLand = Integer.parseInt(tokenizer.nextTo(','));
+					scoreboard.setTotalLand(totalLand);
+					
+					tokenizer.nextTo(':');
+					tokenizer.next();
+					int totalSeededLand = Integer.parseInt(tokenizer.nextTo(','));
+					scoreboard.setSeededLand(totalSeededLand);
+					
+					tokenizer.nextTo(':');
+					tokenizer.next();
+					int weather = Integer.parseInt(tokenizer.nextTo(','));
+					scoreboard.setWeather(weather);
+					
+					tokenizer.nextTo(':');
+					tokenizer.next();
+					int wheatPrice = Integer.parseInt(tokenizer.nextTo(','));
+					scoreboard.setWheatPrice(wheatPrice);
+					
+					tokenizer.nextTo(':');
+					tokenizer.next();
+					int yieldLR = Integer.parseInt(tokenizer.nextTo(','));
+					scoreboard.setYieldLR(yieldLR);
+					
+					tokenizer.nextTo(':');
+					tokenizer.next();
+					int yieldHYC = Integer.parseInt(tokenizer.nextTo(','));
+					scoreboard.setYieldHYC(totalLand);
+					
+					tokenizer.nextTo(':');
+					tokenizer.next();
+					int assetSellIncome = Integer.parseInt(tokenizer.nextTo(','));
+					scoreboard.setAssetSellIncome(assetSellIncome);
+					
+					tokenizer.nextTo(':');
+					tokenizer.next();
+					int laborWagesIncome = Integer.parseInt(tokenizer.nextTo(','));
+					scoreboard.setLaborWagesIncome(laborWagesIncome);
+					
+					tokenizer.nextTo(':');
+					tokenizer.next();
+					int wheatSellIncome = Integer.parseInt(tokenizer.nextTo(','));
+					scoreboard.setWheatSellIncome(wheatSellIncome);
+					
+					tokenizer.nextTo(':');
+					tokenizer.next();
+					int landBuyCost = Integer.parseInt(tokenizer.nextTo(','));
+					scoreboard.setLandBuyCost(landBuyCost);
+					
+					tokenizer.nextTo(':');
+					tokenizer.next();
+					int seedBuyCost = Integer.parseInt(tokenizer.nextTo(','));
+					scoreboard.setSeedBuyCost(seedBuyCost);
+					
+					tokenizer.nextTo(':');
+					tokenizer.next();
+					int fertilizerBuyCost = Integer.parseInt(tokenizer.nextTo(','));
+					scoreboard.setFertilizerBuyCost(fertilizerBuyCost);
+					
+					tokenizer.nextTo(':');
+					tokenizer.next();
+					int waterBuyCost = Integer.parseInt(tokenizer.nextTo(','));
+					scoreboard.setWaterBuyCost(waterBuyCost);
+					
+					tokenizer.nextTo(':');
+					tokenizer.next();
+					int laborBuyCost = Integer.parseInt(tokenizer.nextTo(','));
+					scoreboard.setLaborBuyCost(laborBuyCost);
+					
+					tokenizer.nextTo(':');
+					tokenizer.next();
+					int oxenBuyCost = Integer.parseInt(tokenizer.nextTo('}'));
+					scoreboard.setOxenBuyCost(oxenBuyCost);
+					
+					scoreboards.add(scoreboard);
+					
+					tokenizer.next();
+					if( tokenizer.next() != ',' ) {
+						return;
+					}
+					
+					
+				} while( true );
+						
+			} catch( JSONException ex ) {
+				Log.d("EXC",ex.getMessage());
 			}
 		}
 	};
@@ -108,7 +265,7 @@ public class ScoreboardTabActivity extends Activity {
 		@Override 
 		public Object instantiateItem( View container, int position ) {
 			Log.d("instantiateItem",Integer.toString(position));
-			Object screen = scoreboardView( scoreboards.get(position), position );
+			Object screen = scoreboardView( scoreboards.get(position), position+1 );
 			((ViewPager) container).addView((View)screen,0);
 			return screen;
 		}
@@ -160,6 +317,7 @@ public class ScoreboardTabActivity extends Activity {
 		
 		TextView turn = (TextView) v.findViewById(R.id.turn);
 		
+		TextView fateCard = (TextView) v.findViewById(R.id.fate_card_value);
 		TextView savingsFromPreviousYear = (TextView) v.findViewById(R.id.savings_from_previous_year_value);
 		TextView numberOfAdults = (TextView) v.findViewById(R.id.number_of_adults_value);
 		TextView numberOfChildren = (TextView) v.findViewById(R.id.number_of_children_value);
@@ -188,30 +346,31 @@ public class ScoreboardTabActivity extends Activity {
 		
 		turn.setText("Turn " + Integer.toString(turnNumber));
 		
-		savingsFromPreviousYear.setText(data.savingsFromPreviousYear());
-		numberOfAdults.setText(data.adults());
-		numberOfChildren.setText(data.children());
-		totalConsumption.setText(data.totalConsumption());
-		totalLand.setText(data.totalLand());
-		totalSeededLand.setText(data.seededLand());
-		weather.setText(data.weather());
-		wheatPrice.setText(data.wheatPrice());
-		lrYield.setText(data.yieldLR());
-		hycYield.setText(data.yieldHYC());
-		totalYield.setText(data.totalYield());
-		totalYieldConsumption.setText(data.totalYieldMinusConsumption());
-		wheatCrops.setText(data.wheatSellIncome());
-		labourWages.setText(data.laborWagesIncome());
-		assetTrade.setText(data.assetSellIncome());
-		totalIncome.setText(data.totalIncome());
-		seeds.setText(data.seedBuyCost());
-		fertilizers.setText(data.fertilizerBuyCost());
-		water.setText(data.waterBuyCost());
-		labour.setText(data.laborBuyCost());
-		oxen.setText(data.oxenBuyCost());
-		land.setText(data.landBuyCost());
-		totalCosts.setText(data.totalCosts());
-		balance.setText(data.balance());
+		fateCard.setText(data.fateCard());
+		savingsFromPreviousYear.setText("$"+Integer.toString(data.savingsFromPreviousYear()));
+		numberOfAdults.setText(Integer.toString(data.adults()));
+		numberOfChildren.setText(Integer.toString(data.children()));
+		totalConsumption.setText(Integer.toString(data.totalConsumption()));
+		totalLand.setText(Integer.toString(data.totalLand()));
+		totalSeededLand.setText(Integer.toString(data.seededLand()));
+		weather.setText(Integer.toString(data.weather()));
+		wheatPrice.setText("$"+Integer.toString(data.wheatPrice()));
+		lrYield.setText(Integer.toString(data.yieldLR()));
+		hycYield.setText(Integer.toString(data.yieldHYC()));
+		totalYield.setText(Integer.toString(data.totalYield()));
+		totalYieldConsumption.setText(Integer.toString(data.totalYieldMinusConsumption()));
+		wheatCrops.setText("$"+Integer.toString(data.wheatSellIncome()));
+		labourWages.setText("$"+Integer.toString(data.laborWagesIncome()));
+		assetTrade.setText("$"+Integer.toString(data.assetSellIncome()));
+		totalIncome.setText("$"+Integer.toString(data.totalIncome()));
+		seeds.setText("$"+Integer.toString(data.seedBuyCost()));
+		fertilizers.setText("$"+Integer.toString(data.fertilizerBuyCost()));
+		water.setText("$"+Integer.toString(data.waterBuyCost()));
+		labour.setText("$"+Integer.toString(data.laborBuyCost()));
+		oxen.setText("$"+Integer.toString(data.oxenBuyCost()));
+		land.setText("$"+Integer.toString(data.landBuyCost()));
+		totalCosts.setText("$"+Integer.toString(data.totalCosts()));
+		balance.setText("$"+Integer.toString(data.balance()));
 		
 		return v;
 	}
