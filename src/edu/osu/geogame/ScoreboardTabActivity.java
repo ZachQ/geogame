@@ -13,6 +13,8 @@ public class ScoreboardTabActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.scoreboard_tab);
 		RestClient sClient = new RestClient(GeoGame.URL_GAME + "Scoreboard/" + GeoGame.currentGameId);
+		sClient.addCookie(GeoGame.sessionCookie);
+		Log.d("SCOREBOARD URL",GeoGame.URL_GAME + "Scoreboard/" + GeoGame.currentGameId);
 		try {
 			sClient.Execute(RequestMethod.POST);
 		} catch (Exception e) {

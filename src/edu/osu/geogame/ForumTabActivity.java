@@ -33,6 +33,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONTokener;
 
@@ -46,7 +47,8 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 	private ArrayList<Integer> auxilaryIds;
 	private ArrayList<ForumThreadTuple> auxilaryData;
 	
-	private int maxId = 0;
+	private Context forumContext;
+	
 
 	
 	@Override
@@ -57,8 +59,8 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 	    forumContent = new HashMap<Integer,ForumThreadTuple>();
 	    auxilaryData = new ArrayList<ForumThreadTuple>();
 	    auxilaryIds = new ArrayList<Integer>();
-	    Context context = this;
-	    threadAdapter = new MyForumAdapter<ForumThreadTuple>(context,R.layout.forum_row,R.id.threadInfo);
+	    forumContext = this;
+	    threadAdapter = new MyForumAdapter<ForumThreadTuple>(forumContext,R.layout.forum_row,R.id.threadInfo);
 		// get the list of games
 		mHandler = new Handler();
 		populateList.run();
@@ -127,6 +129,33 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
         }
 	};
 	
+	
+	@Override
+	public void onResume() {
+		
+		threadAdapter = new MyForumAdapter<ForumThreadTuple>(forumContext,R.layout.forum_row,R.id.threadInfo);
+		
+		forumContent.clear();
+		auxilaryIds.clear();
+		auxilaryData.clear();
+		
+		populateList.run();
+		
+		
+		Iterator<Integer> forumIt = forumContent.keySet().iterator();
+		while( forumIt.hasNext() ) {
+			int currentId = forumIt.next();
+			auxilaryIds.add(currentId);
+			auxilaryData.add(forumContent.get(currentId));
+			threadAdapter.add(auxilaryData.get(auxilaryData.size()-1));
+		}
+		
+		showThreads.run();
+		
+		super.onResume();
+		
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * This will change the color format of the Activity so that
@@ -170,9 +199,6 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 				tokenizer.nextTo(':');
 				tokenizer.next();
 				id = Integer.parseInt(tokenizer.nextTo(','));
-				if( id > maxId ) {
-					maxId = id;
-				}
 				
 				tokenizer.nextTo(':');
 				tokenizer.next(2);
@@ -249,15 +275,19 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 	
 	private class CreatePostDialog extends Dialog implements OnClickListener {
 
-		EditText writeComment;
-		Button create;
-		Button cancel;
+		private EditText title;
+		private EditText message;
+		private Button create;
+		private Button cancel;
+		private Context parentContext;
 		
 		public CreatePostDialog(Context context) {
 			super(context);
+			parentContext = context;
 			this.setContentView(R.layout.create_post_dialog);
 			
-			writeComment = (EditText) findViewById(R.id.write_post);
+			title = (EditText) findViewById(R.id.post_title);
+			message = (EditText) findViewById(R.id.write_post);
 			
 			create = (Button) findViewById(R.id.create_post);
 			create.setOnClickListener(this);
@@ -271,7 +301,8 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 		public void onClick(View v) {
 			switch( v.getId() ) {
 			case R.id.create_post:
-				publishPost( writeComment.getText().toString() );
+				publishPost( title.getText().toString(), message.getText().toString() );
+				this.dismiss();
 				break;
 			case R.id.cancel_post:
 				this.dismiss();
@@ -280,11 +311,23 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 		}
 		
 		
-		private boolean publishPost( String post ) {
-			maxId += 1;
-			RestClient client = new RestClient(GeoGame.URL_FORUM+"New/Thread/"+Integer.toString(maxId));
-			
+		private boolean publishPost( String title, String message ) {
+			try {
+			RestClient client = new RestClient(GeoGame.URL_FORUM+"New/Thread/"+GeoGame.currentGameId);
+			Log.d("FORUM URL",GeoGame.URL_FORUM+"New/Thread/"+GeoGame.currentGameId);
+			client.AddParam("title", title);
+			client.AddParam("message", message);
+			client.addCookie(GeoGame.sessionCookie);
+			client.Execute(RequestMethod.POST);
+			Log.d("Response",client.getResponse());
+			Log.d("Response Code",Integer.toString(client.getResponseCode()));
+			Log.d("Error",client.getErrorMessage());
 			return true;
+			} catch( Exception ex ) {
+				Toast.makeText(parentContext, "Error: your post was not created", 2);
+				Log.d("Post","False");
+				return false;
+			}
 		}
 		
 	}

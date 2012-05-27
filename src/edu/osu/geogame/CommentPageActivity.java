@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class CommentPageActivity extends ListActivity implements OnClickListener {
 		
@@ -26,10 +27,13 @@ public class CommentPageActivity extends ListActivity implements OnClickListener
 		
 		private Button createComment;
 		
+		private Context parentContext;
+		
 		@Override
 		public void onCreate( Bundle savedInstanceState ) {
 			super.onCreate(savedInstanceState);
 		    setContentView(R.layout.comments_page);
+		    parentContext = this;
 		    Bundle extras = getIntent().getExtras();
 			threadId = extras.getInt("thread_index");
 			commentAdapter = new MyCommentAdapter<CommentThreadTuple>(this,R.layout.forum_row,R.id.threadInfo);
@@ -44,6 +48,11 @@ public class CommentPageActivity extends ListActivity implements OnClickListener
 			
 			createComment = (Button) findViewById(R.id.create_comment);
 			createComment.setOnClickListener(this);
+			
+		}
+		
+		@Override
+		public void onResume() {
 			
 		}
 		
@@ -186,6 +195,7 @@ public class CommentPageActivity extends ListActivity implements OnClickListener
 			switch( v.getId() ) {
 			case R.id.create_message:
 				publishComment( writeComment.getText().toString() );
+				this.dismiss();
 				break;
 			case R.id.cancel_message:
 				this.dismiss();
@@ -194,9 +204,21 @@ public class CommentPageActivity extends ListActivity implements OnClickListener
 		}
 		
 		
-		private boolean publishComment( String post ) {
-			
-			return true;
+		private boolean publishComment( String message ) {
+			try {
+				RestClient client = new RestClient(GeoGame.URL_FORUM+"New/Thread/"+GeoGame.currentGameId);
+				client.AddParam("message", message);
+				client.addCookie(GeoGame.sessionCookie);
+				client.Execute(RequestMethod.POST);
+				Log.d("Response",client.getResponse());
+				Log.d("Response Code",Integer.toString(client.getResponseCode()));
+				Log.d("Error",client.getErrorMessage());
+				return true;
+				} catch( Exception ex ) {
+					Toast.makeText(parentContext, "Error: your post was not created", 2);
+					Log.d("Post","False");
+					return false;
+				}
 		}
 		
 	}
