@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll_view"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -6,14 +13,649 @@
     android:padding="10dp" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/turn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dip"
         android:gravity="center"
-        android:text="Scoreboard"
+        android:text=""
         android:textColor="@color/title"
         android:textSize="25dp" />
+        
+       <TableLayout
+      		android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="0"
+            android:textSize="6dp" >
+            
+            <TableRow
+            	android:id="@+id/fate_card_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="6dp" >
+                
+                <TextView
+                	android:id="@+id/fate_card_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="1.Fate Card"
+                	android:textStyle="bold"
+                	android:textSize="12dp"
+                />
+                
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/land_and_labor_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/land_and_labor_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="2.Land and Labor"
+                	android:textStyle="bold"
+                	android:textSize="12dp"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/savings_from_previous_year_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/savings_from_previous_year_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="   a.Savings from previous year"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/savings_from_previous_year_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="test"
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/number_of_adults_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/number_of_adults_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="   b.Number of adults"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/number_of_adults_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="dsfasfasfadfsa"
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/number_of_children_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/number_of_children_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="   c.Number of children"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/number_of_children_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/total_consumption_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/total_consumption_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="   d.Total consumption"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/total_consumption_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/total_land_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/total_land_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="   e.Total land"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/total_land_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/total_seeded_land_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/total_seeded_land_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="f.Total seeded land"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/total_seeded_land_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/weather_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/weather_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="3.Weather"
+                	android:textStyle="bold"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/weather_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textStyle="bold"
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+                
+                
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/wheat_price_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/wheat_price_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="4.Wheat Price"
+                	android:textStyle="bold"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/wheat_price_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textStyle="bold"
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+           <TableRow
+            	android:id="@+id/yield_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/yield_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="5.Yield"
+                	android:textStyle="bold"
+                	android:textSize="12dp"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/lr_yield_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/lr_yield_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="   a.LR Yield (bushels)"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/lr_yield_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/hyc_yield_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/hyc_yield_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="   b.HYC Yield (bushels)"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/hyc_yield_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/total_yield_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/total_yield_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="   b.Total Yield"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/total_yield_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/total_yield_consumption_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/total_yield_consumption_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="   d.Total Yield - Consumption"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/total_yield_consumption_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/income_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/income_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="6.Income"
+                	android:textStyle="bold"
+                	android:textSize="12dp"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/wheat_crops_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/wheat_crops_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="   a.Wheat Crops"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/wheat_crops_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/labour_wages_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/labour_wages_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="   b.Labour Wages"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/labour_wages_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/asset_trade_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/asset_trade_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="   c.Asset Trade"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/asset_trade_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/total_income_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/total_income_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="   d.Total Income"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/total_income_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/costs_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/costs_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="7.Costs"
+                	android:textStyle="bold"
+                	android:textSize="12dp"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/seeds_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/seeds_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="   a.Seeds"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/seeds_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/fertilizers_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/fertilizers_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="   b.Fertilizers"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/fertilizers_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
 
+			<TableRow
+            	android:id="@+id/water_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/water_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="   c.Water"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/water_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/labour_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/labour_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="   d.Labour"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/labour_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/oxen_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/oxen_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="   e.Oxen"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/oxen_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/land_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/land_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="   f.Land"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/land_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/total_costs_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/total_costs_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="   g.Total Costs"
+                	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/total_costs_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
+                />
+            </TableRow>
+            
+            <TableRow
+            	android:id="@+id/balance_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                	android:id="@+id/balance_header"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text="Balance"
+                	android:textStyle="bold"
+                	android:textSize="12dp"
+                />
+            </TableRow>
+			
+		</TableLayout>
 </RelativeLayout>
+</ScrollView>
