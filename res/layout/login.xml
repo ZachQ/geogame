@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/back"
+    android:background="@drawable/back2"
     android:padding="10dp" >
 
     <TextView
@@ -13,8 +13,8 @@
         android:layout_marginTop="@dimen/titleMargin"
         android:gravity="center"
         android:text="Please Login"
-        android:textColor="@color/title"
-        android:textSize="@dimen/titleTextSize" />
+        android:textColor="#FFFFFF"
+        android:textSize="35dp" />
 
     <EditText
         android:id="@+id/editLogin"
@@ -36,7 +36,8 @@
         android:layout_alignLeft="@+id/editLogin"
         android:layout_below="@+id/editLogin"
         android:layout_marginTop="16dp"
-        android:text="Password" />
+        android:text="Password" 
+        android:textColor="#FFFFFF"/>
 
     <EditText
         android:id="@+id/editPassword"
@@ -57,14 +58,15 @@
         android:text="Login"
         android:textSize="@dimen/buttonTextSize" />
 
-    <Button
-        android:id="@+id/buttonRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/buttonHeight"
-        android:layout_below="@+id/editPassword"
-        android:layout_toLeftOf="@+id/buttonLogin"
-        android:text="Register"
-        android:textSize="@dimen/buttonTextSize" />
+<!-- Register button commented because not implemented --> 
+<!--      <Button 										-->
+<!--        android:id="@+id/buttonRegister" 			-->
+<!--        android:layout_width="wrap_content" 		-->
+<!--        android:layout_height="@dimen/buttonHeight" -->
+<!--        android:layout_below="@+id/editPassword" 	-->
+<!--        android:layout_toLeftOf="@+id/buttonLogin" 	-->
+<!--        android:text="Register" 					-->
+<!--        android:textSize="@dimen/buttonTextSize" /> -->
 
     <TextView
         android:id="@+id/textView2"
@@ -73,7 +75,8 @@
         android:layout_alignBottom="@+id/editLogin"
         android:layout_alignLeft="@+id/editLogin"
         android:layout_marginBottom="48dp"
-        android:text="Username" />
+        android:text="Username" 
+        android:textColor="#FFFFFF"/>
 
     <ProgressBar
         android:id="@+id/login_progress"
