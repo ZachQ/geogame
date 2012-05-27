@@ -19,15 +19,18 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dip"
         android:gravity="center"
-        android:text=""
+        android:text="Turn 1"
         android:textColor="@color/title"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+	/>
         
        <TableLayout
+       		android:id="@+id/scoreboard_table"
       		android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:stretchColumns="0"
-            android:textSize="6dp" >
+            android:textSize="6dp"
+            android:layout_below="@+id/turn" >
             
             <TableRow
             	android:id="@+id/fate_card_row"
@@ -78,7 +81,7 @@
                 	android:id="@+id/savings_from_previous_year_value"
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
-                	android:text="test"
+                	android:text=""
                 	android:textSize="12dp"
                 	android:layout_gravity="right"
                 />
@@ -101,7 +104,7 @@
                 	android:id="@+id/number_of_adults_value"
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
-                	android:text="dsfasfasfadfsa"
+                	android:text=""
                 	android:textSize="12dp"
                 	android:layout_gravity="right"
                 />
@@ -653,6 +656,15 @@
                 	android:text="Balance"
                 	android:textStyle="bold"
                 	android:textSize="12dp"
+                />
+                
+                <TextView
+                	android:id="@+id/balance_value"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:text=""
+                	android:textSize="12dp"
+                	android:layout_gravity="right"
                 />
             </TableRow>
 			
