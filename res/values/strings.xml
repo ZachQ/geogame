@@ -20,6 +20,7 @@
     </string-array>
     
     <string name="No_threads">No threads have been started in this game</string>
+    <string name="No_comments">No comments</string>
     
     <string name="ScoreboardTextSize">12</string>
 

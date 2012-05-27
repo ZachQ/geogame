@@ -32,20 +32,19 @@ public class CommentPageActivity extends ListActivity implements OnClickListener
 		@Override
 		public void onCreate( Bundle savedInstanceState ) {
 			super.onCreate(savedInstanceState);
-		    setContentView(R.layout.comments_page);
+		    setContentView(R.layout.comments_page_v2);
 		    parentContext = this;
 		    Bundle extras = getIntent().getExtras();
 			threadId = extras.getInt("thread_index");
 			commentAdapter = new MyCommentAdapter<CommentThreadTuple>(this,R.layout.forum_row,R.id.threadInfo);
 			comments = new ArrayList<CommentThreadTuple>();
 			populateList.run();
-			showComments.run();
 			Log.d("what is", "going on");
 			
 			for( int i = 0; i < comments.size(); i++ ) {
 				commentAdapter.add(comments.get(i));
 			}
-			
+			showComments.run();
 			createComment = (Button) findViewById(R.id.create_comment);
 			createComment.setOnClickListener(this);
 			
@@ -53,7 +52,14 @@ public class CommentPageActivity extends ListActivity implements OnClickListener
 		
 		@Override
 		public void onResume() {
-			
+			super.onResume();
+			commentAdapter = new MyCommentAdapter<CommentThreadTuple>(this,R.layout.forum_row,R.id.threadInfo);
+			comments.clear();
+			populateList.run();
+			for( int i = 0; i < comments.size(); i++ ) {
+				commentAdapter.add(comments.get(i));
+			}
+			showComments.run();
 		}
 		
 		@Override
@@ -206,7 +212,7 @@ public class CommentPageActivity extends ListActivity implements OnClickListener
 		
 		private boolean publishComment( String message ) {
 			try {
-				RestClient client = new RestClient(GeoGame.URL_FORUM+"New/Thread/"+GeoGame.currentGameId);
+				RestClient client = new RestClient(GeoGame.URL_FORUM+"New/Comment/"+threadId);
 				client.AddParam("message", message);
 				client.addCookie(GeoGame.sessionCookie);
 				client.Execute(RequestMethod.POST);

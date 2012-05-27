@@ -55,7 +55,7 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 	public void onCreate( Bundle savedInstanceState ) {
 		super.onCreate(savedInstanceState);
 		Log.d("In onCreate","Forum");
-	    setContentView(R.layout.forum_tab);
+	    setContentView(R.layout.forum_tab_v2);
 	    forumContent = new HashMap<Integer,ForumThreadTuple>();
 	    auxilaryData = new ArrayList<ForumThreadTuple>();
 	    auxilaryIds = new ArrayList<Integer>();
@@ -132,15 +132,14 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 	
 	@Override
 	public void onResume() {
-		
+		super.onResume();
 		threadAdapter = new MyForumAdapter<ForumThreadTuple>(forumContext,R.layout.forum_row,R.id.threadInfo);
 		
 		forumContent.clear();
 		auxilaryIds.clear();
 		auxilaryData.clear();
 		
-		populateList.run();
-		
+		populateList.run();		
 		
 		Iterator<Integer> forumIt = forumContent.keySet().iterator();
 		while( forumIt.hasNext() ) {
@@ -151,8 +150,6 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 		}
 		
 		showThreads.run();
-		
-		super.onResume();
 		
 	}
 	
