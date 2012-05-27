@@ -38,7 +38,7 @@ public class Login extends Activity {
 		// Get references
 		loading = (ProgressBar) findViewById(R.id.login_progress);
 		login = (Button) findViewById(R.id.buttonLogin);
-		register = (Button) findViewById(R.id.buttonRegister);
+		// register = (Button) findViewById(R.id.buttonRegister);
 		editLogin = (EditText) findViewById(R.id.editLogin);
 		editPassword = (EditText) findViewById(R.id.editPassword);
 		
@@ -85,13 +85,16 @@ public class Login extends Activity {
 				attemptLogin.start();
 			}
 		});
-		register.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent myIntent = new Intent(v.getContext(), Register.class);
-				startActivity(myIntent);
-			}
-		});
+		/**
+		 * This is commented out because the register functionality is not implemented
+		 */
+//		register.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				Intent myIntent = new Intent(v.getContext(), Register.class);
+//				startActivity(myIntent);
+//			}
+//		});
 	}
 	
 	private Runnable Success = new Runnable(){
