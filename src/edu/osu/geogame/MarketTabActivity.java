@@ -206,6 +206,9 @@ public class MarketTabActivity extends Activity {
 	
 	public class PopulateAuctionList extends Thread {
 		public void run() {
+			// Clear existing data
+			data.clear();
+			
 			RestClient client = new RestClient(GeoGame.URL_MARKET + "Get/" + GeoGame.currentGameId + "/seller");
 			client.addCookie(GeoGame.sessionCookie);
 			JSONObject j;
@@ -218,11 +221,8 @@ public class MarketTabActivity extends Activity {
 					a = (JSONArray) j.get("seller");
 					
 					if (a.length() == 0 && j.getBoolean("success") == true) {
-						// No open games
 						mHandler.post(showMessage);
 					} else {	
-						// Clear existing data
-						data.clear();
 						// Add new data
 						for (int i = 0; i < a.length(); i++) {
 							HashMap<String,String> temp = new HashMap<String,String>();
@@ -240,6 +240,8 @@ public class MarketTabActivity extends Activity {
 					}
 				} catch (Exception e) {}
 			}
+			// Update the new data
+			adapter.notifyDataSetChanged();
 		}
 	}
 	
