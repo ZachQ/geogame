@@ -41,5 +41,6 @@
     <color name="ox">#222222</color>
     <color name="labor">#888888</color>
     <color name="fertilizer">#666633</color>
+    <color name="aboutcolor">#1a1a1a</color>
 
 </resources>
