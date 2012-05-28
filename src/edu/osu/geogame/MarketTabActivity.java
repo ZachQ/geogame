@@ -7,8 +7,13 @@ import java.util.Vector;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import edu.osu.geogame.HomeTabActivity.updateThread;
+import edu.osu.geogame.TransactionActivity.CommitSellThread;
+
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
@@ -23,9 +28,11 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class MarketTabActivity extends Activity {
@@ -42,11 +49,17 @@ public class MarketTabActivity extends Activity {
 	SimpleAdapter adapter;
 	private Vector<HashMap<String, String>> data;
 		
+	private Context myContext;
+	
+	// Global to pass to dialog
+	private int listPosition;
+	
 	@Override
 	public void onCreate( Bundle savedInstanceState ) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.market_scroller_mech);
-	
+		myContext = this;
+		
 		// Create views
 		buyMarketView = marketView();
 		playerMarketView = playerMarketView();
@@ -78,6 +91,11 @@ public class MarketTabActivity extends Activity {
 	@Override
     protected void onResume() {
 		super.onResume();
+		
+		// Update auction
+		mHandler = new Handler();
+		Thread thread = new PopulateAuctionList();
+		thread.start();
 	}
 
 	@Override
@@ -133,7 +151,6 @@ public class MarketTabActivity extends Activity {
 		}
 	}
 	
-	
 	/**
 	 * The View of the market where users buy items that other users have put up for sale 
 	 * @return
@@ -181,13 +198,13 @@ public class MarketTabActivity extends Activity {
 		
 		// Create the list of properties
 		mHandler = new Handler();
-		Thread thread = new populateList();
+		Thread thread = new PopulateAuctionList();
 		thread.start();
 		
 		return auctionView;
 	}	
 	
-	public class populateList extends Thread {
+	public class PopulateAuctionList extends Thread {
 		public void run() {
 			RestClient client = new RestClient(GeoGame.URL_MARKET + "Get/" + GeoGame.currentGameId + "/seller");
 			client.addCookie(GeoGame.sessionCookie);
@@ -204,7 +221,9 @@ public class MarketTabActivity extends Activity {
 						// No open games
 						mHandler.post(showMessage);
 					} else {	
-						// Import Games
+						// Clear existing data
+						data.clear();
+						// Add new data
 						for (int i = 0; i < a.length(); i++) {
 							HashMap<String,String> temp = new HashMap<String,String>();
 							temp.put("auctionID", a.getJSONObject(i).getString("ID"));
@@ -217,14 +236,14 @@ public class MarketTabActivity extends Activity {
 						}
 						
 						// Complete = notify
-						mHandler.post(showUpdate);
+						mHandler.post(showUpdatedList);
 					}
 				} catch (Exception e) {}
 			}
 		}
 	}
 	
-	private Runnable showUpdate = new Runnable(){
+	private Runnable showUpdatedList = new Runnable(){
         public void run(){
         	// Add listeners
         	buyAuctionView.setTextFilterEnabled(true);
@@ -232,8 +251,27 @@ public class MarketTabActivity extends Activity {
     			@Override
     			public void onItemClick(AdapterView<?> parent, View view,
     					int position, long id) {
+    				// Does not matter if I am the owner
     				
-    				//todo
+    				// Set global variable for dialog to use
+    				listPosition = position;
+    				// Create Buy dialog
+    				AlertDialog.Builder alert = new AlertDialog.Builder(myContext);
+					alert.setTitle("Auction");
+					alert.setMessage("Buy this auction?");
+					alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+						  	// Create the thread
+							Thread commit = new CommitBuyThread(data.elementAt(listPosition).get("auctionID"));
+						    // Run the thread
+						    commit.start();
+						  }});
+					alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+					    public void onClick(DialogInterface dialog, int whichButton) {
+						    // Canceled
+						    //mHandler.post(finish);
+						  }});
+					alert.show();
     			}
     		});
         }
@@ -329,6 +367,73 @@ public class MarketTabActivity extends Activity {
 		}
 	}
 	
-
+	public class CommitBuyThread extends Thread {
+		String id;
+    	public CommitBuyThread(String id) {
+    		this.id = id;
+    	}
+		@Override
+		public void run() {	
+			// Build URL for buy
+			RestClient client = new RestClient(
+					GeoGame.URL_MARKET + "Buy/" + GeoGame.currentGameId + "/" + 
+					"NULL" + "/" + id + "/0");
+			/*      ^^^^^^
+			 * It seems that the category for buying Auction items does not matter
+			 * so the value NULL is used currently.
+			 */
+			
+			client.addCookie(GeoGame.sessionCookie);
+			JSONObject j;
+			JSONObject a;
+			try {
+				client.Execute(RequestMethod.POST);
+			} catch (Exception e) {} finally {
+				try {
+					j = new JSONObject(client.getResponse());
+					a = (JSONObject) j.get("dash");
+					
+					// Update the global resource values
+					GeoGame.money = a.getString("money");
+					GeoGame.seedLR = a.getString("seedLR");
+					GeoGame.seedHYC = a.getString("seedHYC");
+					GeoGame.fertilizer = a.getString("fertilizer");
+					GeoGame.water = a.getString("water");
+					
+					if (j.getBoolean("success") == true) {
+						mHandler.post(Success);
+					} else {	
+						// Failure
+						mHandler.post(showErrorMessage);
+					}
+				} catch (Exception e) {}
+			}
+        }
+    };
+    
+    private Runnable Success = new Runnable(){
+        public void run(){
+        	Toast.makeText(getApplicationContext(),
+					"Success", Toast.LENGTH_SHORT).show();
+        	
+        	// Update auction
+    		mHandler = new Handler();
+    		Thread thread = new PopulateAuctionList();
+    		thread.start();
+        }
+    };
+    
+    private Runnable showErrorMessage = new Runnable(){
+        public void run(){
+        	Toast.makeText(getApplicationContext(),
+					"Error", Toast.LENGTH_SHORT).show();
+        	
+        	// Update auction
+    		mHandler = new Handler();
+    		Thread thread = new PopulateAuctionList();
+    		thread.start();
+        }
+    };
+    
 		
 }

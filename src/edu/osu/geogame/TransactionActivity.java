@@ -256,7 +256,7 @@ public class TransactionActivity extends Activity {
 			// Build URL for buy
 			RestClient client = new RestClient(
 					GeoGame.URL_MARKET + "Sell/" + GeoGame.currentGameId + "/" + 
-					category + "/" + String.valueOf(bar.getProgress()) + "/0");
+					category + "/" + String.valueOf(bar.getProgress()) + "/" + price);
 			client.addCookie(GeoGame.sessionCookie);
 			JSONObject j;
 			JSONObject a;
