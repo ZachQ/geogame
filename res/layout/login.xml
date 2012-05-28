@@ -55,7 +55,9 @@
         android:layout_height="@dimen/buttonHeight"
         android:layout_alignRight="@+id/editPassword"
         android:layout_below="@+id/editPassword"
+        android:background="@drawable/loginbutton"
         android:text="Login"
+        android:textColor="#FFFFFF"
         android:textSize="@dimen/buttonTextSize" />
 
 <!-- Register button commented because not implemented --> 

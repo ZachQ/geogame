@@ -7,27 +7,12 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
-public class About extends Activity{
-	
-	Button back;
+public class About extends Activity{	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.about);
-		
-		// Get references
-		back = (Button) findViewById(R.id.buttonBack);
-		
-		// Add ActionListeners to buttons
-		back.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				//Intent myIntent = new Intent(v.getContext(), Menu.class);
-                //startActivityForResult(myIntent, 0);
-                finish();
-			}
-		});
 	}
 	
 	/*

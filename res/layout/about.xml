@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/back"
+    android:background="#FFFFFF"
     android:orientation="horizontal"
     android:paddingBottom="15dp"
     android:paddingLeft="10dp"
@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:gravity="left"
+            android:textColor="@color/aboutcolor"
             android:text="@string/about_descrip" />
 
         <TextView
@@ -47,12 +48,14 @@
             android:layout_gravity="left"
             android:gravity="left"
             android:text="Land"
-            android:textSize="15dp" />
+            android:textSize="15dp" 
+            android:textColor="@color/olivedrab"
+            />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:background="#FFFFFF" />
+            android:background="#000000" />
 
         <TextView
             android:layout_width="fill_parent"
@@ -60,6 +63,7 @@
             android:layout_gravity="left"
             android:layout_marginLeft="7dp"
             android:gravity="left"
+            android:textColor="@color/aboutcolor"
             android:text="@string/land_descrip" />
 
         <TextView
@@ -68,13 +72,14 @@
             android:layout_gravity="left"
             android:gravity="left"
             android:paddingTop="10dip"
+            android:textColor="@color/olivedrab"
             android:text="Wheat Varieties"
             android:textSize="15dp" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:background="#FFFFFF" />
+            android:background="#000000" />
 
         <TextView
             android:layout_width="fill_parent"
@@ -82,6 +87,7 @@
             android:layout_gravity="left"
             android:layout_marginLeft="7dp"
             android:gravity="left"
+            android:textColor="@color/aboutcolor"
             android:text="@string/wheat_descrip" />
 
         <TextView
@@ -90,13 +96,14 @@
             android:layout_gravity="left"
             android:gravity="left"
             android:paddingTop="10dip"
+            android:textColor="@color/olivedrab"
             android:text="Fertilizer"
             android:textSize="15dp" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:background="#FFFFFF" />
+            android:background="#000000" />
 
         <TextView
             android:layout_width="fill_parent"
@@ -104,6 +111,7 @@
             android:layout_gravity="left"
             android:layout_marginLeft="7dp"
             android:gravity="left"
+            android:textColor="@color/aboutcolor"
             android:text="@string/fert_descrip" />
 
         <TextView
@@ -112,13 +120,14 @@
             android:layout_gravity="left"
             android:gravity="left"
             android:paddingTop="10dip"
+            android:textColor="@color/olivedrab"
             android:text="Irrigation"
             android:textSize="15dp" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:background="#FFFFFF" />
+            android:background="#000000" />
 
         <TextView
             android:layout_width="fill_parent"
@@ -126,6 +135,7 @@
             android:layout_gravity="left"
             android:layout_marginLeft="7dp"
             android:gravity="left"
+            android:textColor="@color/aboutcolor"
             android:text="@string/irrigation_descrip" />
 
         <TextView
@@ -134,13 +144,14 @@
             android:layout_gravity="left"
             android:gravity="left"
             android:paddingTop="10dip"
+            android:textColor="@color/olivedrab"
             android:text="Yield"
             android:textSize="15dp" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:background="#FFFFFF" />
+            android:background="#000000" />
 
         <TextView
             android:layout_width="fill_parent"
@@ -148,6 +159,7 @@
             android:layout_gravity="left"
             android:layout_marginLeft="7dp"
             android:gravity="left"
+            android:textColor="@color/aboutcolor"
             android:text="@string/yield_descrip" />
 
         <TextView
@@ -156,13 +168,14 @@
             android:layout_gravity="left"
             android:gravity="left"
             android:paddingTop="10dip"
+            android:textColor="@color/olivedrab"
             android:text="Labour"
             android:textSize="15dp" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:background="#FFFFFF" />
+            android:background="#000000" />
 
         <TextView
             android:layout_width="fill_parent"
@@ -170,6 +183,7 @@
             android:layout_gravity="left"
             android:layout_marginLeft="7dp"
             android:gravity="left"
+            android:textColor="@color/aboutcolor"
             android:text="@string/labour_descrip" />
 
         <TextView
@@ -178,13 +192,14 @@
             android:layout_gravity="left"
             android:gravity="left"
             android:paddingTop="10dip"
+            android:textColor="@color/olivedrab"
             android:text="Labour Requirements"
             android:textSize="15dp" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:background="#FFFFFF" />
+            android:background="#000000" />
 
         <TextView
             android:layout_width="fill_parent"
@@ -192,6 +207,7 @@
             android:layout_gravity="left"
             android:layout_marginLeft="7dp"
             android:gravity="left"
+            android:textColor="@color/aboutcolor"
             android:text="@string/labourReq_descrip" />
 
         <TextView
@@ -200,13 +216,14 @@
             android:layout_gravity="left"
             android:gravity="left"
             android:paddingTop="10dip"
+            android:textColor="@color/olivedrab"
             android:text="Consumption"
             android:textSize="15dp" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:background="#FFFFFF" />
+            android:background="#000000" />
 
         <TextView
             android:layout_width="fill_parent"
@@ -214,6 +231,7 @@
             android:layout_gravity="left"
             android:layout_marginLeft="7dp"
             android:gravity="left"
+            android:textColor="@color/aboutcolor"
             android:text="@string/consumption_descrip" />
 
         <TextView
@@ -222,13 +240,14 @@
             android:layout_gravity="left"
             android:gravity="left"
             android:paddingTop="10dip"
+            android:textColor="@color/olivedrab"
             android:text="How to Conduct Transactions"
             android:textSize="15dp" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:background="#FFFFFF" />
+            android:background="#000000" />
 
         <TextView
             android:layout_width="fill_parent"
@@ -236,6 +255,7 @@
             android:layout_gravity="left"
             android:layout_marginLeft="7dp"
             android:gravity="left"
+            android:textColor="@color/aboutcolor"
             android:text="@string/trans_descrip" />
 
         <TextView
@@ -244,13 +264,14 @@
             android:layout_gravity="left"
             android:gravity="left"
             android:paddingTop="10dip"
+            android:textColor="@color/olivedrab"
             android:text="Sequence of Play"
             android:textSize="15dp" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:background="#FFFFFF" />
+            android:background="#000000" />
 
         <TextView
             android:layout_width="fill_parent"
@@ -259,18 +280,8 @@
             android:layout_marginBottom="20dip"
             android:layout_marginLeft="7dp"
             android:gravity="left"
+            android:textColor="@color/aboutcolor"
             android:text="@string/seqOfPlay_descrip" />
-
-        <Button
-            android:id="@+id/buttonBack"
-            android:layout_width="275dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="15dip"
-            android:layout_marginTop="15dip"
-            android:gravity="center"
-            android:text="Back"
-            android:textSize="25dp" />
     </LinearLayout>
 
 </ScrollView>
