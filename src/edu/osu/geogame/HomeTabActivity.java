@@ -153,10 +153,20 @@ public class HomeTabActivity extends Activity {
     		String time;
     		timerTV.setText("Time left: "+GeoGame.timer);
     		try {
+    			Log.d("UPDATE TIME","UPDATE TIME");
 				gameTimeUpdater.Execute(RequestMethod.POST);
+				JSONObject j;
+				j = new JSONObject(gameTimeUpdater.getResponse());
+				time = j.getString("timer");
+				
+				String timeReadable = convertTime(time);
+				
+				GeoGame.timer = timeReadable;
 			} catch (Exception e) {
 				Log.i("gameTimeUpdater","Failed to POST");
-			} finally {
+			} 
+    		/*
+    		finally {
 				JSONObject j;
 				try {
 					j = new JSONObject(gameTimeUpdater.getResponse());
@@ -165,10 +175,11 @@ public class HomeTabActivity extends Activity {
 					String timeReadable = convertTime(time);
 					
 					GeoGame.timer = timeReadable;
+					
 				} catch (JSONException e) {
 				}
 				
-			}
+			}*/
     		mHandler.postAtTime(showUpdate, 1000);
     	}
     };
