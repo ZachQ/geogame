@@ -150,7 +150,7 @@ public class ScoreboardTabActivity extends Activity {
 					
 					tokenizer.nextTo(':');
 					tokenizer.next();
-					int totalLand = Integer.parseInt(tokenizer.nextTo(','));
+					float totalLand = Float.parseFloat(tokenizer.nextTo(','));
 					scoreboard.setTotalLand(totalLand);
 					
 					tokenizer.nextTo(':');
@@ -176,7 +176,7 @@ public class ScoreboardTabActivity extends Activity {
 					tokenizer.nextTo(':');
 					tokenizer.next();
 					int yieldHYC = Integer.parseInt(tokenizer.nextTo(','));
-					scoreboard.setYieldHYC(totalLand);
+					scoreboard.setYieldHYC(yieldHYC);
 					
 					tokenizer.nextTo(':');
 					tokenizer.next();
@@ -351,8 +351,8 @@ public class ScoreboardTabActivity extends Activity {
 		numberOfAdults.setText(Integer.toString(data.adults()));
 		numberOfChildren.setText(Integer.toString(data.children()));
 		totalConsumption.setText(Integer.toString(data.totalConsumption()));
-		totalLand.setText(Integer.toString(data.totalLand()));
-		totalSeededLand.setText(Integer.toString(data.seededLand()));
+		totalLand.setText(Float.toString(data.totalLand()));
+		totalSeededLand.setText(Float.toString(data.seededLand()));
 		weather.setText(Integer.toString(data.weather()));
 		wheatPrice.setText("$"+Integer.toString(data.wheatPrice()));
 		lrYield.setText(Integer.toString(data.yieldLR()));

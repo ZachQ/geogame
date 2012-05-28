@@ -9,8 +9,8 @@ public class ScoreboardDataContainer {
 	private int adults;
 	private int children;
 	private int totalConsumption;
-	private int totalLand;
-	private int seededLand;
+	private float totalLand;
+	private float seededLand;
 	private int weather;
 	private int wheatPrice;
 	private int yieldLR;
@@ -56,11 +56,11 @@ public class ScoreboardDataContainer {
 		return totalConsumption;
 	}
 	
-	public int totalLand() {
+	public float totalLand() {
 		return totalLand;
 	}
 	
-	public int seededLand() {
+	public float seededLand() {
 		return seededLand;
 	}
 	
@@ -167,11 +167,11 @@ public class ScoreboardDataContainer {
 		 totalConsumption = value;
 	}
 	
-	public void setTotalLand( int value ) {
+	public void setTotalLand( float value ) {
 		 totalLand = value;
 	}
 	
-	public void setSeededLand( int value ) {
+	public void setSeededLand( float value ) {
 		 seededLand = value;
 	}
 	
