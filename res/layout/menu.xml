@@ -19,55 +19,31 @@
         android:textSize="20dp" />
 
     <Button
+        style="@style/button.borderbutton"
         android:id="@+id/buttonJoinGame"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/buttonHeight"
-        android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:ems="12"
-        android:gravity="center"
-        android:background="@drawable/buttonbox"
-        android:text="Join Game"
-        android:textColor="#FFFFFF"
-        android:textSize="@dimen/buttonTextSize" />
+        android:text="Join Game" />
 
     <Button
+        style="@style/button.borderbutton"
         android:id="@+id/buttonPlayGame"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/buttonHeight"
-        android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:ems="12"
-        android:gravity="center"
-        android:background="@drawable/buttonbox"
-        android:text="Play Game"
-        android:textColor="#FFFFFF"
-        android:textSize="@dimen/buttonTextSize" />
+        android:text="Play Game" />
 
     <Button
+        style="@style/button.borderbutton"
         android:id="@+id/buttonAbout"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/buttonHeight"
-        android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:ems="12"
-        android:gravity="center"
-        android:background="@drawable/buttonbox"
-        android:text="About / Rules"
-        android:textColor="#FFFFFF"
-        android:textSize="@dimen/buttonTextSize" />
+        android:text="About / Rules" />
 
     <Button
+        style="@style/button.borderbutton"
         android:id="@+id/buttonLogOut"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/buttonHeight"
-        android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:ems="12"
-        android:gravity="center"
-        android:background="@drawable/buttonbox"
-        android:text="Log Out"
-        android:textColor="#FFFFFF"
-        android:textSize="@dimen/buttonTextSize" />
+        android:text="Log Out" />
 
 </LinearLayout>
