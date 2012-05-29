@@ -9,6 +9,8 @@
     <color name="header">#D2482A</color>
     <color name="subHeader">#D2482A</color>
     <color name="text">#000000</color>
+    <color name="textblack">#000000</color>
+    <color name="textwhite">#FFFFFF</color>
 
     <!-- secondary values -->
     <color name="primary_d">#559955</color>

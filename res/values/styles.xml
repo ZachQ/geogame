@@ -18,7 +18,7 @@
     
     <style name="button.borderbutton">
         <item name="android:background">@drawable/buttonbox</item>
-        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textColor">@color/textwhite</item>
     </style>
     
 </resources>
