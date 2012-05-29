@@ -10,7 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="140dip"
-        android:drawableTop="@drawable/logo3"
+        android:drawableTop="@drawable/logo4"
         android:gravity="center"
         android:shadowColor="#000000"
         android:shadowDx="2"
