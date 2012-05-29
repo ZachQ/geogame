@@ -21,16 +21,12 @@
         android:textSize="1dp" />
 
     <Button
+        style="@style/button.borderbutton"
         android:id="@+id/buttonStart"
-        android:layout_width="300dp"
-        android:layout_height="@dimen/buttonHeight"
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="120dp"
-        android:background="@drawable/buttonbox"
         android:text="Start"
-        android:textSize="30dp"
-        android:textColor="#FFFFFF"
         />
 
 </RelativeLayout>
