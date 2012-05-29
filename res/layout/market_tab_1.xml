@@ -50,7 +50,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/seedlr" />
+                        android:src="@drawable/seedlr" 
+                        android:background="@drawable/squarebutton"/>
 
                     <TextView
                         android:id="@+id/textView2"
@@ -74,7 +75,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/fertilizer" />
+                        android:src="@drawable/fertilizer" 
+                        android:background="@drawable/squarebutton"/>
 
                     <TextView
                         android:id="@+id/textView2"
@@ -105,7 +107,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/seedhyc" />
+                        android:src="@drawable/seedhyc" 
+                        android:background="@drawable/squarebutton"/>
 
                     <TextView
                         android:id="@+id/textView2"
@@ -128,7 +131,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/water" />
+                        android:src="@drawable/water" 
+                        android:background="@drawable/squarebutton"/>
 
                     <TextView
                         android:id="@+id/textView2"
