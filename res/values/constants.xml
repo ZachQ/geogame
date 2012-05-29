@@ -6,7 +6,7 @@
     <dimen name="header">30dp</dimen>
     <dimen name="text">20dp</dimen>
     <dimen name="buttonHeight">60dp</dimen>
-    <dimen name="buttonTextSize">20dp</dimen>
+    <dimen name="buttonTextSize">30dp</dimen>
     <dimen name="titleMargin">20dp</dimen>
     <dimen name="corner">5dp</dimen>
 
