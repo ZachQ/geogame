@@ -46,7 +46,7 @@ public class MarketTabActivity extends Activity {
 	private ImageButton seedLR, seedHYC, grainLR, grainHYC, fertilizer, water, ox, labor;
 	
 	private Handler mHandler;
-	SimpleAdapter adapter;
+	private SimpleAdapter adapter;
 	private Vector<HashMap<String, String>> data;
 		
 	private Context myContext;
@@ -206,15 +206,14 @@ public class MarketTabActivity extends Activity {
 	
 	public class PopulateAuctionList extends Thread {
 		public void run() {
-			// Clear existing data
-			data.clear();
-			
 			RestClient client = new RestClient(GeoGame.URL_MARKET + "Get/" + GeoGame.currentGameId + "/seller");
 			client.addCookie(GeoGame.sessionCookie);
 			JSONObject j;
 			JSONArray a;
 			try {
 				client.Execute(RequestMethod.POST);
+				// Clear existing data
+				data.clear();
 			} catch (Exception e) {} finally {
 				try {
 					j = new JSONObject(client.getResponse());
@@ -238,15 +237,16 @@ public class MarketTabActivity extends Activity {
 						// Complete = notify
 						mHandler.post(showUpdatedList);
 					}
-				} catch (Exception e) {}
+				}
+				catch (Exception e) {}
 			}
-			// Update the new data
-			adapter.notifyDataSetChanged();
 		}
 	}
 	
 	private Runnable showUpdatedList = new Runnable(){
         public void run(){
+        	// Update the new data
+			adapter.notifyDataSetChanged();
         	// Add listeners
         	buyAuctionView.setTextFilterEnabled(true);
         	buyAuctionView.setOnItemClickListener(new OnItemClickListener() {
