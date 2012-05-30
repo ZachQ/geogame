@@ -18,7 +18,6 @@ public class HomeTabActivity extends Activity {
 	TextView name, money, adults, labor, seedLR, seedHYC, fertilizer, water, grainLR, grainHYC, oxen, 
 			timerTV, turnTV;
 	private Handler mHandler;
-	private RestClient gameTimeUpdater;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +41,13 @@ public class HomeTabActivity extends Activity {
 		
 		// Get the game data, then update the home display
 		mHandler = new Handler();
-		//Thread update = new updateThread();
-		//update.start();
+		
 	}
 
 	public class updateThread extends Thread {
 		@Override
 		public void run() {
+			// Setup the REST clients for each item needed
 			RestClient g_client = new RestClient(GeoGame.URL_GAME + "Dash/" + GeoGame.currentGameId);
 			RestClient m_client = new RestClient(GeoGame.URL_MARKET + "myBank/" + GeoGame.currentGameId);
 			RestClient cost_client = new RestClient(GeoGame.URL_MARKET + "Get/" + GeoGame.currentGameId + "/bank");
@@ -57,7 +56,8 @@ public class HomeTabActivity extends Activity {
 			m_client.addCookie(GeoGame.sessionCookie);
 			cost_client.addCookie(GeoGame.sessionCookie);
 			game_time.addCookie(GeoGame.sessionCookie);
-			gameTimeUpdater = game_time;
+			
+			// Attempt to get the JSON objects from the server
 			try {
 				g_client.Execute(RequestMethod.POST);
 				m_client.Execute(RequestMethod.POST);
@@ -107,8 +107,6 @@ public class HomeTabActivity extends Activity {
 					
 					// Do the actual screen update
 					mHandler.post(showUpdate);
-					mHandler.removeCallbacks(updateTime);
-			        mHandler.postDelayed(updateTime, 1000);
 
 					
 					// Store the prices
@@ -127,7 +125,7 @@ public class HomeTabActivity extends Activity {
 	
 	private Runnable showUpdate = new Runnable(){
         public void run(){
-			// Update
+			// Update the screen
 			name.setText(GeoGame.familyName + " Family");
 			money.setText("$" + GeoGame.money);
 			adults.setText(GeoGame.adults);
@@ -144,50 +142,11 @@ public class HomeTabActivity extends Activity {
         }
     };
     
-    /**
-     * This is used to update the timer in real time without updating the entire page
-     * to see the current time left in game.
-     */
-    private Runnable updateTime = new Runnable(){
-    	public void run(){
-    		String time;
-    		timerTV.setText("Time left: "+GeoGame.timer);
-    		try {
-    			Log.d("UPDATE TIME","UPDATE TIME");
-				gameTimeUpdater.Execute(RequestMethod.POST);
-				JSONObject j;
-				j = new JSONObject(gameTimeUpdater.getResponse());
-				time = j.getString("timer");
-				
-				String timeReadable = convertTime(time);
-				
-				GeoGame.timer = timeReadable;
-			} catch (Exception e) {
-				Log.i("gameTimeUpdater","Failed to POST");
-			} 
-    		/*
-    		finally {
-				JSONObject j;
-				try {
-					j = new JSONObject(gameTimeUpdater.getResponse());
-					time = j.getString("timer");
-					
-					String timeReadable = convertTime(time);
-					
-					GeoGame.timer = timeReadable;
-					
-				} catch (JSONException e) {
-				}
-				
-			}*/
-    		mHandler.postAtTime(showUpdate, 1000);
-    	}
-    };
-    
+   
     @Override
     protected void onResume() {
     	// Update the home page every time the user looks at it
-    	// From server
+    	// from server
     	super.onResume();
     	Thread update = new updateThread();
 		update.start();
@@ -200,10 +159,18 @@ public class HomeTabActivity extends Activity {
 		window.setFormat(PixelFormat.RGBA_8888);
 	}
 	
+	
+	
+	@Override
+	protected void onPause() {
+		
+		super.onPause();
+	}
+
 	/**
 	 * This method converts the miliseconds into readable format
 	 * @param time
-	 * @return
+	 * @return time in ##:##:## format
 	 */
 	private String convertTime(String time) {
 		String result = "00:00:00";
