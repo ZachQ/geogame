@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/back"
+    android:background="@color/ghostwhite"
     android:gravity="center"
     android:orientation="vertical" >
 
@@ -13,6 +13,7 @@
     			android:orientation="vertical"
     			>    
             <Button
+                style="@style/button.borderbuttonred"
            		android:id="@+id/create_post"
             	android:layout_width="fill_parent"
             	android:layout_height="wrap_content"
@@ -36,7 +37,7 @@
                 android:layout_weight="1.0"
                 android:divider="#222222"
                 android:dividerHeight="1dp"
-                android:textColor="#444444"
+                android:textColor="@color/textred"
                 android:textSize="10dp"
              />     
              <TextView

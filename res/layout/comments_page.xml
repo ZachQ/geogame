@@ -2,21 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/back"
+    android:background="@color/ghostwhite"
     android:orientation="vertical" >
 
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@drawable/back"
+        android:background="@color/ghostwhite"
         android:orientation="vertical"
         android:id="@+id/forum_scroll" >
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@drawable/back"
+            android:background="@color/ghostwhite"
             android:orientation="vertical" >
 
             <ListView
@@ -27,14 +27,16 @@
                 android:layout_weight="1.0"
                 android:divider="#222222"
                 android:dividerHeight="1dp"
-                android:textColor="#444444"
+                android:textColor="@color/textred"
                 android:textSize="10dp" />
             <TextView
                 android:id="@android:id/empty"
                 android:layout_width="fill_parent"
                 android:layout_height="20dp"
-                android:text="@string/No_threads" />
+                android:text="@string/No_threads"
+                android:textColor="@color/aboutcolor" />
             <Button
+                style="@style/button.borderbuttonred"
            		 android:id="@+id/create_comment"
             	android:layout_width="fill_parent"
             	android:layout_height="wrap_content"

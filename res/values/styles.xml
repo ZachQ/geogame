@@ -32,5 +32,9 @@
 	    <item android:drawable="@drawable/button_normal" />
 	</selector> 
      -->
+    <style name="button.borderbuttonred">
+        <item name="android:background">@drawable/buttonboxred</item>
+        <item name="android:textColor">@color/textred</item>
+    </style>
     
 </resources>

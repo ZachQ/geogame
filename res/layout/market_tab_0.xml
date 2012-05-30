@@ -8,7 +8,7 @@
 	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
-	    android:background="@drawable/back"
+	    android:background="@color/ghostwhite"
 	    android:padding="10dp" >
 	
 	    <TextView
@@ -50,7 +50,7 @@
 	                    android:layout_height="wrap_content"
 	                    android:layout_gravity="center"
 	                    android:src="@drawable/seedlr" 
-	                    android:background="@drawable/squarebutton"/>
+	                    android:background="@drawable/squarebuttonred"/>
 	
 	                <TextView
 	                    android:id="@+id/textView2"
@@ -59,7 +59,8 @@
 	                    android:layout_gravity="center"
 	                    android:gravity="center"
 	                    android:text="GrainLR"
-	                    android:textSize="20dp" />
+	                    android:textSize="20dp" 
+	                    android:textColor="@color/olivedrab"/>
 	            </LinearLayout>
 	
 	            <LinearLayout
@@ -75,7 +76,7 @@
 	                    android:layout_height="wrap_content"
 	                    android:layout_gravity="center"
 	                    android:src="@drawable/ox" 
-	                    android:background="@drawable/squarebutton"/>
+	                    android:background="@drawable/squarebuttonred"/>
 	
 	                <TextView
 	                    android:id="@+id/textView2"
@@ -83,7 +84,8 @@
 	                    android:layout_height="wrap_content"
 	                    android:layout_gravity="center"
 	                    android:text="Ox"
-	                    android:textSize="20dp" />
+	                    android:textSize="20dp" 
+	                    android:textColor="@color/olivedrab"/>
 	            </LinearLayout>
 	        </LinearLayout>
 	
@@ -107,7 +109,7 @@
 	                    android:layout_height="wrap_content"
 	                    android:layout_gravity="center"
 	                    android:src="@drawable/seedhyc" 
-	                    android:background="@drawable/squarebutton"/>
+	                    android:background="@drawable/squarebuttonred"/>
 	
 	                <TextView
 	                    android:id="@+id/textView2"
@@ -115,7 +117,8 @@
 	                    android:layout_height="wrap_content"
 	                    android:layout_gravity="center"
 	                    android:text="GrainHYC"
-	                    android:textSize="20dp" />
+	                    android:textSize="20dp" 
+	                    android:textColor="@color/olivedrab"/>
 	            </LinearLayout>
 	
 	            <LinearLayout
@@ -130,7 +133,7 @@
 	                    android:layout_width="wrap_content"
 	                    android:layout_height="wrap_content"
 	                    android:src="@drawable/adultmale" 
-	                    android:background="@drawable/squarebutton"/>
+	                    android:background="@drawable/squarebuttonred"/>
 	
 	                <TextView
 	                    android:id="@+id/textView2"
@@ -138,7 +141,8 @@
 	                    android:layout_height="wrap_content"
 	                    android:layout_gravity="center"
 	                    android:text="Labor"
-	                    android:textSize="20dp" />
+	                    android:textSize="20dp" 
+	                    android:textColor="@color/olivedrab"/>
 	            </LinearLayout>
 	        </LinearLayout>
 	    </LinearLayout>
@@ -150,7 +154,8 @@
 	        android:layout_alignParentRight="true"
 	        android:layout_centerVertical="true"
 	        android:text=">"
-	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	        android:textAppearance="?android:attr/textAppearanceLarge" 
+	        android:textColor="@color/title"/>
 	    
 	</RelativeLayout>
 </ScrollView>
