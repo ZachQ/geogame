@@ -9,7 +9,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/back"
+    android:background="@color/ghostwhite"
     android:padding="10dp" >
 
     <TextView
@@ -21,7 +21,7 @@
         android:gravity="center"
         android:text="Turn 1"
         android:textColor="@color/title"
-        android:textSize="25dp"
+        android:textSize="@dimen/titleTextSize"
 	/>
         
        <TableLayout
@@ -44,7 +44,8 @@
                 	android:layout_height="wrap_content"
                 	android:text="1.Fate Card"
                 	android:textStyle="bold"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
+                	android:textColor="@color/aboutcolor"
                 />
                 
                 <TextView
@@ -52,7 +53,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
                 
@@ -69,7 +70,8 @@
                 	android:layout_height="wrap_content"
                 	android:text="2.Land and Labor"
                 	android:textStyle="bold"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
+                	android:textColor="@color/aboutcolor"
                 />
             </TableRow>
             
@@ -83,7 +85,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text="   a.Savings from previous year"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -91,7 +93,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -106,7 +108,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text="   b.Number of adults"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -114,7 +116,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -129,7 +131,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text="   c.Number of children"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -137,7 +139,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -152,7 +154,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text="   d.Total consumption"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -160,7 +162,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -175,7 +177,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text="   e.Total land"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -183,7 +185,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -197,8 +199,8 @@
                 	android:id="@+id/total_seeded_land_header"
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
-                	android:text="f.Total seeded land"
-                	android:textSize="12dp"
+                	android:text="   f.Total seeded land"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -206,7 +208,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -222,7 +224,8 @@
                 	android:layout_height="wrap_content"
                 	android:text="3.Weather"
                 	android:textStyle="bold"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
+                	android:textColor="@color/aboutcolor"
                 />
                 
                 <TextView
@@ -231,7 +234,7 @@
                 	android:layout_height="wrap_content"
                 	android:text=""
                 	android:textStyle="bold"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
                 
@@ -249,7 +252,8 @@
                 	android:layout_height="wrap_content"
                 	android:text="4.Wheat Price"
                 	android:textStyle="bold"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
+                	android:textColor="@color/aboutcolor"
                 />
                 
                 <TextView
@@ -258,7 +262,7 @@
                 	android:layout_height="wrap_content"
                 	android:text=""
                 	android:textStyle="bold"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -274,7 +278,8 @@
                 	android:layout_height="wrap_content"
                 	android:text="5.Yield"
                 	android:textStyle="bold"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
+                	android:textColor="@color/aboutcolor"
                 />
             </TableRow>
             
@@ -288,7 +293,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text="   a.LR Yield (bushels)"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -296,7 +301,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -311,7 +316,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text="   b.HYC Yield (bushels)"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -319,7 +324,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -333,8 +338,8 @@
                 	android:id="@+id/total_yield_header"
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
-                	android:text="   b.Total Yield"
-                	android:textSize="12dp"
+                	android:text="   c.Total Yield"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -342,7 +347,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -357,7 +362,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text="   d.Total Yield - Consumption"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -365,7 +370,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -381,7 +386,8 @@
                 	android:layout_height="wrap_content"
                 	android:text="6.Income"
                 	android:textStyle="bold"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
+                	android:textColor="@color/aboutcolor"
                 />
             </TableRow>
             
@@ -395,7 +401,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text="   a.Wheat Crops"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -403,7 +409,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -418,7 +424,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text="   b.Labour Wages"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -426,7 +432,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -441,7 +447,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text="   c.Asset Trade"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -449,7 +455,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -464,7 +470,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text="   d.Total Income"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -472,7 +478,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -488,7 +494,8 @@
                 	android:layout_height="wrap_content"
                 	android:text="7.Costs"
                 	android:textStyle="bold"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
+                	android:textColor="@color/aboutcolor"
                 />
             </TableRow>
             
@@ -502,7 +509,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text="   a.Seeds"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -510,7 +517,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -525,7 +532,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text="   b.Fertilizers"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -533,7 +540,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -548,7 +555,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text="   c.Water"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -556,7 +563,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -571,7 +578,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text="   d.Labour"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -579,7 +586,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -594,7 +601,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text="   e.Oxen"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -602,7 +609,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -617,7 +624,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text="   f.Land"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -625,7 +632,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -640,7 +647,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text="   g.Total Costs"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 />
                 
                 <TextView
@@ -648,7 +655,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
                 />
             </TableRow>
@@ -664,7 +671,8 @@
                 	android:layout_height="wrap_content"
                 	android:text="Balance"
                 	android:textStyle="bold"
-                	android:textSize="12dp"
+                	android:textSize="14dp"
+                	android:textColor="@color/aboutcolor"
                 />
                 
                 <TextView
@@ -672,8 +680,9 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:text=""
-                	android:textSize="12dp"
+                	android:textSize="14dp"
                 	android:layout_gravity="right"
+                	android:textColor="@color/aboutcolor"
                 />
             </TableRow>
 			

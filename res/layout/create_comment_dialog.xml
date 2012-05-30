@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/back"
+    android:background="@color/ghostwhite"
     android:orientation="vertical" >
   	
   	<TextView
@@ -11,6 +11,7 @@
   		android:layout_width="fill_parent"
   		android:gravity="top|left"
   		android:text="Message"
+  		android:textColor="@color/aboutcolor"
   	/>
   	
   	<EditText
@@ -22,6 +23,7 @@
   	/>
   	
   	<Button
+  	    style="@style/button.borderbuttonred"
   		android:id="@+id/cancel_message"
   		android:layout_height="wrap_content"
   		android:layout_width="150dp"
@@ -31,6 +33,7 @@
   	/>
   	
   	<Button
+  	    style="@style/button.borderbuttonred"
   		android:id="@+id/create_message"
   		android:layout_height="wrap_content"
   		android:layout_width="150dp"

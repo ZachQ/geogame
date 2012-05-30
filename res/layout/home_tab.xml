@@ -9,14 +9,14 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@drawable/back"
+        android:background="@color/ghostwhite"
         android:orientation="vertical"
         android:padding="10dp" >
 	<LinearLayout
 	    xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@drawable/back"
+        android:background="@color/ghostwhite"
         android:orientation="horizontal" 
         android:weightSum="100">
         <TextView
@@ -66,7 +66,8 @@
             android:layout_marginTop="100dp"
             android:text="Status"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="30dp" />
+            android:textSize="30dp" 
+            android:textColor="@color/olivedrab"/>
 
         <TableLayout
             android:layout_width="fill_parent"
@@ -85,14 +86,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Money"
-                    android:textSize="@dimen/tableTextSize" />
+                    android:textSize="@dimen/tableTextSize" 
+                    android:textColor="@color/aboutcolor"/>
 
                 <TextView
                     android:id="@+id/textViewMoney"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="$0"
-                    android:textSize="@dimen/tableTextSize" />
+                    android:textSize="@dimen/tableTextSize" 
+                    android:textColor="@color/aboutcolor"/>
             </TableRow>
 
             <TableRow
@@ -105,14 +108,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Adults"
-                    android:textSize="@dimen/tableTextSize" />
+                    android:textSize="@dimen/tableTextSize" 
+                    android:textColor="@color/aboutcolor"/>
 
                 <TextView
                     android:id="@+id/textViewAdults"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textSize="@dimen/tableTextSize" />
+                    android:textSize="@dimen/tableTextSize" 
+                    android:textColor="@color/aboutcolor"/>
             </TableRow>
 
             <TableRow
@@ -125,19 +130,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Labor"
-                    android:textSize="@dimen/tableTextSize" />
+                    android:textSize="@dimen/tableTextSize" 
+                    android:textColor="@color/aboutcolor"/>
 
                 <TextView
                     android:id="@+id/textViewLabor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textSize="@dimen/tableTextSize" />
+                    android:textSize="@dimen/tableTextSize" 
+                    android:textColor="@color/aboutcolor"/>
             </TableRow>
 
             <View
                 android:layout_height="2dip"
-                android:background="#FFFFFF" />
+                android:background="@color/olivedrab" />
 
             <TableRow
                 android:id="@+id/tableRow4"
@@ -149,14 +156,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="SeedLR"
-                    android:textSize="@dimen/tableTextSize" />
+                    android:textSize="@dimen/tableTextSize" 
+                    android:textColor="@color/aboutcolor" />
 
                 <TextView
                     android:id="@+id/textViewSeedLR"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textSize="@dimen/tableTextSize" />
+                    android:textSize="@dimen/tableTextSize" 
+                    android:textColor="@color/aboutcolor" />
             </TableRow>
 
             <TableRow
@@ -169,14 +178,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="SeedHYC"
-                    android:textSize="@dimen/tableTextSize" />
+                    android:textSize="@dimen/tableTextSize"
+                    android:textColor="@color/aboutcolor" />
 
                 <TextView
                     android:id="@+id/textViewSeedHYC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textSize="@dimen/tableTextSize" />
+                    android:textSize="@dimen/tableTextSize"
+                    android:textColor="@color/aboutcolor" />
             </TableRow>
 
             <TableRow
@@ -189,14 +200,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Fertilizer"
-                    android:textSize="@dimen/tableTextSize" />
+                    android:textSize="@dimen/tableTextSize"
+                    android:textColor="@color/aboutcolor" />
 
                 <TextView
                     android:id="@+id/textViewFertilizer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textSize="@dimen/tableTextSize" />
+                    android:textSize="@dimen/tableTextSize"
+                    android:textColor="@color/aboutcolor" />
             </TableRow>
 
             <TableRow
@@ -209,14 +222,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Water"
-                    android:textSize="@dimen/tableTextSize" />
+                    android:textSize="@dimen/tableTextSize"
+                    android:textColor="@color/aboutcolor" />
 
                 <TextView
                     android:id="@+id/textViewWater"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textSize="@dimen/tableTextSize" />
+                    android:textSize="@dimen/tableTextSize"
+                    android:textColor="@color/aboutcolor" />
             </TableRow>
 
             <TableRow
@@ -229,14 +244,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="GrainLR"
-                    android:textSize="@dimen/tableTextSize" />
+                    android:textSize="@dimen/tableTextSize"
+                    android:textColor="@color/aboutcolor" />
 
                 <TextView
                     android:id="@+id/textViewGrainLR"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textSize="@dimen/tableTextSize" />
+                    android:textSize="@dimen/tableTextSize"
+                    android:textColor="@color/aboutcolor" />
             </TableRow>
 
             <TableRow
@@ -249,14 +266,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="GrainHYC"
-                    android:textSize="@dimen/tableTextSize" />
+                    android:textSize="@dimen/tableTextSize"
+                    android:textColor="@color/aboutcolor" />
 
                 <TextView
                     android:id="@+id/textViewGrainHYC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textSize="@dimen/tableTextSize" />
+                    android:textSize="@dimen/tableTextSize"
+                    android:textColor="@color/aboutcolor" />
             </TableRow>
 
             <TableRow
@@ -269,14 +288,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Oxen"
-                    android:textSize="@dimen/tableTextSize" />
+                    android:textSize="@dimen/tableTextSize"
+                    android:textColor="@color/aboutcolor" />
 
                 <TextView
                     android:id="@+id/textViewOxen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textSize="@dimen/tableTextSize" />
+                    android:textSize="@dimen/tableTextSize"
+                    android:textColor="@color/aboutcolor" />
             </TableRow>
         </TableLayout>
     </RelativeLayout>

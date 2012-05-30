@@ -28,7 +28,7 @@ public class ScoreboardTabActivity extends Activity {
 	@Override
 	public void onCreate( Bundle savedInstanceState ) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.market_scroller_mech);
+		setContentView(R.layout.scoreboard_scroller_mech);
 		scoreboards = new ArrayList<ScoreboardDataContainer>();
 		populateScoreboards.run();		
 		vPager = (ViewPager) findViewById(R.id.viewpager);
