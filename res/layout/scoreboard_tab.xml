@@ -39,23 +39,26 @@
                 android:textSize="6dp" >
                 
                 <TextView
-                	android:id="@+id/fate_card_header"
+                	android:id="@+id/fate_card_header_value"
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
-                	android:text="1.Fate Card"
+                	android:text="1.Fate Card:"
                 	android:textStyle="bold"
                 	android:textSize="14dp"
                 	android:textColor="@color/aboutcolor"
                 />
                 
+                <!--
                 <TextView
                 	android:id="@+id/fate_card_value"
-                	android:layout_width="wrap_content"
+                	android:layout_width="fill_parent"
                 	android:layout_height="wrap_content"
                 	android:text=""
                 	android:textSize="14dp"
                 	android:layout_gravity="right"
+                	android:gravity="left"
                 />
+                -->
                 
             </TableRow>
             

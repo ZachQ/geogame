@@ -317,7 +317,7 @@ public class ScoreboardTabActivity extends Activity {
 		
 		TextView turn = (TextView) v.findViewById(R.id.turn);
 		
-		TextView fateCard = (TextView) v.findViewById(R.id.fate_card_value);
+		TextView fateCard = (TextView) v.findViewById(R.id.fate_card_header_value);
 		TextView savingsFromPreviousYear = (TextView) v.findViewById(R.id.savings_from_previous_year_value);
 		TextView numberOfAdults = (TextView) v.findViewById(R.id.number_of_adults_value);
 		TextView numberOfChildren = (TextView) v.findViewById(R.id.number_of_children_value);
@@ -346,7 +346,7 @@ public class ScoreboardTabActivity extends Activity {
 		
 		turn.setText("Turn " + Integer.toString(turnNumber));
 		
-		fateCard.setText(data.fateCard());
+		fateCard.setText("1.Fate Card   " + data.fateCard());
 		savingsFromPreviousYear.setText("$"+Integer.toString(data.savingsFromPreviousYear()));
 		numberOfAdults.setText(Integer.toString(data.adults()));
 		numberOfChildren.setText(Integer.toString(data.children()));
