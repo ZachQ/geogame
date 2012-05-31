@@ -62,10 +62,16 @@ public class Login extends Activity {
 						// Check for success
 						if (client.getResponseCode() == 302) {
 							// Store the login Cookie and UserName
-							if (client.getCookies().size() > 0)
+							Log.d("Login Response", client.getResponse());
+							
+							if (client.getCookies().size() > 0) {
 								GeoGame.sessionCookie = client.getCookies().get(0);
-							// Success
-							mHandler.post(Success);
+								// Success
+								mHandler.post(Success);
+							} else {
+								Log.d("Login error","No cookies");
+								mHandler.post(Error);
+							}
 						} else if (client.getResponseCode() == 200) {
 							// Failure
 							mHandler.post(Failure);
