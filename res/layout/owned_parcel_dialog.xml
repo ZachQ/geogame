@@ -83,7 +83,7 @@
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="0dp"
                 android:gravity="bottom"
-                android:text="Seed Type"
+                android:text="Fertilizer Level"
                 android:textSize="16dp" />
 
             <Spinner
@@ -113,7 +113,7 @@
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="0dp"
                 android:gravity="bottom"
-                android:text="Seed Type"
+                android:text="Irrigation Level"
                 android:textSize="16dp" />
 
             <Spinner
