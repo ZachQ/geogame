@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/back"
+    android:background="@color/ghostwhite"
     android:padding="10dp" >
 
     <TextView
@@ -50,7 +50,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Amount"
-                android:textSize="@dimen/tableTextSize" />
+                android:textSize="@dimen/tableTextSize"
+                android:textColor="@color/aboutcolor" />
 
             <TextView
                 android:id="@+id/market_amount"
@@ -59,6 +60,7 @@
                 android:layout_below="@+id/market_progressBar"
                 android:layout_centerHorizontal="true"
                 android:text="0"
+                android:textColor="@color/aboutcolor"
                 android:textSize="@dimen/tableTextSize" />
         </TableRow>
 
@@ -72,14 +74,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cost"
-                android:textSize="@dimen/tableTextSize" />
+                android:textSize="@dimen/tableTextSize"
+                android:textColor="@color/aboutcolor" />
 
             <TextView
                 android:id="@+id/market_cost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="$0"
-                android:textSize="@dimen/tableTextSize" />
+                android:textSize="@dimen/tableTextSize" 
+                android:textColor="@color/aboutcolor" />
 
         </TableRow>
     </TableLayout>
@@ -97,16 +101,19 @@
 	        android:id="@+id/radioBuy"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="Buy" />
+	        android:text="Buy"
+	        android:textColor="@color/textred" />
 	    <RadioButton
 	        android:id="@+id/radioSell"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="Sell" />
+	        android:text="Sell"
+	        android:textColor="@color/textred" />
 
 	</RadioGroup>
 
     <Button
+        style="@style/button.borderbuttonred"
         android:id="@+id/market_commitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
