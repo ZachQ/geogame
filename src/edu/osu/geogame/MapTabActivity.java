@@ -12,8 +12,10 @@ import com.esri.core.tasks.SpatialRelationship;
 import com.esri.core.tasks.ags.query.Query;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +31,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Toast;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import edu.osu.geogame.exception.ParcelNotFoundException;
@@ -56,6 +59,8 @@ public class MapTabActivity extends Activity implements OnClickListener {
 		plotOther = (TextView) findViewById(R.id.plot_price_or_plot_owner);
 		
 		buyPlot = (TextView) findViewById(R.id.purchase_land);
+		buyPlot.setOnClickListener(this);
+		buyPlot.setVisibility(View.GONE);
 
 		// MapThread mapThread = new MapThread();
 		// mapThread.run();
@@ -577,14 +582,58 @@ public class MapTabActivity extends Activity implements OnClickListener {
 	public void onClick(View view) {
 		switch( view.getId() ) {
 		case R.id.purchase_land:
+			Log.d("PURCHASING LAND","PURCHASING LAND");
 			RestClient client = new RestClient(GeoGame.URL_GAME + "India/" + GeoGame.currentGameId + "/BuyParcel/" +
 												Integer.toString(currentPlotId));
 			client.addCookie(GeoGame.sessionCookie);
+			Toast.makeText(this, "You purchased plot number " + Integer.toString(currentPlotId) + "!", Toast.LENGTH_SHORT);
+			JSONObject j = null;
 			try {
 				client.Execute(RequestMethod.POST);
+				JSONTokener tokenizer = new JSONTokener(client.getResponse());
+				tokenizer.nextTo(':');
+				tokenizer.next();
+				tokenizer.nextTo(':');
+				tokenizer.next();
+				tokenizer.nextTo(':');
+				tokenizer.next();
+				tokenizer.next();
+				String message = tokenizer.nextTo('.');
+				Log.d("message",message);
+				if( message.equals("You need more money to make this purchase") ) {
+					throw new Exception("You don't have enough money!");
+				}
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setMessage("You purchased plot number " + Integer.toString(currentPlotId) + "!")
+				       .setCancelable(false)
+				       .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+				           public void onClick(DialogInterface dialog, int id) {
+				                dialog.dismiss();
+				           }
+				       });
+				AlertDialog alert = builder.create();
+				alert.show();
 			} catch (Exception e) {
 				Toast.makeText(this, "Error purchasing the land", Toast.LENGTH_SHORT);
+				Log.d("But it didn't work","whoops");
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				if( e.getMessage().equals("You don't have enough money!") ) {
+					builder.setMessage("You don't have enough money!");
+				} else {
+					builder.setMessage("Error purchasing the land");
+				}
+				       builder.setCancelable(false)
+				       .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+				           public void onClick(DialogInterface dialog, int id) {
+				                dialog.dismiss();
+				           }
+				       });
+				AlertDialog alert = builder.create();
+				alert.show();
 			}
+			Log.d("Response",client.getResponse());
+			Log.d("Error", client.getErrorMessage());
+			
 		}
 	}
 
