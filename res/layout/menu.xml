@@ -18,10 +18,22 @@
         android:textColor="#FFFFFF"
         android:textSize="20dp" />
 
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        android:text="Welcome!"
+        android:textColor="@color/ghostwhite"
+        android:textSize="@dimen/titleTextSize" 
+        />
     <Button
         style="@style/button.borderbutton"
         android:id="@+id/buttonJoinGame"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:ems="12"
         android:text="Join Game" />
 

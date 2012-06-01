@@ -2,24 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+     >
 
     <TextView
         android:id="@+id/plot_id"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:text="" 
+        android:background="@color/ghostwhite" />
 
     <TextView
         android:id="@+id/plot_area"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/textred"
+        android:background="@color/ghostwhite" 
         android:text="Area:" />
 
     <TextView
         android:id="@+id/plot_price_or_plot_owner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/textred"
+        android:background="@color/ghostwhite" 
         android:text="Price:" />
 
     <com.esri.android.map.MapView
