@@ -2,31 +2,64 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" 
-     >
+    android:orientation="vertical"
+    android:background="@color/ghostwhite" >
 
-    <TextView
-        android:id="@+id/plot_id"
+    <TableLayout
+        android:id="@+id/scoreboard_table"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="" 
-        android:background="@color/ghostwhite" />
+        android:stretchColumns="0" >
 
-    <TextView
-        android:id="@+id/plot_area"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/textred"
-        android:background="@color/ghostwhite" 
-        android:text="Area:" />
+        <TableRow
+            android:id="@+id/fate_card_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="6dp" >
 
-    <TextView
-        android:id="@+id/plot_price_or_plot_owner"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/textred"
-        android:background="@color/ghostwhite" 
-        android:text="Price:" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/plot_id"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/ghostwhite"
+                    android:text=""
+                    android:textColor="@color/textred" />
+
+                <TextView
+                    android:id="@+id/plot_area"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/ghostwhite"
+                    android:text="Area:"
+                    android:textColor="@color/textred" />
+
+                <TextView
+                    android:id="@+id/plot_price_or_plot_owner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/ghostwhite"
+                    android:text="Price:"
+                    android:textColor="@color/textred" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/purchase_land"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="bottom|center"
+                android:gravity="bottom|center"
+                android:text="Buy!"
+                android:ems="12"
+                android:background="@color/ghostwhite"
+                android:textColor="@color/textred"
+                android:textSize="@dimen/titleTextSize" />
+        </TableRow>
+    </TableLayout>
 
     <com.esri.android.map.MapView
         xmlns:android="http://schemas.android.com/apk/res/android"
