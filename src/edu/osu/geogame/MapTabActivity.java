@@ -26,13 +26,14 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONTokener;
 
 import edu.osu.geogame.exception.ParcelNotFoundException;
 
-public class MapTabActivity extends Activity {
+public class MapTabActivity extends Activity implements OnClickListener {
 
 	private MapView mapView;
 	private Point pointClicked;
@@ -40,6 +41,8 @@ public class MapTabActivity extends Activity {
 	private TextView plotId;
 	private TextView plotArea;
 	private TextView plotOther;
+	private TextView buyPlot;
+	private int currentPlotId;
 	private static String id = "";
 
 	@Override
@@ -51,6 +54,8 @@ public class MapTabActivity extends Activity {
 		plotId = (TextView) findViewById(R.id.plot_id);
 		plotArea = (TextView) findViewById(R.id.plot_area);
 		plotOther = (TextView) findViewById(R.id.plot_price_or_plot_owner);
+		
+		buyPlot = (TextView) findViewById(R.id.purchase_land);
 
 		// MapThread mapThread = new MapThread();
 		// mapThread.run();
@@ -462,9 +467,12 @@ public class MapTabActivity extends Activity {
 	private void setUIWithPacket(ParcelPacket packet) {
 		if (packet.parecelType() == ParcelType.FOR_SALE) {
 			plotId.setText("Plot ID: " + packet.plotID());
+			currentPlotId = packet.plotID();
+			buyPlot.setVisibility(View.VISIBLE);
 			plotArea.setText("Plot Area: " + packet.area());
 			plotOther.setText("Price:  $" + packet.price());
 		} else if (packet.parecelType() == ParcelType.OWNED_BY_USER) {
+			buyPlot.setVisibility(View.GONE);
 			plotId.setText("");
 			plotArea.setText("");
 			plotOther.setText("");
@@ -474,6 +482,7 @@ public class MapTabActivity extends Activity {
 			dialog.show();
 
 		} else {
+			buyPlot.setVisibility(View.GONE);
 			plotId.setText("Plot ID: " + packet.plotID());
 			plotArea.setText("Plot Area: " + packet.area());
 			plotOther.setText("Owner: " + packet.opponentOwner());
@@ -564,8 +573,21 @@ public class MapTabActivity extends Activity {
 		return parcelPacket;
 	}
 
-	private void sendActionRequestion() {
-
+	@Override
+	public void onClick(View view) {
+		switch( view.getId() ) {
+		case R.id.purchase_land:
+			RestClient client = new RestClient(GeoGame.URL_GAME + "India/" + GeoGame.currentGameId + "/BuyParcel/" +
+												Integer.toString(currentPlotId));
+			client.addCookie(GeoGame.sessionCookie);
+			try {
+				client.Execute(RequestMethod.POST);
+			} catch (Exception e) {
+				Toast.makeText(this, "Error purchasing the land", Toast.LENGTH_SHORT);
+			}
+		}
 	}
+
+	
 
 }
