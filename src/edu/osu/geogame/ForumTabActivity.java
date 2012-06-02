@@ -39,18 +39,44 @@ import org.json.JSONTokener;
 
 import edu.osu.geogame.exception.NoThreadsExistException;
 
+/**
+ * This is the Forum tab.  Posts are displayed and, if clicked, their comments are displayed (CommentPageActivity
+ *  handles this task).  Posts can be created by clicking the Create Post button; CreatePostDialog (defined in this
+ *  class) handles this task.
+ *
+ */
 public class ForumTabActivity extends ListActivity implements OnClickListener {
-	private Handler mHandler;
+	
+	/*
+	 * 
+	 */
 	private MyForumAdapter<ForumThreadTuple> threadAdapter;
+	
+	/*
+	 * 
+	 */
 	private Map<Integer,ForumThreadTuple> forumContent;
 	
+	/*
+	 * 
+	 */
 	private ArrayList<Integer> auxilaryIds;
+	
+	/*
+	 * 
+	 */
 	private ArrayList<ForumThreadTuple> auxilaryData;
 	
+	/*
+	 * 
+	 */
 	private Context forumContext;
 	
 
 	
+	/**
+	 * 
+	 */
 	@Override
 	public void onCreate( Bundle savedInstanceState ) {
 		super.onCreate(savedInstanceState);
@@ -62,7 +88,6 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 	    forumContext = this;
 	    threadAdapter = new MyForumAdapter<ForumThreadTuple>(forumContext,R.layout.forum_row,R.id.threadInfo);
 		// get the list of games
-		mHandler = new Handler();
 		populateList.run();
 		
 		Iterator<Integer> forumIt = forumContent.keySet().iterator();
@@ -84,8 +109,13 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 		showThreads.run();
 	}
 	
-	
+	/*
+	 * 
+	 */
 	private Thread populateList = new Thread() {
+		/**
+		 * 
+		 */
 		public void run() {
 			RestClient client = new RestClient(GeoGame.URL_FORUM + "Get/Threads/"
 					+ GeoGame.currentGameId);
@@ -104,7 +134,13 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 		}
 	};
 	
+	/*
+	 * 
+	 */
 	private Runnable showThreads = new Runnable(){
+		/**
+		 * 
+		 */
         public void run(){
         	setListAdapter(threadAdapter);
         	
@@ -130,6 +166,9 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 	};
 	
 	
+	/**
+	 * 
+	 */
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -153,8 +192,7 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 		
 	}
 	
-	/*
-	 * (non-Javadoc)
+	/**
 	 * This will change the color format of the Activity so that
 	 * the background gradient will be very smooth.  Without this
 	 * it has noticeable color-stepping.
@@ -166,6 +204,10 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 		window.setFormat(PixelFormat.RGBA_8888);
 	}
 	
+	/**
+	 * 
+	 * @param json
+	 */
 	private void parseThreadResponse( String json ) {
 		JSONTokener tokenizer = new JSONTokener(json);
 		Log.d("JSON",json);
@@ -233,13 +275,26 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 	}
 	
 	
-	
+	/**
+	 * 
+	 *
+	 * @param <ForumThreadTuple>
+	 */
 	private class MyForumAdapter<ForumThreadTuple> extends ArrayAdapter<ForumThreadTuple> {
 
+		/**
+		 * 
+		 * @param context
+		 * @param resource
+		 * @param textViewResourceId
+		 */
 		public MyForumAdapter(Context context, int resource, int textViewResourceId) {
 			super(context, resource, textViewResourceId);
 		}
 		
+		/**
+		 * 
+		 */
 		public View getView (int position, View convertView, ViewGroup parent) {
 			View v = convertView;
 			LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -251,8 +306,10 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 		
 	}
 
-
-
+	
+	/**
+	 * 
+	 */
 	@Override
 	public void onClick(View v) {
 		Log.d("Forum_Click","Forum_Click");
@@ -265,19 +322,41 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 		}
 	}
 	
-	
-	
-	
-	
-	
+	/**
+	 * 
+	 *
+	 */
 	private class CreatePostDialog extends Dialog implements OnClickListener {
 
+		/*
+		 * 
+		 */
 		private EditText title;
+		
+		/*
+		 * 
+		 */
 		private EditText message;
+		
+		/*
+		 * 
+		 */
 		private Button create;
+		
+		/*
+		 * 
+		 */
 		private Button cancel;
+		
+		/*
+		 * 
+		 */
 		private Context parentContext;
 		
+		/**
+		 * 
+		 * @param context
+		 */
 		public CreatePostDialog(Context context) {
 			super(context);
 			parentContext = context;
@@ -294,6 +373,9 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 			
 		}
 
+		/**
+		 * 
+		 */
 		@Override
 		public void onClick(View v) {
 			switch( v.getId() ) {
@@ -307,7 +389,12 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 			}
 		}
 		
-		
+		/**
+		 * 
+		 * @param title
+		 * @param message
+		 * @return
+		 */
 		private boolean publishPost( String title, String message ) {
 			try {
 			RestClient client = new RestClient(GeoGame.URL_FORUM+"New/Thread/"+GeoGame.currentGameId);
@@ -328,10 +415,6 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 		}
 		
 	}
-
-
-
-	
 	
 	
 	
