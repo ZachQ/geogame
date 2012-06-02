@@ -223,6 +223,12 @@ public class CommentPageActivity extends ListActivity implements OnClickListener
 	 */
 	private class MyCommentAdapter<CommentThreadTuple> extends ArrayAdapter<CommentThreadTuple> {
 
+		/**
+		 * 
+		 * @param context
+		 * @param resource
+		 * @param textViewResourceId
+		 */
 		public MyCommentAdapter(Context context, int resource,
 				int textViewResourceId) {
 			super(context, resource, textViewResourceId);
@@ -255,7 +261,7 @@ public class CommentPageActivity extends ListActivity implements OnClickListener
 		
 		/**
 		 * Set the dialog interface and listeners
-		 * @param context  the parent View (that of CommentPageActivity) will need to be given
+		 * @param context  the parent context (that of CommentPageActivity) will need to be given
 		 */
 		public CreateCommentDialog(Context context) {
 			super(context);
