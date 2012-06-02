@@ -11,7 +11,10 @@ import android.os.Handler;
 import android.view.Window;
 import android.widget.TabHost;
 
-
+/**
+ * This is the game screen.  It hosts 5 tabs (see below) 
+ *
+ */
 public class GameActivity extends TabActivity {
 
 	private TabHost tabs;
