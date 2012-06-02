@@ -97,7 +97,7 @@ public class CommentThreadTuple {
 	}
 	
 	/**
-	 * Used by CommentPageActivity to display this comment on UI
+	 * Used by CommentPageActivity to display this comment on the UI
 	 */
 	public String toString() {
 		return family() + ": " + message() + "\n" + timestamp(); 

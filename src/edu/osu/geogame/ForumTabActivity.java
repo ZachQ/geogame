@@ -48,34 +48,33 @@ import edu.osu.geogame.exception.NoThreadsExistException;
 public class ForumTabActivity extends ListActivity implements OnClickListener {
 	
 	/*
-	 * 
+	 * This adapter is passed in threads (posts) retrieved from the server, and in turn passes
+	 * these to the ListView of this activity's UI.
 	 */
 	private MyForumAdapter<ForumThreadTuple> threadAdapter;
 	
 	/*
-	 * 
+	 * Maps thread ids to thread content
 	 */
 	private Map<Integer,ForumThreadTuple> forumContent;
 	
 	/*
-	 * 
+	 * It's necessary to have the following linear and indexable 
+	 * structures in order to correctly display the UI.
 	 */
 	private ArrayList<Integer> auxilaryIds;
-	
-	/*
-	 * 
-	 */
 	private ArrayList<ForumThreadTuple> auxilaryData;
 	
 	/*
-	 * 
+	 * The context of this activity
 	 */
 	private Context forumContext;
 	
 
 	
 	/**
-	 * 
+	 * Set the UI; create the adapter; gather the threads from the server; create auxiliary structures;
+	 * set listeners; display the posts
 	 */
 	@Override
 	public void onCreate( Bundle savedInstanceState ) {
@@ -87,7 +86,7 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 	    auxilaryIds = new ArrayList<Integer>();
 	    forumContext = this;
 	    threadAdapter = new MyForumAdapter<ForumThreadTuple>(forumContext,R.layout.forum_row,R.id.threadInfo);
-		// get the list of games
+		// get the threads
 		populateList.run();
 		
 		Iterator<Integer> forumIt = forumContent.keySet().iterator();
@@ -102,19 +101,15 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 		Button createPostButton = (Button) findViewById(R.id.create_post);
 		createPostButton.setOnClickListener(this);
 		
-		//submitPostButton.setVisibility(View.GONE);
-		
-		//cancelPostButton.setVisibility(View.GONE);
-		
 		showThreads.run();
 	}
 	
 	/*
-	 * 
+	 * In this separate thread, collect the threads (posts) from the server and feed them to the adapter
 	 */
 	private Thread populateList = new Thread() {
 		/**
-		 * 
+		 * Run the thread
 		 */
 		public void run() {
 			RestClient client = new RestClient(GeoGame.URL_FORUM + "Get/Threads/"
@@ -135,11 +130,11 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 	};
 	
 	/*
-	 * 
+	 * In this separate thread, kook up threadAdapter to the ListView and display the threads
 	 */
 	private Runnable showThreads = new Runnable(){
 		/**
-		 * 
+		 * Run the thread
 		 */
         public void run(){
         	setListAdapter(threadAdapter);
@@ -167,7 +162,7 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 	
 	
 	/**
-	 * 
+	 * Recreate the adapter; gather the threads from the server; re-populate auxiliary structures; display the posts
 	 */
 	@Override
 	public void onResume() {
@@ -205,8 +200,9 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 	}
 	
 	/**
-	 * 
-	 * @param json
+	 * The JSON response is interpreted by this method.  Here the 'forumContent' variable (see above)
+	 * will be fed ids and ForumThreadTuples; these are objects that store post data.
+	 * @param json  the response from the server, containing posts and their data
 	 */
 	private void parseThreadResponse( String json ) {
 		JSONTokener tokenizer = new JSONTokener(json);
@@ -284,16 +280,28 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 
 		/**
 		 * 
-		 * @param context
-		 * @param resource
-		 * @param textViewResourceId
+		 * @param context  the current context
+		 * @param resource  the resource ID for a layout file containing a TextView to use when instantiating views
+		 * @param textViewResourceId  the id of the TextView within the layout resource to be populated
 		 */
 		public MyForumAdapter(Context context, int resource, int textViewResourceId) {
 			super(context, resource, textViewResourceId);
 		}
 		
 		/**
+		 * Get a View that displays the data at the specified position in the data set. You can either 
+		 * create a View manually or inflate it from an XML layout file. When the View is inflated, 
+		 * the parent View (GridView, ListView...) will apply default layout parameters unless you use 
+		 * inflate(int, android.view.ViewGroup, boolean) to specify a root view and to prevent attachment 
+		 * to the root.
 		 * 
+		 * @param position  the position of the item within the adapter's data set of the item whose view we want
+		 * @param convertView  The old view to reuse, if possible. Note: You should check that this view is non-null 
+		 * 						and of an appropriate type before using. If it is not possible to convert this view 
+		 * 						to display the correct data, this method can create a new view. Heterogeneous lists 
+		 * 						can specify their number of view types, so that this View is always of the right type 
+		 * 						(see getViewTypeCount() and getItemViewType(int)).
+		 * @param parent  the parent that this view will eventually be attached to
 		 */
 		public View getView (int position, View convertView, ViewGroup parent) {
 			View v = convertView;
@@ -308,7 +316,7 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 
 	
 	/**
-	 * 
+	 * If the Create Post button is clicked launch a CreatePostDialog that handles the task
 	 */
 	@Override
 	public void onClick(View v) {
@@ -323,39 +331,40 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 	}
 	
 	/**
-	 * 
+	 * Handles the task of creating a post.  Comprised of a 'title' textbox, 'message'
+	 * textbox, a submit button and a cancel button.
 	 *
 	 */
 	private class CreatePostDialog extends Dialog implements OnClickListener {
 
 		/*
-		 * 
+		 * Text box to enter the post title
 		 */
 		private EditText title;
 		
 		/*
-		 * 
+		 * Text box to enter the post message
 		 */
 		private EditText message;
 		
 		/*
-		 * 
+		 * Button that sends the post to the server
 		 */
 		private Button create;
 		
 		/*
-		 * 
+		 * Button that cancels the post
 		 */
 		private Button cancel;
 		
 		/*
-		 * 
+		 * This will need to be set to the context of ForumTabActivity
 		 */
 		private Context parentContext;
 		
 		/**
-		 * 
-		 * @param context
+		 * Create the dialog and set the UI and listeners
+		 * @param context  the context from where this dialog will be launched
 		 */
 		public CreatePostDialog(Context context) {
 			super(context);
@@ -374,7 +383,8 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 		}
 
 		/**
-		 * 
+		 * The Create button sends the post to the server; the Cancel button
+		 * dismisses the dialog.
 		 */
 		@Override
 		public void onClick(View v) {
@@ -390,10 +400,12 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 		}
 		
 		/**
+		 * Handles the task of sending a post to the server
+		 * @param title  the title of the post
+		 * @param message  the post content
+		 * @return  true if the post was successfully published
 		 * 
-		 * @param title
-		 * @param message
-		 * @return
+		 * TODO: Verify the 'success' response from the server
 		 */
 		private boolean publishPost( String title, String message ) {
 			try {
