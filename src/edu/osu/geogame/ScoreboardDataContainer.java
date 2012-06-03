@@ -1,5 +1,9 @@
 package edu.osu.geogame;
 
+/**
+ * A container class that holds scoreboard data.  Used in ScoreboardboardTabActivity.
+ *
+ */
 public class ScoreboardDataContainer {
 	
 	private int savingsFromPreviousYear;
