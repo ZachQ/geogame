@@ -36,18 +36,62 @@ import org.json.JSONTokener;
 
 import edu.osu.geogame.exception.ParcelNotFoundException;
 
+/**
+ * This tab holds the map.  The map is an ArcGIS map and right now is set to India.  
+ *
+ */
 public class MapTabActivity extends Activity implements OnClickListener {
 
+	/*
+	 * The section of the UI that holds the ArcGIS map
+	 */
 	private MapView mapView;
+	
+	/*
+	 * Set to the coordinates on the map that the user taps
+	 */
 	private Point pointClicked;
+	
+	/*
+	 * The interactive layer of the map that's clickable and returns data
+	 */
 	private ArcGISFeatureLayer featureLayer;
+	
+	/*
+	 * The section of the UI displaying the plot id of the plot a user selects
+	 */
 	private TextView plotId;
+	
+	/*
+	 * The section of the UI displaying the plot area of the plot a user selects
+	 */
 	private TextView plotArea;
+	
+	/*
+	 * If for sale, this section of the UI displays the price; if owned by a different player,
+	 * it displays the family that owns it
+	 */
 	private TextView plotOther;
+	
+	/*
+	 * If a selected plot is for sale, this text view (which is clickable and really acts
+	 * as a button) allows a player to buy the plot.
+	 */
 	private TextView buyPlot;
+	
+	/*
+	 * Id of the currently selected plot
+	 */
 	private int currentPlotId;
+	
+	/*
+	 * String representation of the id of the currently selected plot
+	 */
 	private static String id = "";
 
+	/**
+	 * UI created; map fetched from the server; listeners assigned
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -60,10 +104,9 @@ public class MapTabActivity extends Activity implements OnClickListener {
 		
 		buyPlot = (TextView) findViewById(R.id.purchase_land);
 		buyPlot.setOnClickListener(this);
+		//The Buy! text view (which acts as a button) is only visible when the selected
+		//plot is for sale
 		buyPlot.setVisibility(View.GONE);
-
-		// MapThread mapThread = new MapThread();
-		// mapThread.run();
 
 		RestClient client = new RestClient(
 				"http://arcsrv.rolltherock.net/ArcGIS/rest/services/India_Gameboard/MapServer");
@@ -97,23 +140,36 @@ public class MapTabActivity extends Activity implements OnClickListener {
 		// /////////////////////////////////////////////////////////////////////////////////
 
 		// Set tap listener for MapView
-		mapView.setOnSingleTapListener(new FingerTapListener(plotId));
+		mapView.setOnSingleTapListener(new FingerTapListener());
 
 	}
 
+	/**
+	 * A listener for the map that listens for finger taps
+	 *
+	 */
 	private class FingerTapListener implements OnSingleTapListener {
 
-		/**
-		 * 
+		/*
+		 * Disregard this
 		 */
 		private static final long serialVersionUID = 1L;
+		
+		/*
+		 * Listens for the data that the map returns when it is tapped
+		 */
 		private MyCallBackListener myCBListener = new MyCallBackListener();
-		private TextView view;
 
-		public FingerTapListener(TextView view) {
-			this.view = view;
+		/**
+		 * Constructor
+		 */
+		public FingerTapListener() {
 		}
 
+		/**
+		 * When the map is tapped, hand over myCBListener and the coordinates to
+		 * a PlotDataThread to do some work
+		 */
 		@Override
 		public void onSingleTap(float x, float y) {
 			/*
@@ -208,6 +264,7 @@ public class MapTabActivity extends Activity implements OnClickListener {
 
 	}
 
+	/*
 	private class MapThread extends Thread {
 
 		@Override
@@ -238,6 +295,7 @@ public class MapTabActivity extends Activity implements OnClickListener {
 
 		}
 	}
+	*/
 
 	private class PlotDataThread extends Thread {
 

@@ -20,9 +20,20 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
 
+/**
+ * 
+ *
+ */
 public class ScoreboardTabActivity extends Activity {
 
+	/*
+	 * 
+	 */
 	private ArrayList<ScoreboardDataContainer> scoreboards;
+	
+	/*
+	 * 
+	 */
 	private ViewPager vPager;
 	
 	@Override
