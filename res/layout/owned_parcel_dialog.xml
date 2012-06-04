@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/back"
+    android:background="@color/ghostwhite"
     android:orientation="vertical" >
 
     <TableLayout
@@ -26,7 +26,8 @@
                 android:layout_marginTop="0dp"
                 android:gravity="left"
                 android:text="Area:"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                android:textColor="@color/textred" />
 
             <TextView
                 android:id="@+id/area_value"
@@ -36,7 +37,8 @@
                 android:layout_marginTop="0dp"
                 android:gravity="right"
                 android:text=""
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                android:textColor="@color/textred" />
         </TableRow>
 
         <TableRow
@@ -54,7 +56,8 @@
                 android:layout_marginTop="0dp"
                 android:gravity="bottom"
                 android:text="Seed Type"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                android:textColor="@color/textred" />
 
             <Spinner
                 android:id="@+id/seed_picker"
@@ -84,7 +87,8 @@
                 android:layout_marginTop="0dp"
                 android:gravity="bottom"
                 android:text="Fertilizer Level"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                android:textColor="@color/textred" />
 
             <Spinner
                 android:id="@+id/fertilizer_picker"
@@ -114,7 +118,8 @@
                 android:layout_marginTop="0dp"
                 android:gravity="bottom"
                 android:text="Irrigation Level"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                android:textColor="@color/textred" />
 
             <Spinner
                 android:id="@+id/irrigation_picker"
@@ -136,24 +141,24 @@
             android:paddingBottom="20dip" >
 
             <Button
+                style="@style/button.borderbuttonred"
                 android:id="@+id/submit"
                 android:layout_width="20dip"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_gravity="center"
                 android:ems="12"
                 android:gravity="center"
-                android:text="Submit"
-                android:textSize="@dimen/buttonTextSize" />
+                android:text="Submit" />
 
             <Button
+                style="@style/button.borderbuttonred"
                 android:id="@+id/cancel"
                 android:layout_width="20dip"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_gravity="center"
                 android:ems="12"
                 android:gravity="center"
-                android:text="Exit"
-                android:textSize="@dimen/buttonTextSize" />
+                android:text="Exit" />
         </TableRow>
     </TableLayout>
 
