@@ -643,7 +643,8 @@ public class MapTabActivity extends Activity implements OnClickListener {
 			buyPlot.setVisibility(View.GONE);
 			plotId.setText("Plot ID: " + packet.plotID());
 			plotArea.setText("Plot Area: " + packet.area());
-			plotOther.setText("Owner: " + packet.opponentOwner());
+			String owner = (packet.opponentOwner()==null)?"":packet.opponentOwner();
+			plotOther.setText("Owner: " + owner);
 		}
 	}
 
