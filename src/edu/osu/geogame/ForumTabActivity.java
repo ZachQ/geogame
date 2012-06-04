@@ -392,6 +392,7 @@ public class ForumTabActivity extends ListActivity implements OnClickListener {
 			case R.id.create_post:
 				publishPost( title.getText().toString(), message.getText().toString() );
 				this.dismiss();
+				onResume();
 				break;
 			case R.id.cancel_post:
 				this.dismiss();
