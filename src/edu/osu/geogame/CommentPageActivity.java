@@ -289,6 +289,7 @@ public class CommentPageActivity extends ListActivity implements OnClickListener
 				// and publishComment() sends it to the server
 				publishComment( writeComment.getText().toString() );
 				this.dismiss();
+				onResume();
 				break;
 			case R.id.cancel_message:
 				this.dismiss();
