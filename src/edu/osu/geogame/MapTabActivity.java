@@ -88,6 +88,8 @@ public class MapTabActivity extends Activity implements OnClickListener {
 	 * String representation of the id of the currently selected plot
 	 */
 	private static String id = "";
+	
+	private Context mapContext;
 
 	/**
 	 * UI created; map fetched from the server; listeners assigned
@@ -97,6 +99,8 @@ public class MapTabActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.map_tab);
+		
+		mapContext = this;
 
 		plotId = (TextView) findViewById(R.id.plot_id);
 		plotArea = (TextView) findViewById(R.id.plot_area);
@@ -400,8 +404,6 @@ public class MapTabActivity extends Activity implements OnClickListener {
 
 		private int id;
 
-		private RestClient performAction;
-
 		public OwnedParcelDialog(Context context, float area, int id) {
 			super(context);
 			this.setContentView(R.layout.owned_parcel_dialog);
@@ -454,16 +456,38 @@ public class MapTabActivity extends Activity implements OnClickListener {
 
 		@Override
 		public void onClick(View v) {
+			String seedMessage = null;
+			String fertilizerMessage = null;
+			String irrigationMessage = null;
 			Log.d("InOnClick", "onclick");
 			switch (v.getId()) {
 			case R.id.submit:
+				Log.d("SUBMIT","SUBMIT");
+				RestClient performAction;
 				if (seedType > 0) {
 					performAction = new RestClient(GeoGame.URL_GAME + "India/"
 							+ GeoGame.currentGameId + "/Plant/"
 							+ Integer.toString(id) + "/"
 							+ Integer.toString(seedType));
+					performAction.addCookie(GeoGame.sessionCookie);
 					try {
 						performAction.Execute(RequestMethod.POST);
+						JSONTokener tokenizer = new JSONTokener(performAction.getResponse());
+						tokenizer.nextTo(':');
+						tokenizer.next();
+						tokenizer.nextTo(':');
+						tokenizer.next();
+						tokenizer.next();
+						boolean hasMessage = (tokenizer.nextTo('"').equals("message"));
+						if( hasMessage ) {
+						tokenizer.nextTo(":");
+						tokenizer.next();
+						tokenizer.next();
+						seedMessage = tokenizer.nextTo('"');
+						Log.d("seedMessage",seedMessage);
+						}
+						Log.d("ActionResponse",performAction.getResponse());
+						Log.d("ActionError",performAction.getErrorMessage());
 					} catch (Exception e) {
 						Log.d("SeedActionError", "SeedActionError");
 					}
@@ -473,8 +497,26 @@ public class MapTabActivity extends Activity implements OnClickListener {
 							+ GeoGame.currentGameId + "/Fertilize/"
 							+ Integer.toString(id) + "/"
 							+ Integer.toString(fertilizerLevel));
+					performAction.addCookie(GeoGame.sessionCookie);
 					try {
 						performAction.Execute(RequestMethod.POST);
+						JSONTokener tokenizer = new JSONTokener(performAction.getResponse());
+						tokenizer.nextTo(':');
+						tokenizer.next();
+						tokenizer.nextTo(':');
+						tokenizer.next();
+						tokenizer.next();
+						boolean hasMessage = (tokenizer.nextTo('"').equals("message"));
+						if( hasMessage ) {
+						tokenizer.nextTo(":");
+						tokenizer.next();
+						tokenizer.next();
+						fertilizerMessage = tokenizer.nextTo('"');
+						Log.d("fertilizerMessage",fertilizerMessage);
+						}
+						Log.d("ActionResponse",performAction.getResponse());
+						Log.d("ActionError",performAction.getErrorMessage());
+						
 					} catch (Exception e) {
 						Log.d("SeedActionError", "SeedActionError");
 					}
@@ -484,16 +526,68 @@ public class MapTabActivity extends Activity implements OnClickListener {
 							+ GeoGame.currentGameId + "/Irrigate/"
 							+ Integer.toString(id) + "/"
 							+ Integer.toString(irrigationLevel));
+					performAction.addCookie(GeoGame.sessionCookie);
 					try {
 						performAction.Execute(RequestMethod.POST);
+						JSONTokener tokenizer = new JSONTokener(performAction.getResponse());
+						tokenizer.nextTo(':');
+						tokenizer.next();
+						tokenizer.nextTo(':');
+						tokenizer.next();
+						tokenizer.next();
+						boolean hasMessage = (tokenizer.nextTo('"').equals("message"));
+						if( hasMessage ) {
+						tokenizer.nextTo(":");
+						tokenizer.next();
+						tokenizer.next();
+						irrigationMessage = tokenizer.nextTo('"');
+						Log.d("irrigationMessage",irrigationMessage);
+						}
+						Log.d("ActionResponse",performAction.getResponse());
+						Log.d("ActionError",performAction.getErrorMessage());
 					} catch (Exception e) {
 						Log.d("SeedActionError", "SeedActionError");
 					}
 				}
+				
 				/*
 				 * /Game/India/{id}/Fertilize/{parcelID}/{fertilizationLevel}
 				 * /Game/India/{id}/Irrigate/{parcelID}/{irrigationLevel}
 				 */
+				/*
+				if( seedMessage != null ) {
+					Toast.makeText(this.getContext(), seedMessage, Toast.LENGTH_SHORT);
+				}
+				if( fertilizerMessage != null ) {
+					Toast.makeText(this.getContext(), fertilizerMessage, Toast.LENGTH_SHORT);
+				}
+				if( irrigationMessage != null ) {
+					Toast.makeText(this.getContext(), irrigationMessage, Toast.LENGTH_SHORT);
+				}
+				*/
+				
+				AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
+				if( seedMessage != null || fertilizerMessage != null || irrigationMessage != null ) {
+					String message = "";
+					if( seedMessage != null ) {
+						message = message.concat(seedMessage);
+					} 
+					if( fertilizerMessage != null ) {
+						message = message.concat("\n"+fertilizerMessage);
+					}
+					if( irrigationMessage != null ) {
+						message = message.concat("\n"+irrigationMessage);
+					}
+					builder.setMessage(message);
+				       builder.setCancelable(false)
+				       .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+				           public void onClick(DialogInterface dialog, int id) {
+				                dialog.dismiss();
+				           }
+				       });
+				AlertDialog alert = builder.create();
+				alert.show();
+				}
 				this.dismiss();
 				break;
 			case R.id.cancel:
@@ -508,7 +602,7 @@ public class MapTabActivity extends Activity implements OnClickListener {
 
 			public void onItemSelected(AdapterView<?> parent, View view,
 					int pos, long id) {
-				switch (view.getId()) {
+				switch (parent.getId()) {
 				case R.id.seed_picker:
 					seedType = pos;
 					break;
@@ -527,6 +621,7 @@ public class MapTabActivity extends Activity implements OnClickListener {
 		}
 	}
 
+	
 	private void setUIWithPacket(ParcelPacket packet) {
 		if (packet.parecelType() == ParcelType.FOR_SALE) {
 			plotId.setText("Plot ID: " + packet.plotID());
