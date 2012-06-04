@@ -100,7 +100,7 @@ public class ScoreboardTabActivity extends Activity {
 				e.printStackTrace();
 			}
 			
-			
+			Log.d("Scoreboard Response",sClient.getResponse());
 			JSONTokener tokenizer = new JSONTokener(sClient.getResponse());
 			try {
 				
@@ -246,6 +246,8 @@ public class ScoreboardTabActivity extends Activity {
 						
 			} catch( JSONException ex ) {
 				Log.d("EXC",ex.getMessage());
+			} catch( Exception ex ) {
+				Log.d("Scoreboard Message Parsing Exception",ex.getMessage());
 			}
 		}
 	};
@@ -354,9 +356,16 @@ public class ScoreboardTabActivity extends Activity {
 		TextView totalCosts = (TextView) v.findViewById(R.id.total_costs_value);
 		TextView balance = (TextView) v.findViewById(R.id.balance_value);
 		
+
+		//set savings from previous year
+		if( turnNumber > 1 ) {
+			data.setSavingsFromPreviousYear(scoreboards.get(turnNumber-2).balance());
+		} else {
+			data.setSavingsFromPreviousYear(500);
+		}
 		
 		turn.setText("Turn " + Integer.toString(turnNumber));
-		
+	
 		fateCard.setText("1.Fate Card   " + data.fateCard());
 		savingsFromPreviousYear.setText("$"+Integer.toString(data.savingsFromPreviousYear()));
 		numberOfAdults.setText(Integer.toString(data.adults()));
