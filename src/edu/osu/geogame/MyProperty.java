@@ -15,6 +15,11 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 /**
+ * This class is not used, but it was going to display a list
+ * of all of the properties that the user owns. That way you
+ * could see exactly how much land you owned and our initial
+ * idea was to have the user be able to plant/seed/etc. all
+ * from this screen.
  * @author Ben Elliott
  */
 public class MyProperty extends ListActivity {

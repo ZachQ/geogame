@@ -22,6 +22,13 @@ import android.widget.SimpleAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 
+/**
+ * When the user clicks the "join Game" button from the menu
+ * this screen is displayed where the user can select a game
+ * to join. If there are no open games, no games will show
+ * and it will state "No open games"
+ *
+ */
 public class JoinGame extends ListActivity {
 	private Vector<HashMap<String, String>> data;
 	private Handler mHandler;

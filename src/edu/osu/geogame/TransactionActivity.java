@@ -19,6 +19,11 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * This screen is used within the market where the user can
+ * choose how much to buy or sell items for.
+ *
+ */
 public class TransactionActivity extends Activity {
 
 	private int id, cost = 1;

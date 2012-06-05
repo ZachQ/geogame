@@ -35,6 +35,11 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+/**
+ * The market is where the user can buy and sell commodities from
+ * either the "bank" or to other users. This market tab has three
+ * pages the user can swipe through.
+ */
 public class MarketTabActivity extends Activity {
 	
 	private ViewPager vPager;

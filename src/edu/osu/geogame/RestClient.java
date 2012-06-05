@@ -28,6 +28,10 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.protocol.HttpContext;
 
+/**
+ * Used for all of the REST requests to the server.
+ *
+ */
 public class RestClient {
     private ArrayList <NameValuePair> params;
     private ArrayList <NameValuePair> headers;

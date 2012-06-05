@@ -21,6 +21,12 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
+/**
+ * When the user clicks the "play game" button from the menu screen
+ * a list is populated with the games they are a part of and they can
+ * join the games from this screen by clicking a box in the list.
+ *
+ */
 public class PlayGame extends ListActivity {
 	private Vector<HashMap<String, String>> data;
 	private Handler mHandler;
