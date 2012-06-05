@@ -4,6 +4,7 @@ import org.apache.http.cookie.Cookie;
 import android.app.Application;
 
 /**
+ * This class holds all of the URLs and global variables.
  * @author Ben Elliott
  */
 public class GeoGame extends Application {

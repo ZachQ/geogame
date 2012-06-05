@@ -14,6 +14,11 @@ import android.util.Log;
 import android.view.Window;
 import android.widget.TextView;
 
+/**
+ * The Home tab is an in-game tab which displays user-specific information
+ * like amount of money, seed, fertilizer, etc. 
+ *
+ */
 public class HomeTabActivity extends Activity {
         TextView name, money, adults, labor, seedLR, seedHYC, fertilizer, water, grainLR, grainHYC, oxen, 
                         timerTV, turnTV;
