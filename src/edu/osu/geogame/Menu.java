@@ -12,6 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
+ * This Menu screen is displayed after the user is logged in.
+ * This screen lets the user "Play Game" "Join Game" read "About"
+ * and "Logout"
  * @author Ben Elliott
  */
 public class Menu extends Activity {

@@ -7,6 +7,11 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
+/**
+ * This is the About Screen that explains the rules and gameplay
+ * @author Zach
+ *
+ */
 public class About extends Activity{	
 	
 	@Override
