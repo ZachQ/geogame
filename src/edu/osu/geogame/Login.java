@@ -2,34 +2,48 @@ package edu.osu.geogame;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * The Home Screen will hold the "Login", "Register" and "About/Rules" buttons.
  * 
  * @author Zachary Quinn, Ben Elliott
  */
-
 public class Login extends Activity {
 
-	Button login, register;
-	EditText editLogin, editPassword;
+	/**
+	 * 
+	 */
+	private Button login;
+	
+	/**
+	 * 
+	 */
+	private EditText editLogin, editPassword;
+	
+	/**
+	 * 
+	 */
 	private Handler mHandler;
+	
+	/**
+	 * 
+	 */
 	private ProgressBar loading;
 
+	/**
+	 * 
+	 * @param savedInstanceState
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -45,6 +59,10 @@ public class Login extends Activity {
 
 		// Add ActionListeners to buttons
 		login.setOnClickListener(new View.OnClickListener() {
+			/**
+			 * 
+			 * @param v  
+			 */
 			@Override
 			public void onClick(View v) {
 				// Create the thread
@@ -110,10 +128,15 @@ public class Login extends Activity {
 		// });
 	}
 
+	/**
+	 * 
+	 */
 	private Runnable Success = new Runnable() {
+		/**
+		 * 
+		 */
 		public void run() {
 			// Store username
-
 			GeoGame.username = editLogin.getText().toString();
 
 			// Next Screen
@@ -124,29 +147,47 @@ public class Login extends Activity {
 		}
 	};
 
+	/**
+	 * 
+	 */
 	private Runnable Failure = new Runnable() {
+		/**
+		 * 
+		 */
 		public void run() {
 			Toast.makeText(getApplicationContext(),
 					"Incorrect Login or Password", Toast.LENGTH_SHORT).show();
 		}
 	};
 
+	/**
+	 * 
+	 */
 	private Runnable Error = new Runnable() {
+		/**
+		 * 
+		 */
 		public void run() {
 			Toast.makeText(getApplicationContext(), "Unknown Error",
 					Toast.LENGTH_SHORT).show();
 		}
 	};
 
+	/**
+	 * 
+	 */
 	private Runnable endThread = new Runnable() {
+		/**
+		 * 
+		 */
 		public void run() {
 			login.setEnabled(true);
 			loading.setVisibility(View.INVISIBLE);
 		}
 	};
 
-	/*
-	 * (non-Javadoc) This will change the color format of the Activity so that
+	/** 
+	 * This will change the color format of the Activity so that
 	 * the background gradient will be very smooth. Without this it has
 	 * noticeable color-stepping.
 	 */

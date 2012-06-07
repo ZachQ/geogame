@@ -9,11 +9,9 @@ import org.json.JSONObject;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.PixelFormat;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -31,20 +29,23 @@ import android.widget.TextView;
 public class JoinGame extends ListActivity {
 	
 	/**
-	 * 
+	 * The game data that will be fed to adapter, in turn feeding it to the UI
 	 */
 	private Vector<HashMap<String, String>> data;
 	
 	/**
-	 * 
+	 * Manages threads
 	 */
 	private Handler mHandler;
 	
 	/**
-	 * 
+	 * This UIs ListView uses this adapter to display data
 	 */
 	private SimpleAdapter adapter;
 
+	/**
+	 * Create the UI; intialize the adapter; run the thread that populates data
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -60,7 +61,13 @@ public class JoinGame extends ListActivity {
 		populateList.start();
 	}
 
+	/**
+	 * Populates the data object for later use by the UIs ListView
+	 */
 	private Thread populateList = new Thread() {
+		/**
+		 * Run this thread
+		 */
 		public void run() {
 			RestClient client = new RestClient(GeoGame.URL_GAME + "OpenGames");
 			client.addCookie(GeoGame.sessionCookie);
@@ -111,7 +118,13 @@ public class JoinGame extends ListActivity {
 		}
 	};
 
+	/**
+	 * The adapter updates the UI
+	 */
 	private Runnable showUpdate = new Runnable() {
+		/**
+		 * Run this thread
+		 */
 		public void run() {
 			setListAdapter(adapter);
 
@@ -135,7 +148,13 @@ public class JoinGame extends ListActivity {
 		}
 	};
 
+	/**
+	 * If there are no open games, a message saying so is displayed
+	 */
 	private Runnable showMessage = new Runnable() {
+		/**
+		 * Run this thread
+		 */
 		public void run() {
 			TextView v = (TextView) findViewById(R.id.joingame_errorText);
 			v.setText("No Open Games");
@@ -144,6 +163,9 @@ public class JoinGame extends ListActivity {
 		}
 	};
 
+	/**
+	 * 
+	 */
 	@Override
 	public void onAttachedToWindow() {
 		super.onAttachedToWindow();
