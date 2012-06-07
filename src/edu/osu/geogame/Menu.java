@@ -12,75 +12,75 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * This Menu screen is displayed after the user is logged in.
- * This screen lets the user "Play Game" "Join Game" read "About"
- * and "Logout"
+ * This Menu screen is displayed after the user is logged in. This screen lets
+ * the user "Play Game" "Join Game" read "About" and "Logout"
+ * 
  * @author Ben Elliott
  */
 public class Menu extends Activity {
 	Button joinGame, playGame, about, logOut;
 	TextView loggedIn;
 	GeoGame game;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu);
-		game = (GeoGame)getApplicationContext();
-		
+		game = (GeoGame) getApplicationContext();
+
 		// Show status
 		Bundle extras = getIntent().getExtras();
-		if(extras !=null) {
-	    	String value = extras.getString("gameID");
-	    	
-	    	Toast.makeText(getApplicationContext(),
-					"Joined Game ID:" + value, Toast.LENGTH_SHORT).show();
-	    }
-		
+		if (extras != null) {
+			String value = extras.getString("gameID");
+
+			Toast.makeText(getApplicationContext(), "Joined Game ID:" + value,
+					Toast.LENGTH_SHORT).show();
+		}
+
 		// Get references
 		joinGame = (Button) findViewById(R.id.buttonJoinGame);
 		playGame = (Button) findViewById(R.id.buttonPlayGame);
 		about = (Button) findViewById(R.id.buttonAbout);
 		logOut = (Button) findViewById(R.id.buttonLogOut);
 		loggedIn = (TextView) findViewById(R.id.textViewloggedIn);
-		
+
 		// Set screen text
 		loggedIn.setText("Logged in as: " + GeoGame.username);
-		
+
 		// Add ActionListeners to buttons
 		joinGame.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent myIntent = new Intent(v.getContext(), JoinGame.class);
-                startActivityForResult(myIntent, 0);
+				startActivityForResult(myIntent, 0);
 			}
 		});
 		playGame.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent myIntent = new Intent(v.getContext(), PlayGame.class);
-                startActivityForResult(myIntent, 0);
+				startActivityForResult(myIntent, 0);
 			}
 		});
 		about.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent myIntent = new Intent(v.getContext(), About.class);
-                startActivityForResult(myIntent, 0);
+				startActivityForResult(myIntent, 0);
 			}
 		});
 		logOut.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onClick(View v) {				
-				// Continue to Login page		
-				Intent myIntent = new Intent(v.getContext(), Login.class);		
-				// To clear activities so back button won't work after logout		
-				myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);		
+			public void onClick(View v) {
+				// Continue to Login page
+				Intent myIntent = new Intent(v.getContext(), Login.class);
+				// To clear activities so back button won't work after logout
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(myIntent);
 			}
 		});
 	}
-	
+
 	@Override
 	public void onAttachedToWindow() {
 		super.onAttachedToWindow();
@@ -88,5 +88,3 @@ public class Menu extends Activity {
 		window.setFormat(PixelFormat.RGBA_8888);
 	}
 }
-
-		

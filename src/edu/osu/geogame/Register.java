@@ -7,8 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+
 /**
- * This class is not used in the game now because the Client told us not to 
+ * This class is not used in the game now because the Client told us not to
  * worry about it. Instead we will leave this class for them to work with.
  * 
  * @author Zach
@@ -16,15 +17,15 @@ import android.widget.Button;
 public class Register extends Activity {
 
 	Button register;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register);
-		
+
 		// Get register reference
 		register = (Button) findViewById(R.id.buttonRegister);
-		
+
 		// Add ActionListeners to buttons
 		register.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -34,12 +35,11 @@ public class Register extends Activity {
 			}
 		});
 	}
-	
+
 	/*
-	 * (non-Javadoc)
-	 * This will change the color format of the Activity so that
-	 * the background gradient will be very smooth.  Without this
-	 * it has noticeable color-stepping.
+	 * (non-Javadoc) This will change the color format of the Activity so that
+	 * the background gradient will be very smooth. Without this it has
+	 * noticeable color-stepping.
 	 */
 	@Override
 	public void onAttachedToWindow() {

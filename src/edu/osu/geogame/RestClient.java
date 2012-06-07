@@ -1,4 +1,5 @@
 package edu.osu.geogame;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,181 +31,170 @@ import org.apache.http.protocol.HttpContext;
 
 /**
  * Used for all of the REST requests to the server.
- *
+ * 
  */
 public class RestClient {
-    private ArrayList <NameValuePair> params;
-    private ArrayList <NameValuePair> headers;
+	private ArrayList<NameValuePair> params;
+	private ArrayList<NameValuePair> headers;
 
-    private String url;
+	private String url;
 
-    private int responseCode;
-    private String message;
-    private String response;
+	private int responseCode;
+	private String message;
+	private String response;
 
-    private List<Cookie> cookies;
-    private DefaultHttpClient client;
-    private CookieStore cookieStore; 
-    
-    public String getResponse() {
-        return response;
-    }
+	private List<Cookie> cookies;
+	private DefaultHttpClient client;
+	private CookieStore cookieStore;
 
-    public String getErrorMessage() {
-        return message;
-    }
+	public String getResponse() {
+		return response;
+	}
 
-    public int getResponseCode() {
-        return responseCode;
-    }
-    
-    public void addCookie(Cookie c) {
-    	cookieStore.addCookie(c);
-    }
-    
-    public List<Cookie> getCookies() {
-    	return cookies;
-    }
+	public String getErrorMessage() {
+		return message;
+	}
 
-    public RestClient(String url)
-    {
-        this.url = url;
-        params = new ArrayList<NameValuePair>();
-        headers = new ArrayList<NameValuePair>();
-        client = new DefaultHttpClient();
-        HttpParams params = client.getParams();
-        params.setParameter(CoreProtocolPNames.USE_EXPECT_CONTINUE,false);
-        cookieStore = new BasicCookieStore(); 
-    }
+	public int getResponseCode() {
+		return responseCode;
+	}
 
-    public void AddParam(String name, String value)
-    {
-        params.add(new BasicNameValuePair(name, value));
-    }
+	public void addCookie(Cookie c) {
+		cookieStore.addCookie(c);
+	}
 
-    public void AddHeader(String name, String value)
-    {
-        headers.add(new BasicNameValuePair(name, value));
-    }
+	public List<Cookie> getCookies() {
+		return cookies;
+	}
 
-    public void Execute(RequestMethod method) throws Exception
-    {
-        switch(method) {
-            case GET:
-            {
-                //add parameters
-                String combinedParams = "";
-                if(!params.isEmpty()){
-                    combinedParams += "?";
-                    for(NameValuePair p : params)
-                    {
-                        String paramString = p.getName() + "=" + URLEncoder.encode(p.getValue(),"UTF-8");
-                        if(combinedParams.length() > 1)
-                        {
-                            combinedParams  +=  "&" + paramString;
-                        }
-                        else
-                        {
-                            combinedParams += paramString;
-                        }
-                    }
-                }
+	public RestClient(String url) {
+		this.url = url;
+		params = new ArrayList<NameValuePair>();
+		headers = new ArrayList<NameValuePair>();
+		client = new DefaultHttpClient();
+		HttpParams params = client.getParams();
+		params.setParameter(CoreProtocolPNames.USE_EXPECT_CONTINUE, false);
+		cookieStore = new BasicCookieStore();
+	}
 
-                HttpGet request = new HttpGet(url + combinedParams);
+	public void AddParam(String name, String value) {
+		params.add(new BasicNameValuePair(name, value));
+	}
 
-                //add headers
-                for(NameValuePair h : headers)
-                {
-                    request.addHeader(h.getName(), h.getValue());
-                }
+	public void AddHeader(String name, String value) {
+		headers.add(new BasicNameValuePair(name, value));
+	}
 
-                executeRequest(request, url);
+	public void Execute(RequestMethod method) throws Exception {
+		switch (method) {
+		case GET: {
+			// add parameters
+			String combinedParams = "";
+			if (!params.isEmpty()) {
+				combinedParams += "?";
+				for (NameValuePair p : params) {
+					String paramString = p.getName() + "="
+							+ URLEncoder.encode(p.getValue(), "UTF-8");
+					if (combinedParams.length() > 1) {
+						combinedParams += "&" + paramString;
+					} else {
+						combinedParams += paramString;
+					}
+				}
+			}
 
-                break;
-            }
-            case POST:
-            {
-            	// Disables the redirect so that we can get the 302 response for correct login
-            	client.setRedirectHandler(new RedirectHandler() {
-            		@Override
-                    public URI getLocationURI(HttpResponse response,
-                            HttpContext context) throws ProtocolException {
-                        return null;
-                    }
+			HttpGet request = new HttpGet(url + combinedParams);
 
-                    @Override
-                    public boolean isRedirectRequested(HttpResponse response,
-                            HttpContext context) {
-                        return false;
-                    }
-                });
-            	
-                HttpPost request = new HttpPost(url);
-                
-                //add headers
-                for(NameValuePair h : headers)
-                {
-                    request.addHeader(h.getName(), h.getValue());
-                }
+			// add headers
+			for (NameValuePair h : headers) {
+				request.addHeader(h.getName(), h.getValue());
+			}
 
-                if(!params.isEmpty()){
-                    request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
-                }
-                executeRequest(request, url);
-                break;
-            }
-        }
-    }
+			executeRequest(request, url);
 
-    private void executeRequest(HttpUriRequest request, String url)
-    {
-    	client.setCookieStore(cookieStore);
-        HttpResponse httpResponse;
+			break;
+		}
+		case POST: {
+			// Disables the redirect so that we can get the 302 response for
+			// correct login
+			client.setRedirectHandler(new RedirectHandler() {
+				@Override
+				public URI getLocationURI(HttpResponse response,
+						HttpContext context) throws ProtocolException {
+					return null;
+				}
 
-        try {
-            httpResponse = client.execute(request);
-            responseCode = httpResponse.getStatusLine().getStatusCode();
-            message = httpResponse.getStatusLine().getReasonPhrase();
-            HttpEntity entity = httpResponse.getEntity();
-            cookies = client.getCookieStore().getCookies();
+				@Override
+				public boolean isRedirectRequested(HttpResponse response,
+						HttpContext context) {
+					return false;
+				}
+			});
 
-            if (entity != null) {
+			HttpPost request = new HttpPost(url);
 
-                InputStream instream = entity.getContent();
-                response = convertStreamToString(instream);
+			// add headers
+			for (NameValuePair h : headers) {
+				request.addHeader(h.getName(), h.getValue());
+			}
 
-                // Closing the input stream will trigger connection release
-                instream.close();
-            }
+			if (!params.isEmpty()) {
+				request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
+			}
+			executeRequest(request, url);
+			break;
+		}
+		}
+	}
 
-        } catch (ClientProtocolException e)  {
-            client.getConnectionManager().shutdown();
-            e.printStackTrace();
-        } catch (IOException e) {
-            client.getConnectionManager().shutdown();
-            e.printStackTrace();
-        }
-    }
+	private void executeRequest(HttpUriRequest request, String url) {
+		client.setCookieStore(cookieStore);
+		HttpResponse httpResponse;
 
-    private static String convertStreamToString(InputStream is) {
+		try {
+			httpResponse = client.execute(request);
+			responseCode = httpResponse.getStatusLine().getStatusCode();
+			message = httpResponse.getStatusLine().getReasonPhrase();
+			HttpEntity entity = httpResponse.getEntity();
+			cookies = client.getCookieStore().getCookies();
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        StringBuilder sb = new StringBuilder();
+			if (entity != null) {
 
-        String line = null;
-        try {
-            while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return sb.toString();
-    }
+				InputStream instream = entity.getContent();
+				response = convertStreamToString(instream);
+
+				// Closing the input stream will trigger connection release
+				instream.close();
+			}
+
+		} catch (ClientProtocolException e) {
+			client.getConnectionManager().shutdown();
+			e.printStackTrace();
+		} catch (IOException e) {
+			client.getConnectionManager().shutdown();
+			e.printStackTrace();
+		}
+	}
+
+	private static String convertStreamToString(InputStream is) {
+
+		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+		StringBuilder sb = new StringBuilder();
+
+		String line = null;
+		try {
+			while ((line = reader.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				is.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return sb.toString();
+	}
 }
