@@ -37,8 +37,9 @@ import org.json.JSONTokener;
 import edu.osu.geogame.exception.ParcelNotFoundException;
 
 /**
- * This tab holds the map.  The map is an ArcGIS map and right now is set to India.  
- *
+ * This tab holds the map. The map is an ArcGIS map and right now is set to
+ * India.
+ * 
  */
 public class MapTabActivity extends Activity implements OnClickListener {
 
@@ -46,49 +47,49 @@ public class MapTabActivity extends Activity implements OnClickListener {
 	 * The section of the UI that holds the ArcGIS map
 	 */
 	private MapView mapView;
-	
+
 	/*
 	 * Set to the coordinates on the map that the user taps
 	 */
 	private Point pointClicked;
-	
+
 	/*
 	 * The interactive layer of the map that's clickable and returns data
 	 */
 	private ArcGISFeatureLayer featureLayer;
-	
+
 	/*
 	 * The section of the UI displaying the plot id of the plot a user selects
 	 */
 	private TextView plotId;
-	
+
 	/*
 	 * The section of the UI displaying the plot area of the plot a user selects
 	 */
 	private TextView plotArea;
-	
+
 	/*
-	 * If for sale, this section of the UI displays the price; if owned by a different player,
-	 * it displays the family that owns it
+	 * If for sale, this section of the UI displays the price; if owned by a
+	 * different player, it displays the family that owns it
 	 */
 	private TextView plotOther;
-	
+
 	/*
-	 * If a selected plot is for sale, this text view (which is clickable and really acts
-	 * as a button) allows a player to buy the plot.
+	 * If a selected plot is for sale, this text view (which is clickable and
+	 * really acts as a button) allows a player to buy the plot.
 	 */
 	private TextView buyPlot;
-	
+
 	/*
 	 * Id of the currently selected plot
 	 */
 	private int currentPlotId;
-	
+
 	/*
 	 * String representation of the id of the currently selected plot
 	 */
 	private static String id = "";
-	
+
 	private Context mapContext;
 
 	/**
@@ -99,17 +100,18 @@ public class MapTabActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.map_tab);
-		
+
 		mapContext = this;
 
 		plotId = (TextView) findViewById(R.id.plot_id);
 		plotArea = (TextView) findViewById(R.id.plot_area);
 		plotOther = (TextView) findViewById(R.id.plot_price_or_plot_owner);
-		
+
 		buyPlot = (TextView) findViewById(R.id.purchase_land);
 		buyPlot.setOnClickListener(this);
-		//The Buy! text view (which acts as a button) is only visible when the selected
-		//plot is for sale
+		// The Buy! text view (which acts as a button) is only visible when the
+		// selected
+		// plot is for sale
 		buyPlot.setVisibility(View.GONE);
 
 		RestClient client = new RestClient(
@@ -150,7 +152,7 @@ public class MapTabActivity extends Activity implements OnClickListener {
 
 	/**
 	 * A listener for the map that listens for finger taps
-	 *
+	 * 
 	 */
 	private class FingerTapListener implements OnSingleTapListener {
 
@@ -158,7 +160,7 @@ public class MapTabActivity extends Activity implements OnClickListener {
 		 * Disregard this
 		 */
 		private static final long serialVersionUID = 1L;
-		
+
 		/*
 		 * Listens for the data that the map returns when it is tapped
 		 */
@@ -269,37 +271,31 @@ public class MapTabActivity extends Activity implements OnClickListener {
 	}
 
 	/*
-	private class MapThread extends Thread {
-
-		@Override
-		public void run() {
-			RestClient client = new RestClient(
-					"http://arcsrv.rolltherock.net/ArcGIS/rest/services/India_Gameboard/MapServer");
-			try {
-				client.Execute(RequestMethod.POST);
-			} catch (Exception ex) {
-
-			}
-
-			String temp = client.getResponse();
-			Log.d(temp, "RESPONSE");
-
-			// Retrieve the map and initial extent from XML layout
-			mapView = (MapView) findViewById(R.id.map);
-
-			// Create the base map
-			ArcGISDynamicMapServiceLayer dMap = new ArcGISDynamicMapServiceLayer(
-					"http://128.146.194.14/ArcGIS/rest/services/India/MapServer");
-			mapView.addLayer(dMap);
-
-			// Add the click-able feature layer
-			featureLayer = new ArcGISFeatureLayer(
-					"http://128.146.194.14/ArcGIS/rest/services/India/MapServer/0",
-					MODE.SNAPSHOT);
-
-		}
-	}
-	*/
+	 * private class MapThread extends Thread {
+	 * 
+	 * @Override public void run() { RestClient client = new RestClient(
+	 * "http://arcsrv.rolltherock.net/ArcGIS/rest/services/India_Gameboard/MapServer"
+	 * ); try { client.Execute(RequestMethod.POST); } catch (Exception ex) {
+	 * 
+	 * }
+	 * 
+	 * String temp = client.getResponse(); Log.d(temp, "RESPONSE");
+	 * 
+	 * // Retrieve the map and initial extent from XML layout mapView =
+	 * (MapView) findViewById(R.id.map);
+	 * 
+	 * // Create the base map ArcGISDynamicMapServiceLayer dMap = new
+	 * ArcGISDynamicMapServiceLayer(
+	 * "http://128.146.194.14/ArcGIS/rest/services/India/MapServer");
+	 * mapView.addLayer(dMap);
+	 * 
+	 * // Add the click-able feature layer featureLayer = new
+	 * ArcGISFeatureLayer(
+	 * "http://128.146.194.14/ArcGIS/rest/services/India/MapServer/0",
+	 * MODE.SNAPSHOT);
+	 * 
+	 * } }
+	 */
 
 	private class PlotDataThread extends Thread {
 
@@ -462,7 +458,7 @@ public class MapTabActivity extends Activity implements OnClickListener {
 			Log.d("InOnClick", "onclick");
 			switch (v.getId()) {
 			case R.id.submit:
-				Log.d("SUBMIT","SUBMIT");
+				Log.d("SUBMIT", "SUBMIT");
 				RestClient performAction;
 				if (seedType > 0) {
 					performAction = new RestClient(GeoGame.URL_GAME + "India/"
@@ -472,22 +468,24 @@ public class MapTabActivity extends Activity implements OnClickListener {
 					performAction.addCookie(GeoGame.sessionCookie);
 					try {
 						performAction.Execute(RequestMethod.POST);
-						JSONTokener tokenizer = new JSONTokener(performAction.getResponse());
+						JSONTokener tokenizer = new JSONTokener(
+								performAction.getResponse());
 						tokenizer.nextTo(':');
 						tokenizer.next();
 						tokenizer.nextTo(':');
 						tokenizer.next();
 						tokenizer.next();
-						boolean hasMessage = (tokenizer.nextTo('"').equals("message"));
-						if( hasMessage ) {
-						tokenizer.nextTo(":");
-						tokenizer.next();
-						tokenizer.next();
-						seedMessage = tokenizer.nextTo('"');
-						Log.d("seedMessage",seedMessage);
+						boolean hasMessage = (tokenizer.nextTo('"')
+								.equals("message"));
+						if (hasMessage) {
+							tokenizer.nextTo(":");
+							tokenizer.next();
+							tokenizer.next();
+							seedMessage = tokenizer.nextTo('"');
+							Log.d("seedMessage", seedMessage);
 						}
-						Log.d("ActionResponse",performAction.getResponse());
-						Log.d("ActionError",performAction.getErrorMessage());
+						Log.d("ActionResponse", performAction.getResponse());
+						Log.d("ActionError", performAction.getErrorMessage());
 					} catch (Exception e) {
 						Log.d("SeedActionError", "SeedActionError");
 					}
@@ -500,23 +498,25 @@ public class MapTabActivity extends Activity implements OnClickListener {
 					performAction.addCookie(GeoGame.sessionCookie);
 					try {
 						performAction.Execute(RequestMethod.POST);
-						JSONTokener tokenizer = new JSONTokener(performAction.getResponse());
+						JSONTokener tokenizer = new JSONTokener(
+								performAction.getResponse());
 						tokenizer.nextTo(':');
 						tokenizer.next();
 						tokenizer.nextTo(':');
 						tokenizer.next();
 						tokenizer.next();
-						boolean hasMessage = (tokenizer.nextTo('"').equals("message"));
-						if( hasMessage ) {
-						tokenizer.nextTo(":");
-						tokenizer.next();
-						tokenizer.next();
-						fertilizerMessage = tokenizer.nextTo('"');
-						Log.d("fertilizerMessage",fertilizerMessage);
+						boolean hasMessage = (tokenizer.nextTo('"')
+								.equals("message"));
+						if (hasMessage) {
+							tokenizer.nextTo(":");
+							tokenizer.next();
+							tokenizer.next();
+							fertilizerMessage = tokenizer.nextTo('"');
+							Log.d("fertilizerMessage", fertilizerMessage);
 						}
-						Log.d("ActionResponse",performAction.getResponse());
-						Log.d("ActionError",performAction.getErrorMessage());
-						
+						Log.d("ActionResponse", performAction.getResponse());
+						Log.d("ActionError", performAction.getErrorMessage());
+
 					} catch (Exception e) {
 						Log.d("SeedActionError", "SeedActionError");
 					}
@@ -529,64 +529,66 @@ public class MapTabActivity extends Activity implements OnClickListener {
 					performAction.addCookie(GeoGame.sessionCookie);
 					try {
 						performAction.Execute(RequestMethod.POST);
-						JSONTokener tokenizer = new JSONTokener(performAction.getResponse());
+						JSONTokener tokenizer = new JSONTokener(
+								performAction.getResponse());
 						tokenizer.nextTo(':');
 						tokenizer.next();
 						tokenizer.nextTo(':');
 						tokenizer.next();
 						tokenizer.next();
-						boolean hasMessage = (tokenizer.nextTo('"').equals("message"));
-						if( hasMessage ) {
-						tokenizer.nextTo(":");
-						tokenizer.next();
-						tokenizer.next();
-						irrigationMessage = tokenizer.nextTo('"');
-						Log.d("irrigationMessage",irrigationMessage);
+						boolean hasMessage = (tokenizer.nextTo('"')
+								.equals("message"));
+						if (hasMessage) {
+							tokenizer.nextTo(":");
+							tokenizer.next();
+							tokenizer.next();
+							irrigationMessage = tokenizer.nextTo('"');
+							Log.d("irrigationMessage", irrigationMessage);
 						}
-						Log.d("ActionResponse",performAction.getResponse());
-						Log.d("ActionError",performAction.getErrorMessage());
+						Log.d("ActionResponse", performAction.getResponse());
+						Log.d("ActionError", performAction.getErrorMessage());
 					} catch (Exception e) {
 						Log.d("SeedActionError", "SeedActionError");
 					}
 				}
-				
+
 				/*
 				 * /Game/India/{id}/Fertilize/{parcelID}/{fertilizationLevel}
 				 * /Game/India/{id}/Irrigate/{parcelID}/{irrigationLevel}
 				 */
 				/*
-				if( seedMessage != null ) {
-					Toast.makeText(this.getContext(), seedMessage, Toast.LENGTH_SHORT);
-				}
-				if( fertilizerMessage != null ) {
-					Toast.makeText(this.getContext(), fertilizerMessage, Toast.LENGTH_SHORT);
-				}
-				if( irrigationMessage != null ) {
-					Toast.makeText(this.getContext(), irrigationMessage, Toast.LENGTH_SHORT);
-				}
-				*/
-				
-				AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
-				if( seedMessage != null || fertilizerMessage != null || irrigationMessage != null ) {
+				 * if( seedMessage != null ) { Toast.makeText(this.getContext(),
+				 * seedMessage, Toast.LENGTH_SHORT); } if( fertilizerMessage !=
+				 * null ) { Toast.makeText(this.getContext(), fertilizerMessage,
+				 * Toast.LENGTH_SHORT); } if( irrigationMessage != null ) {
+				 * Toast.makeText(this.getContext(), irrigationMessage,
+				 * Toast.LENGTH_SHORT); }
+				 */
+
+				AlertDialog.Builder builder = new AlertDialog.Builder(
+						this.getContext());
+				if (seedMessage != null || fertilizerMessage != null
+						|| irrigationMessage != null) {
 					String message = "";
-					if( seedMessage != null ) {
+					if (seedMessage != null) {
 						message = message.concat(seedMessage);
-					} 
-					if( fertilizerMessage != null ) {
-						message = message.concat("\n"+fertilizerMessage);
 					}
-					if( irrigationMessage != null ) {
-						message = message.concat("\n"+irrigationMessage);
+					if (fertilizerMessage != null) {
+						message = message.concat("\n" + fertilizerMessage);
+					}
+					if (irrigationMessage != null) {
+						message = message.concat("\n" + irrigationMessage);
 					}
 					builder.setMessage(message);
-				       builder.setCancelable(false)
-				       .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-				           public void onClick(DialogInterface dialog, int id) {
-				                dialog.dismiss();
-				           }
-				       });
-				AlertDialog alert = builder.create();
-				alert.show();
+					builder.setCancelable(false).setPositiveButton("Ok",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int id) {
+									dialog.dismiss();
+								}
+							});
+					AlertDialog alert = builder.create();
+					alert.show();
 				}
 				this.dismiss();
 				break;
@@ -621,7 +623,6 @@ public class MapTabActivity extends Activity implements OnClickListener {
 		}
 	}
 
-	
 	private void setUIWithPacket(ParcelPacket packet) {
 		if (packet.parecelType() == ParcelType.FOR_SALE) {
 			plotId.setText("Plot ID: " + packet.plotID());
@@ -643,7 +644,8 @@ public class MapTabActivity extends Activity implements OnClickListener {
 			buyPlot.setVisibility(View.GONE);
 			plotId.setText("Plot ID: " + packet.plotID());
 			plotArea.setText("Plot Area: " + packet.area());
-			String owner = (packet.opponentOwner()==null)?"":packet.opponentOwner();
+			String owner = (packet.opponentOwner() == null) ? "" : packet
+					.opponentOwner();
 			plotOther.setText("Owner: " + owner);
 		}
 	}
@@ -734,13 +736,18 @@ public class MapTabActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View view) {
-		switch( view.getId() ) {
+		switch (view.getId()) {
 		case R.id.purchase_land:
-			Log.d("PURCHASING LAND","PURCHASING LAND");
-			RestClient client = new RestClient(GeoGame.URL_GAME + "India/" + GeoGame.currentGameId + "/BuyParcel/" +
-												Integer.toString(currentPlotId));
+			Log.d("PURCHASING LAND", "PURCHASING LAND");
+			RestClient client = new RestClient(GeoGame.URL_GAME + "India/"
+					+ GeoGame.currentGameId + "/BuyParcel/"
+					+ Integer.toString(currentPlotId));
 			client.addCookie(GeoGame.sessionCookie);
-			Toast.makeText(this, "You purchased plot number " + Integer.toString(currentPlotId) + "!", Toast.LENGTH_SHORT);
+			Toast.makeText(
+					this,
+					"You purchased plot number "
+							+ Integer.toString(currentPlotId) + "!",
+					Toast.LENGTH_SHORT);
 			JSONObject j = null;
 			try {
 				client.Execute(RequestMethod.POST);
@@ -753,44 +760,47 @@ public class MapTabActivity extends Activity implements OnClickListener {
 				tokenizer.next();
 				tokenizer.next();
 				String message = tokenizer.nextTo('.');
-				Log.d("message",message);
-				if( message.equals("You need more money to make this purchase") ) {
+				Log.d("message", message);
+				if (message.equals("You need more money to make this purchase")) {
 					throw new Exception("You don't have enough money!");
 				}
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setMessage("You purchased plot number " + Integer.toString(currentPlotId) + "!")
-				       .setCancelable(false)
-				       .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-				           public void onClick(DialogInterface dialog, int id) {
-				                dialog.dismiss();
-				           }
-				       });
+				builder.setMessage(
+						"You purchased plot number "
+								+ Integer.toString(currentPlotId) + "!")
+						.setCancelable(false)
+						.setPositiveButton("Ok",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int id) {
+										dialog.dismiss();
+									}
+								});
 				AlertDialog alert = builder.create();
 				alert.show();
 			} catch (Exception e) {
-				Toast.makeText(this, "Error purchasing the land", Toast.LENGTH_SHORT);
-				Log.d("But it didn't work","whoops");
+				Toast.makeText(this, "Error purchasing the land",
+						Toast.LENGTH_SHORT);
+				Log.d("But it didn't work", "whoops");
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				if( e.getMessage().equals("You don't have enough money!") ) {
+				if (e.getMessage().equals("You don't have enough money!")) {
 					builder.setMessage("You don't have enough money!");
 				} else {
 					builder.setMessage("Error purchasing the land");
 				}
-				       builder.setCancelable(false)
-				       .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-				           public void onClick(DialogInterface dialog, int id) {
-				                dialog.dismiss();
-				           }
-				       });
+				builder.setCancelable(false).setPositiveButton("Ok",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								dialog.dismiss();
+							}
+						});
 				AlertDialog alert = builder.create();
 				alert.show();
 			}
-			Log.d("Response",client.getResponse());
+			Log.d("Response", client.getResponse());
 			Log.d("Error", client.getErrorMessage());
-			
+
 		}
 	}
-
-	
 
 }
