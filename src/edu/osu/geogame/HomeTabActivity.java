@@ -3,7 +3,6 @@ package edu.osu.geogame;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
