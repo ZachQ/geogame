@@ -21,27 +21,27 @@ import android.widget.Toast;
 public class Login extends Activity {
 
 	/**
-	 * 
+	 * Submit login information
 	 */
 	private Button login;
 	
 	/**
-	 * 
+	 * Text boxes to enter username and password
 	 */
 	private EditText editLogin, editPassword;
 	
 	/**
-	 * 
+	 * Thread handler
 	 */
 	private Handler mHandler;
 	
 	/**
-	 * 
+	 * Displayed after username and password is submitted
 	 */
 	private ProgressBar loading;
 
 	/**
-	 * 
+	 * Set the UI and assign the listener to the login button
 	 * @param savedInstanceState
 	 */
 	@Override
@@ -129,11 +129,11 @@ public class Login extends Activity {
 	}
 
 	/**
-	 * 
+	 * This thread is run if the login is a success 
 	 */
 	private Runnable Success = new Runnable() {
 		/**
-		 * 
+		 * Run the thread
 		 */
 		public void run() {
 			// Store username
@@ -148,11 +148,12 @@ public class Login extends Activity {
 	};
 
 	/**
-	 * 
+	 * This thread is run if the login attempt is rejected (either the
+	 * username or password was wrong)
 	 */
 	private Runnable Failure = new Runnable() {
 		/**
-		 * 
+		 * Run the thread
 		 */
 		public void run() {
 			Toast.makeText(getApplicationContext(),
@@ -161,11 +162,11 @@ public class Login extends Activity {
 	};
 
 	/**
-	 * 
+	 * This thread is run if an error occured at the login server
 	 */
 	private Runnable Error = new Runnable() {
 		/**
-		 * 
+		 * Run the thread
 		 */
 		public void run() {
 			Toast.makeText(getApplicationContext(), "Unknown Error",
@@ -174,7 +175,7 @@ public class Login extends Activity {
 	};
 
 	/**
-	 * 
+	 *
 	 */
 	private Runnable endThread = new Runnable() {
 		/**
