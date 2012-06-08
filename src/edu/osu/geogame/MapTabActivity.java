@@ -43,49 +43,49 @@ import edu.osu.geogame.exception.ParcelNotFoundException;
  */
 public class MapTabActivity extends Activity implements OnClickListener {
 
-	/*
+	/**
 	 * The section of the UI that holds the ArcGIS map
 	 */
 	private MapView mapView;
 
-	/*
+	/**
 	 * Set to the coordinates on the map that the user taps
 	 */
 	private Point pointClicked;
 
-	/*
+	/**
 	 * The interactive layer of the map that's clickable and returns data
 	 */
 	private ArcGISFeatureLayer featureLayer;
 
-	/*
+	/**
 	 * The section of the UI displaying the plot id of the plot a user selects
 	 */
 	private TextView plotId;
 
-	/*
+	/**
 	 * The section of the UI displaying the plot area of the plot a user selects
 	 */
 	private TextView plotArea;
 
-	/*
+	/**
 	 * If for sale, this section of the UI displays the price; if owned by a
 	 * different player, it displays the family that owns it
 	 */
 	private TextView plotOther;
 
-	/*
+	/**
 	 * If a selected plot is for sale, this text view (which is clickable and
 	 * really acts as a button) allows a player to buy the plot.
 	 */
 	private TextView buyPlot;
 
-	/*
+	/**
 	 * Id of the currently selected plot
 	 */
 	private int currentPlotId;
 
-	/*
+	/**
 	 * String representation of the id of the currently selected plot
 	 */
 	private static String id = "";
@@ -156,12 +156,12 @@ public class MapTabActivity extends Activity implements OnClickListener {
 	 */
 	private class FingerTapListener implements OnSingleTapListener {
 
-		/*
+		/**
 		 * Disregard this
 		 */
 		private static final long serialVersionUID = 1L;
 
-		/*
+		/**
 		 * Listens for the data that the map returns when it is tapped
 		 */
 		private MyCallBackListener myCBListener = new MyCallBackListener();
@@ -178,7 +178,7 @@ public class MapTabActivity extends Activity implements OnClickListener {
 		 */
 		@Override
 		public void onSingleTap(float x, float y) {
-			/*
+			/**
 			 * Thread loadingThread = new Thread() { public void run() {
 			 * plotId.setText("Plot Id:  Loading..");
 			 * plotArea.setText("Plot Area:  Loading..");
@@ -228,12 +228,28 @@ public class MapTabActivity extends Activity implements OnClickListener {
 
 	}
 
+	/**
+	 * 
+	 *
+	 */
 	private class MyCallBackListener implements CallbackListener<FeatureSet> {
-
-		// boolean idSet = false;
+		
+		/**
+		 * This id of the previous plot clicked on.  onCallback runs in a separate thread, and
+		 * the plot information can't be displayed until it returns from the server.  Below, you'll
+		 * see that execution is stopped until the new plot information is returned.
+		 */
 		String idPrevious = "";
+		
+		/**
+		 * I timeout counter;
+		 */
 		int pCounter = 0;
 
+		/**
+		 * Get the id of the plot tapped on.  (This method launches itself in a new
+		 * thread, and id takes at least a few seconds to be set.)
+		 */
 		@Override
 		public void onCallback(FeatureSet queryResults) {
 			if (queryResults.getGraphics().length > 0) {
@@ -249,6 +265,9 @@ public class MapTabActivity extends Activity implements OnClickListener {
 			}
 		}
 
+		/**
+		 * An error during data retrieval
+		 */
 		@Override
 		public void onError(Throwable e) {
 			GeoGame.test = "fail";
@@ -256,6 +275,10 @@ public class MapTabActivity extends Activity implements OnClickListener {
 			// Cant toast here???
 		}
 
+		/**
+		 * Return the plot id of the last plot tapped on
+		 * @return String  the id last plot tapped on
+		 */
 		public String getId() {
 			while (id.equals(idPrevious) && pCounter < 100000) {
 				Log.d(id, idPrevious);
@@ -264,6 +287,9 @@ public class MapTabActivity extends Activity implements OnClickListener {
 			return id;
 		}
 
+		/**
+		 * Called after the plot data is done being retrieved
+		 */
 		public void finish() {
 			idPrevious = id;
 		}
@@ -297,12 +323,33 @@ public class MapTabActivity extends Activity implements OnClickListener {
 	 * } }
 	 */
 
+	/**
+	 * 
+	 *
+	 */
 	private class PlotDataThread extends Thread {
 
+		/**
+		 * 
+		 */
 		private float x;
+		
+		/**
+		 * 
+		 */
 		private float y;
+		
+		/**
+		 * 
+		 */
 		private MyCallBackListener myCBListener;
 
+		/**
+		 * 
+		 * @param x
+		 * @param y
+		 * @param myCBListener
+		 */
 		public PlotDataThread(float x, float y, MyCallBackListener myCBListener) {
 			super();
 			this.x = x;
@@ -310,6 +357,9 @@ public class MapTabActivity extends Activity implements OnClickListener {
 			this.myCBListener = myCBListener;
 		}
 
+		/**
+		 * 
+		 */
 		@Override
 		public void run() {
 			pointClicked = mapView.toMapPoint(x, y);
@@ -392,14 +442,38 @@ public class MapTabActivity extends Activity implements OnClickListener {
 		window.setFormat(PixelFormat.RGBA_8888);
 	}
 
+	/**
+	 * 
+	 *
+	 */
 	private class OwnedParcelDialog extends Dialog implements OnClickListener {
 
+		/**
+		 * 
+		 */
 		private int seedType = 0;
+		
+		/**
+		 * 
+		 */
 		private int fertilizerLevel = 0;
+		
+		/**
+		 * 
+		 */
 		private int irrigationLevel = 0;
 
+		/**
+		 * 
+		 */
 		private int id;
 
+		/**
+		 * 
+		 * @param context
+		 * @param area
+		 * @param id
+		 */
 		public OwnedParcelDialog(Context context, float area, int id) {
 			super(context);
 			this.setContentView(R.layout.owned_parcel_dialog);
